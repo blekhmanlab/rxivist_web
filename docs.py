@@ -3,7 +3,16 @@ import endpoints
 import config
 
 def build_docs(connection):
-  # Main query endpoint
+  return docmodels.Documentation("https://rxivist.org/api/v1",
+    [
+      query(connection),
+      paperdetails(),
+      authordetails(),
+      apidetails(),
+    ]
+  )
+
+def query(connection):
   papers = docmodels.Chapter("Paper search", "Search all bioRxiv papers.")
   query = papers.add_endpoint("Search", "/papers", "Retrieve a list of papers matching the given criteria.")
   query.add_argument("get", "query", "A search string to filter results based on their titles, abstracts and authors.", "")
@@ -92,8 +101,25 @@ def build_docs(connection):
 }
     """
   )
+  return papers
 
-  # Paper details
+def authordetails():
+  author_details = docmodels.Chapter("Author details", "Retrieving more detailed information about a single author.")
+  details = author_details.add_endpoint("Details", "/authors/<id>", "Retrieve data about a single author.")
+  details.add_argument("path", "id", "Rxivist paper ID associated with the author in question.", required=True)
+  details.add_example(
+    "Author detail request",
+    "",
+    "/authors/12345",
+    """{
+  "id": 12345,
+  "name": "Hernán Ramiro Lascano"
+}
+    """
+  )
+  return author_details
+
+def paperdetails():
   paper_details = docmodels.Chapter("Paper details", "Retrieving more detailed information about a single paper.")
   details = paper_details.add_endpoint("Details", "/papers/<id>", "Retrieve data about a single paper and all of its authors")
   details.add_argument("path", "id", "Rxivist paper ID associated with the paper you want ", required=True)
@@ -196,23 +222,95 @@ def build_docs(connection):
     """
   )
 
+  return paper_details
 
-  # Author details
-  author_details = docmodels.Chapter("Author details", "Retrieving more detailed information about a single author.")
-  details = author_details.add_endpoint("Details", "/authors/<id>", "Retrieve data about a single author.")
-  details.add_argument("path", "id", "Rxivist paper ID associated with the author in question.", required=True)
-  details.add_example(
-    "Author detail request",
+def apidetails():
+  api = docmodels.Chapter("API details", "Summary information about the Rxivist data.")
+  collections = api.add_endpoint("Collection list", "/data/collections", "A list of all bioRxiv \"collections,\" or categories, currently available via Rxivist.")
+  collections.add_example(
     "",
-    "/authors/12345",
+    "",
+    "/data/collections",
     """{
-  "id": 12345,
-  "name": "Hernán Ramiro Lascano"
+  "results": [
+    "animal-behavior-and-cognition",
+    "biochemistry",
+    "bioengineering",
+    "bioinformatics",
+    "biophysics",
+    "cancer-biology",
+    "cell-biology",
+    "clinical-trials",
+    "developmental-biology",
+    "ecology",
+    "epidemiology",
+    "evolutionary-biology",
+    "genetics",
+    "genomics",
+    "immunology",
+    "microbiology",
+    "molecular-biology",
+    "neuroscience",
+    "paleontology",
+    "pathology",
+    "pharmacology-and-toxicology",
+    "physiology",
+    "plant-biology",
+    "scientific-communication-and-education",
+    "synthetic-biology",
+    "systems-biology",
+    "zoology"
+  ]
 }
     """
   )
 
+  distributions = api.add_endpoint("Site-wide metric distributions", "/data/distributions/<entity>/<metric>", "Histogram-style binned data summarizing how many papers or authors have a given metric within the range of each bin. For example, the paper downloads distribution might say that there are 15 papers with  between 0 and 9 downloads, 35 papers with between 10 and 19 downloads, 70 papers with between 20 and 29 downloads, and so on. ALSO provides averages for the specified metric.")
+  entity = distributions.add_argument("path", "entity", "Which object should be used to group the metric totals.", "papers")
+  entity.add_values(["paper", "author"])
 
+  metric = distributions.add_argument("path", "metric", "Which metric to evaluate. Not currently available for Twitter data.", "downloads")
+  metric.add_values(["downloads"])
 
-  docs = docmodels.Documentation("https://rxivist.org/api/v1", [papers, paper_details, author_details])
-  return docs
+  distributions.add_example(
+    "Paper download distribution",
+    "",
+    "/data/distributions/paper/downloads",
+    """{
+  "results": {
+    "averages": {
+      "mean": 480,
+      "median": 253
+    },
+    "histogram": [
+      {
+        "bucket_min": 0,
+        "count": 4
+      },
+      {
+        "bucket_min": 2,
+        "count": 21
+      },
+      {
+        "bucket_min": 4,
+        "count": 92
+      },
+      {
+        "bucket_min": 8,
+        "count": 128
+      },
+      {
+        "bucket_min": 16,
+        "count": 272
+      },
+      {
+        "bucket_min": 32,
+        "count": 457
+      }
+    ]
+  }
+}
+    """
+  )
+
+  return api

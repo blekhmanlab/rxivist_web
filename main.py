@@ -42,117 +42,6 @@ connection = db.Connection(config.db["host"], config.db["db"], config.db["user"]
 
 # - ROUTES -
 
-# API ENDPOINTS
-#     paper query endpoint
-@bottle.get('/api/v1/papers')
-def index():
-  query = bottle.request.query.q
-  timeframe = bottle.request.query.timeframe
-  category_filter = bottle.request.query.getall('category') # multiple params possible
-  metric = bottle.request.query.metric
-  entity = "papers"
-  page = bottle.request.query.page
-  page_size = bottle.request.query.page_size
-  error = ""
-
-  if metric not in ["downloads", "twitter"]:
-    metric = "twitter"
-  if metric == "twitter":
-    if timeframe not in ["alltime", "day", "week", "month", "year"]:
-      timeframe = "day"
-  elif metric == "downloads":
-    if timeframe not in ["alltime", "ytd", "lastmonth"]:
-      timeframe = "alltime"
-
-  category_list = endpoints.get_categories(connection) # list of all article categories
-
-  # Get rid of a category filter that's just one empty parameter:
-  if len(category_filter) == 1 and category_filter[0] == "":
-    category_filter = []
-  else:
-    # otherwise validate that the categories are valid
-    for cat in category_filter:
-      if cat not in category_list:
-        error = "There was a problem with the submitted query: {} is not a recognized category.".format(cat)
-        bottle.response.status = 500
-        break
-
-  if page == "":
-    page = 0
-  else:
-    try:
-      page = int(page)
-    except Exception as e:
-      error = "Problem recognizing specified page number: {}".format(e)
-
-  if page_size == "":
-    page_size = config.default_page_size
-  else:
-    try:
-      page_size = int(page_size)
-    except Exception as e:
-      error = "Problem recognizing specified page size: {}".format(e)
-      page_size = 0
-
-  if page_size > config.max_page_size_api:
-    page_size = config.max_page_size_api # cap the page size users can ask for
-
-  results = {} # a list of articles for the current page
-  totalcount = 0 # how many results there are in total
-
-  if error == "": # if nothing's gone wrong yet, fetch results:
-    try:
-      results, totalcount = endpoints.most_popular(connection, query, category_filter, timeframe, metric, page, page_size)
-    except Exception as e:
-      print(e)
-      error = "There was a problem with the submitted query: {}".format(e)
-      bottle.response.status = 500
-  print("\n\n||{}||\n**\n".format(entity))
-  resp = models.PaperQueryResponse(results, query, timeframe, category_filter, metric, entity, page, page_size, totalcount)
-  return resp.json()
-
-#     paper details
-@bottle.get('/api/v1/papers/<id:int>')
-def paper_details(id):
-  try:
-    paper = endpoints.paper_details(connection, id)
-  except helpers.NotFoundError as e:
-    bottle.response.status = 404
-    return {"error": e.message}
-  except ValueError as e:
-    bottle.response.status = 500
-    print(e)
-    return {"error": "Server error."}
-  return paper.json()
-
-#     paper download stats
-@bottle.get('/api/v1/papers/<id:int>/downloads')
-def paper_downloads(id):
-  try:
-    details = endpoints.paper_downloads(connection, id)
-  except helpers.NotFoundError as e:
-    bottle.response.status = 404
-    return {"error": e.message}
-  except ValueError as e:
-    bottle.response.status = 500
-    print(e)
-    return {"error": "Server error."}
-  return details
-
-#     Author details page
-@bottle.get('/api/v1/authors/<id:int>')
-def display_author_details(id):
-  try:
-    author = endpoints.author_details(connection, id)
-  except helpers.NotFoundError as e:
-    bottle.response.status = 404
-    return {"error": e.message}
-  except ValueError as e:
-    bottle.response.status = 500
-    print(e)
-    return {"error": "Server error."}
-  return author.json() # TODO: switch this to detailed_authors with ranks
-
 # WEB PAGES
 #     Homepage / search results
 @bottle.get('/')
@@ -254,11 +143,7 @@ def index():
       if entity == "authors":
         results = endpoints.author_rankings(connection, category_filter)
       elif entity == "papers":
-        if view == "table":
-          results = endpoints.table_results(connection, query)
-          print("Prepping table view \n\n\n")
-        else:
-          results, totalcount = endpoints.most_popular(connection, query, category_filter, timeframe, metric, page, page_size)
+        results, totalcount = endpoints.most_popular(connection, query, category_filter, timeframe, metric, page, page_size)
     except Exception as e:
       print(e)
       error = "There was a problem with the submitted query: {}".format(e)
@@ -277,35 +162,6 @@ def index():
     timeframe=timeframe, metric=metric, querystring=bottle.request.query_string,
     view=view, entity=entity, google_tag=config.google_tag, page=page,
     page_size=page_size, totalcount=totalcount, pagelink=pagelink)
-
-#     full display thing
-@bottle.get('/table')
-@bottle.view('table')
-def table():
-  if connection is None:
-    bottle.response.status = 421
-    return "Database is initializing."
-
-  query = bottle.request.query.q
-
-  category_list = endpoints.get_categories(connection) # list of all article categories
-  stats = models.SiteStats(connection) # site-wide metrics (paper count, etc)
-  error = ""
-  results = {}
-
-  title = "Most popular papers related to \"{},\" ".format(query) if query != "" else "Most popular bioRxiv papers"
-
-  try:
-    results = endpoints.table_results(connection, query)
-  except Exception as e:
-    print(e)
-    error = "There was a problem with the submitted query."
-    bottle.response.status = 500
-
-  return bottle.template('table', results=results,
-    query=query, title=title,
-    error=error, stats=stats,
-    category_list=category_list, google_tag=config.google_tag)
 
 #     Author details page
 @bottle.get('/authors/<id:int>')
