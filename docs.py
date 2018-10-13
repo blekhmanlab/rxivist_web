@@ -106,55 +106,73 @@ def papers(connection):
   details.add_example(
     "Paper detail request",
     "",
-    "/papers/12345",
+    "/papers/25777",
     """{
-  "id": 12345,
-  "doi": "10.1101/350124",
-  "biorxiv_url": "https://www.biorxiv.org/content/early/2018/06/19/350124",
-  "url": "https://rxivist.org/papers/12345",
-  "title": "Reconstructing intelligible speech from the human auditory cortex",
-  "abstract": "Auditory stimulus reconstruction is a technique that finds the best approximation of the acoustic stimulus from the population of evoked neural activity. Reconstructing speech from the human auditory cortex creates the possibility of a speech neuroprosthetic to establish a direct communication with the brain and has been shown to be possible in both overt and covert conditions. However, the low quality of the reconstructed speech has severely limited the utility of this method for brain-computer interface (BCI) applications. To advance the state-of-the-art in speech neuroprosthesis, we combined the recent advances in deep learning with the latest innovations in speech synthesis technologies to reconstruct closed-set intelligible speech from the human auditory cortex. We investigated the dependence of reconstruction accuracy on linear and nonlinear regression methods and the acoustic representation that is used as the target of reconstruction, including spectrogram and speech synthesis parameters. In addition, we compared the reconstruction accuracy from low and high neural frequency ranges. Our results show that a deep neural network model that directly estimates the parameters of a speech synthesizer from all neural frequencies achieves the highest subjective and objective scores on a digit recognition task, improving the intelligibility by 65% over the baseline. These results demonstrate the efficacy of deep learning and speech synthesis algorithms for designing the next generation of speech BCI systems, which not only can restore communications for paralyzed patients but also have the potential to transform human-computer interaction technologies.",
-  "downloads": 574,
+  "id": 25770,
+  "doi": "10.1101/096727",
+  "biorxiv_url": "https://www.biorxiv.org/content/early/2016/12/29/096727",
+  "url": "https://rxivist.org/papers/25770",
+  "title": "Parallel adaptation to higher temperatures in divergent clades of the nematode Pristionchus pacificus",
+  "category": "evolutionary-biology",
+  "abstract": "Studying the effect of temperature on fertility is particularly important in the light of ongoing climate change. We need to know if organisms can adapt to higher temperatures and, if so, what are the evolutionary mechanisms behind such adaptation. Such studies have been hampered by the lack different populations of sufficient sizes with which to relate the phenotype of temperature tolerance to the underlying genotypes. Here, we examined temperature adaptation in populations of the nematode Pristionchus pacificus, in which individual strains are able to successfully reproduce at 30°C. Analysis of the frequency of heat tolerant strains in different temperature zones on La Reunion supports that this trait is subject to natural selection. Reconstruction of ancestral states along the phylogeny of highly differentiated P. pacificus clades suggests that heat tolerance evolved multiple times independently. This is further supported by genome wide association studies showing that heat tolerance is a polygenic trait and that different loci are used by individual P. pacificus clades to develop heat tolerance. More precisely, analysis of allele frequencies indicated that most genetic markers that are associated with heat tolerance are only polymorphic in individual clades. While in some P. pacificus clades, parallel evolution of heat tolerance can be explained by ancestral polymorphism or by gene flow across clades, we observe at least one clearly distinct and independent scenario where heat tolerance emerged by de novo mutation. Thus, temperature tolerance evolved at least two times independently in the evolutionary history of this species. Our data suggest that studies of wild populations of P. pacificus will reveal distinct cellular mechanisms driving temperature adaptation.",
   "authors": [
     {
-      "id": 78107,
-      "name": "Hassan Akbari"
+      "id": 1221,
+      "name": "Mark Leaver",
+      "institution": "Max Planck Institute of Molecular Cell Biology and Genetics;",
+      "orcid": "http://orcid.org/0000-0003-2796-4312"
     },
     {
-      "id": 78108,
-      "name": "Bahar Khalighinejad"
+      "id": 1222,
+      "name": "Merve Kayhan",
+      "institution": "Bilkent University;",
+      "orcid": null
     },
     {
-      "id": 78109,
-      "name": "Jose Herrero"
+      "id": 1223,
+      "name": "Angela McGaughran",
+      "institution": "Australian National University;",
+      "orcid": null
     },
     {
-      "id": 78110,
-      "name": "Ashesh Mehta"
+      "id": 1224,
+      "name": "Christian Roedelsperger",
+      "institution": "Max Planck Institute for Developmental Biology;",
+      "orcid": null
     },
     {
-      "id": 78111,
-      "name": "Nima Mesgarani"
+      "id": 1225,
+      "name": "Anthony A Hyman",
+      "institution": "Max Planck Institute of Molecular Cell Biology and genetics",
+      "orcid": "http://orcid.org/0000-0003-3664-154X"
+    },
+    {
+      "id": 1226,
+      "name": "Ralf Sommer",
+      "institution": "Max Planck Institute for Developmental Biology;",
+      "orcid": "http://orcid.org/0000-0003-1503-7749"
     }
   ],
   "ranks": {
     "alltime": {
-      "rank": 6712,
-      "tie": false
+      "rank": 15658,
+      "tie": false,
+      "downloads": 290
     },
     "ytd": {
-      "rank": 1471,
-      "tie": false
+      "rank": 22951,
+      "tie": false,
+      "downloads": 65
     },
     "lastmonth": {
-      "rank": 553,
-      "tie": false
+      "rank": 28283,
+      "tie": 4,
+      "downloads": 65
     },
     "category": {
-      "category": "alltime",
-      "downloads": 0,
-      "rank": 553,
-      "tie": false
+      "rank": 1500,
+      "tie": 4,
+      "downloads": 290
     }
   }
 }
@@ -211,10 +229,48 @@ def authors():
   details.add_example(
     "Author detail request",
     "",
-    "/authors/12345",
+    "/authors/1222",
     """{
-  "id": 12345,
-  "name": "Hernán Ramiro Lascano"
+  "id": 1222,
+  "name": "Merve Kayhan",
+  "institution": "Bilkent University;",
+  "orcid": null,
+  "emails": [
+    "merve.kayhan@bilkent.edu.tr"
+  ],
+  "articles": [
+    {
+      "id": 25770,
+      "doi": "10.1101/096727",
+      "biorxiv_url": "https://www.biorxiv.org/content/early/2016/12/29/096727",
+      "url": "https://rxivist.org/papers/25770",
+      "title": "Parallel adaptation to higher temperatures in divergent clades of the nematode Pristionchus pacificus",
+      "category": "evolutionary-biology",
+      "ranks": {
+        "alltime": {
+          "rank": 15658,
+          "tie": false,
+          "downloads": 290
+        },
+        "ytd": {
+          "rank": 22951,
+          "tie": false,
+          "downloads": 65
+        },
+        "lastmonth": {
+          "rank": 28283,
+          "tie": 4,
+          "downloads": 65
+        },
+        "category": {
+          "rank": 28283,
+          "tie": 4,
+          "downloads": 0
+        }
+      }
+    }
+  ],
+  "ranks": []
 }
     """
   )
@@ -257,6 +313,16 @@ def apidetails():
     "systems-biology",
     "zoology"
   ]
+}
+    """
+  )
+
+  counts = api.add_endpoint("Total entities", "/data/counts", "Basic information about how many papers and authors are indexed by Rxivist.")
+  counts.add_example(
+    "", "", "/data/counts",
+    """{
+  "paper_count": 34131,
+  "author_count": 161298
 }
     """
   )
