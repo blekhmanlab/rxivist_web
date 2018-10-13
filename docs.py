@@ -5,15 +5,14 @@ import config
 def build_docs(connection):
   return docmodels.Documentation("https://rxivist.org/api/v1",
     [
-      query(connection),
-      paperdetails(),
-      authordetails(),
+      papers(connection),
+      authors(),
       apidetails(),
     ]
   )
 
-def query(connection):
-  papers = docmodels.Chapter("Paper search", "Search all bioRxiv papers.")
+def papers(connection):
+  papers = docmodels.Chapter("Papers", "Search all bioRxiv papers and retrieve details.")
   query = papers.add_endpoint("Search", "/papers", "Retrieve a list of papers matching the given criteria.")
   query.add_argument("get", "query", "A search string to filter results based on their titles, abstracts and authors.", "")
 
@@ -101,27 +100,8 @@ def query(connection):
 }
     """
   )
-  return papers
 
-def authordetails():
-  author_details = docmodels.Chapter("Author details", "Retrieving more detailed information about a single author.")
-  details = author_details.add_endpoint("Details", "/authors/<id>", "Retrieve data about a single author.")
-  details.add_argument("path", "id", "Rxivist paper ID associated with the author in question.", required=True)
-  details.add_example(
-    "Author detail request",
-    "",
-    "/authors/12345",
-    """{
-  "id": 12345,
-  "name": "Hernán Ramiro Lascano"
-}
-    """
-  )
-  return author_details
-
-def paperdetails():
-  paper_details = docmodels.Chapter("Paper details", "Retrieving more detailed information about a single paper.")
-  details = paper_details.add_endpoint("Details", "/papers/<id>", "Retrieve data about a single paper and all of its authors")
+  details = papers.add_endpoint("Details", "/papers/<id>", "Retrieve data about a single paper and all of its authors")
   details.add_argument("path", "id", "Rxivist paper ID associated with the paper you want ", required=True)
   details.add_example(
     "Paper detail request",
@@ -181,7 +161,7 @@ def paperdetails():
     """
   )
 
-  downloads = paper_details.add_endpoint("Download data", "/papers/<id>/downloads", "Retrieve monthly download statistics for a single paper. PLEASE NOTE that currently, the author list for a given paper is based on the authors retrieved the first time a paper was indexed by Rxivist; if a paper was revised later and the author list modified, that would not have been updated here.")
+  downloads = papers.add_endpoint("Download data", "/papers/<id>/downloads", "Retrieve monthly download statistics for a single paper. PLEASE NOTE that currently, the author list for a given paper is based on the authors retrieved the first time a paper was indexed by Rxivist; if a paper was revised later and the author list modified, that would not have been updated here.")
   downloads.add_argument("path", "id", "Rxivist paper ID associated with the download data you want.", required=True)
   downloads.add_example(
     "Paper download data request",
@@ -222,7 +202,23 @@ def paperdetails():
     """
   )
 
-  return paper_details
+  return papers
+
+def authors():
+  authors = docmodels.Chapter("Authors", "Retrieving more detailed information about a single author.")
+  details = authors.add_endpoint("Details", "/authors/<id>", "Retrieve data about a single author.")
+  details.add_argument("path", "id", "Rxivist paper ID associated with the author in question.", required=True)
+  details.add_example(
+    "Author detail request",
+    "",
+    "/authors/12345",
+    """{
+  "id": 12345,
+  "name": "Hernán Ramiro Lascano"
+}
+    """
+  )
+  return authors
 
 def apidetails():
   api = docmodels.Chapter("API details", "Summary information about the Rxivist data.")
