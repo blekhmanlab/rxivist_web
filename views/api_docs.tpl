@@ -31,7 +31,7 @@
           <ul>
             % for chapter in docs.chapters:
               % for endpoint in chapter.endpoints:
-                <li>{{ chapter.title }}: <a href="#{{ endpoint.title.replace(" ", "-") }}">{{ endpoint.title }}</a> <code>{{ docs.base_url }}{{ endpoint.url }}</code>
+                <li>{{ chapter.title }}: <a href="#{{ chapter.title.replace(" ", "-") }}-{{ endpoint.title.replace(" ", "-") }}">{{ endpoint.title }}</a> <code>{{ docs.base_url }}{{ endpoint.url }}</code>
               % end
             % end
           </ul>
@@ -43,7 +43,7 @@
             <h2 style="padding-top: 20px;">{{ chapter.title }}</h2>
             <div class="col-sm-10 offset-sm-1">
               % for endpoint in chapter.endpoints:
-                <h3 id="{{ endpoint.title.replace(" ", "-") }}">Endpoint: {{ endpoint.title }}</h3>
+                <h3 id="{{ chapter.title.replace(" ", "-") }}-{{ endpoint.title.replace(" ", "-") }}">Endpoint: {{ endpoint.title }}</h3>
                 <p>
                 % if endpoint.description != "":
                   {{ endpoint.description }}<br>
