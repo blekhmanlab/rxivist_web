@@ -1,17 +1,5 @@
 import os
 
-db = {
-  "host": os.environ['RX_DBHOST'],
-  "db": "rxdb",
-  "user": "root",
-  "password": os.environ['RX_DBPASSWORD'],
-  "connection": {
-    "timeout": 3,
-    "max_attempts": 10,
-    "attempt_pause": 3, # how long to wait between connection attempts
-  },
-}
-
 rxapi = "http://rxapi"
 # Whether to launch the application with gunicorn as the web server, or
 # with Bottle's default. The default can be handy for development because
@@ -28,13 +16,10 @@ max_page_size_site = 100
 max_page_size_api = 250
 
 # The entity ID provided by Google Analytics
-google_tag = "UA-125076477-1"
+google_tag = "UA-125076477-1" # TODO: put these in environment variables
 # The validation file provided by the Google Webmaster Tools.
 # (Should be placed in the /static directory)
-google_validation_file = "google3d18e8a680b87e67.html"
-
-# Whether to allow access to the /db endpoints. Should be FALSE in production.
-allow_db_dashboard = True
+google_validation_file = "google3d18e8a680b87e67.html" # TODO this one too
 
 # When accessing a table's data in the db admin dashboard, the maximum number of
 # results to display.

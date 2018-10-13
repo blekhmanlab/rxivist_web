@@ -2,6 +2,9 @@
 
 This module stores helper functions that transform data for the controllers.
 """
+import config
+
+import requests
 
 class NotFoundError(Exception):
   def __init__(self, id):
@@ -67,3 +70,7 @@ def findCategory(needle, haystack):
   for x in haystack:
     if x["category"] == needle:
       return x
+
+def rxapi(uri):
+  get = requests.get("{}{}".format(config.rxapi, uri))
+  return get.json()

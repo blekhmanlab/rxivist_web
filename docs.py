@@ -1,6 +1,6 @@
-import docmodels
-import endpoints
 import config
+import docmodels
+import helpers
 
 def build_docs(connection):
   return docmodels.Documentation("https://rxivist.org/api/v1",
@@ -23,7 +23,7 @@ def papers(connection):
   timeframe.add_values(["alltime", "ytd", "lastmonth", "day", "week", "month", "year"])
 
   catfilter = query.add_argument("get", "category_filter", "An array of categories to which the results should be limited.", "[]")
-  category_list = endpoints.get_categories(connection) # list of all article categories
+  category_list = helpers.rxapi("/api/v1/data/collections")["results"] # list of all article categories
   catfilter.add_values(category_list)
 
   query.add_argument("get", "page", "Number of the page of results to retrieve. Shorthand for an offset based on the specified page_size", 0)
