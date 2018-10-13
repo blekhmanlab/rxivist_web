@@ -44,6 +44,7 @@ class Argument:
     self.description = description
     self.default = default
     self.required = required
+    self.acceptable = []
 
   def add_values(self, potential):
     "Adds information about acceptable values for an argument"

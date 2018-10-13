@@ -62,3 +62,8 @@ def formatNumber(val):
   if val is None:
     return "None"
   return format(val, ",d")
+
+def findCategory(needle, haystack):
+  for x in haystack:
+    if x["category"] == needle:
+      return x

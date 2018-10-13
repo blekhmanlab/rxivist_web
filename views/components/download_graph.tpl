@@ -7,8 +7,8 @@ var chart = new Chart(ctx, {
   // The data for our dataset
   data: {
     labels: [
-      % for entry in paper.traffic:
-        "{{entry.month}}/{{entry.year}}",
+      % for entry in traffic:
+        "{{ entry["month"] }}/{{ entry["year"] }}",
       % end
     ],
     datasets: [{
@@ -16,8 +16,8 @@ var chart = new Chart(ctx, {
       backgroundColor: '#468847',
       borderColor: '#468847',
       data: [
-        % for entry in paper.traffic:
-          {{entry.downloads}},
+        % for entry in traffic:
+          {{ entry["downloads"] }},
         % end
       ],
     }]

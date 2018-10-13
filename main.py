@@ -34,7 +34,6 @@ import requests
 
 import db
 import helpers
-import endpoints
 import config
 import models
 import docs
@@ -62,15 +61,15 @@ def index():
   stats = rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
   results = {} # a list of articles for the current page
 
-  try:
-    if entity == "authors":
-      results = endpoints.author_rankings(connection, category_filter)
-    elif entity == "papers":
-      results = rxapi("/api/v1/papers?{}".format(bottle.request.query_string))
-  except Exception as e:
-    print(e)
-    error = "There was a problem with the submitted query: {}".format(e)
-    bottle.response.status = 500
+  # try:
+  #   if entity == "authors":
+  #     results = endpoints.author_rankings(connection, category_filter)
+  #   elif entity == "papers":
+  #     results = rxapi("/api/v1/papers?{}".format(bottle.request.query_string))
+  # except Exception as e:
+  #   print(e)
+  #   error = "There was a problem with the submitted query: {}".format(e)
+  #   bottle.response.status = 500
 
   # Take the current query string and turn it into a template that any page
   # number can get plugged into:
@@ -129,7 +128,7 @@ def index():
 @bottle.view('author_details')
 def display_author_details(id):
   try:
-    author = endpoints.author_details(connection, id)
+    author = rxapi("/api/v1/authors/{}".format(id))
   except helpers.NotFoundError as e:
     bottle.response.status = 404
     return e.message
@@ -137,7 +136,9 @@ def display_author_details(id):
     bottle.response.status = 500
     print(e)
     return {"error": "Server error."}
-  download_distribution, averages = endpoints.download_distribution(connection, 'author')
+  distro = rxapi("/api/v1/data/distributions/author/downloads")
+  download_distribution = distro["histogram"]
+  averages = distro["averages"]
   stats = rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
   return bottle.template('author_details', author=author,
     download_distribution=download_distribution, averages=averages, stats=stats,
@@ -148,8 +149,7 @@ def display_author_details(id):
 @bottle.view('paper_details')
 def display_paper_details(id):
   try:
-    paper = endpoints.paper_details(connection, id)
-    paper.GetDetailedTraffic(connection)
+    paper = rxapi("/api/v1/papers/{}".format(id))
   except helpers.NotFoundError as e:
     bottle.response.status = 404
     return e.message
@@ -157,9 +157,12 @@ def display_paper_details(id):
     bottle.response.status = 500
     print(e)
     return {"error": "Server error."}
-  download_distribution, averages = endpoints.download_distribution(connection, 'alltime')
+  traffic = rxapi("/api/v1/papers/{}/downloads".format(id))["results"]
+  distro = rxapi("/api/v1/data/distributions/paper/downloads")
+  download_distribution = distro["histogram"]
+  averages = distro["averages"]
   stats = rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
-  return bottle.template('paper_details', paper=paper,
+  return bottle.template('paper_details', paper=paper, traffic=traffic,
     download_distribution=download_distribution, averages=averages, stats=stats,
     google_tag=config.google_tag)
 

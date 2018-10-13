@@ -15,10 +15,14 @@ window.onload = function() {
   var ctx1 = document.getElementById("downloadsDistribution").getContext('2d');
   bucket_list = [
     % for entry in download_distribution:
-      {{entry[0]}},
+      {{ entry["bucket_min"] }},
     % end
   ];
-  % downloads = entity.downloads or entity.alltime_rank.downloads
+  % if entity_name == "paper":
+  %   downloads = entity["ranks"]["alltime"]["downloads"]
+  % else:  # author
+  %   downloads = helpers.findCategory("alltime", entity["ranks"])["downloads"]
+  % end
   // determine which bucket the entity is in:
   entityBucket = findBucket({{ downloads }}, bucket_list)
   meanBucket = findBucket({{ averages["mean"] }}, bucket_list)
@@ -35,7 +39,7 @@ window.onload = function() {
           backgroundColor: "#2f69bf",
           data: [
             % for entry in download_distribution:
-              {{entry[1]}},
+              {{ entry["count"] }},
             % end
           ],
           lineAtIndex: [

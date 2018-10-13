@@ -114,6 +114,7 @@ def papers(connection):
   "url": "https://rxivist.org/papers/25770",
   "title": "Parallel adaptation to higher temperatures in divergent clades of the nematode Pristionchus pacificus",
   "category": "evolutionary-biology",
+  "first_posted": "2016-12-29",
   "abstract": "Studying the effect of temperature on fertility is particularly important in the light of ongoing climate change. We need to know if organisms can adapt to higher temperatures and, if so, what are the evolutionary mechanisms behind such adaptation. Such studies have been hampered by the lack different populations of sufficient sizes with which to relate the phenotype of temperature tolerance to the underlying genotypes. Here, we examined temperature adaptation in populations of the nematode Pristionchus pacificus, in which individual strains are able to successfully reproduce at 30°C. Analysis of the frequency of heat tolerant strains in different temperature zones on La Reunion supports that this trait is subject to natural selection. Reconstruction of ancestral states along the phylogeny of highly differentiated P. pacificus clades suggests that heat tolerance evolved multiple times independently. This is further supported by genome wide association studies showing that heat tolerance is a polygenic trait and that different loci are used by individual P. pacificus clades to develop heat tolerance. More precisely, analysis of allele frequencies indicated that most genetic markers that are associated with heat tolerance are only polymorphic in individual clades. While in some P. pacificus clades, parallel evolution of heat tolerance can be explained by ancestral polymorphism or by gene flow across clades, we observe at least one clearly distinct and independent scenario where heat tolerance emerged by de novo mutation. Thus, temperature tolerance evolved at least two times independently in the evolutionary history of this species. Our data suggest that studies of wild populations of P. pacificus will reveal distinct cellular mechanisms driving temperature adaptation.",
   "authors": [
     {
@@ -174,6 +175,10 @@ def papers(connection):
       "tie": 4,
       "downloads": 290
     }
+  },
+  publication": {
+    "journal": "Journal Name Here",
+    "doi": "10.1038/1234567"
   }
 }
     """
@@ -361,38 +366,36 @@ def apidetails():
     "",
     "/data/distributions/paper/downloads",
     """{
-  "results": {
-    "averages": {
-      "mean": 480,
-      "median": 253
+  "averages": {
+    "mean": 480,
+    "median": 253
+  },
+  "histogram": [
+    {
+      "bucket_min": 0,
+      "count": 4
     },
-    "histogram": [
-      {
-        "bucket_min": 0,
-        "count": 4
-      },
-      {
-        "bucket_min": 2,
-        "count": 21
-      },
-      {
-        "bucket_min": 4,
-        "count": 92
-      },
-      {
-        "bucket_min": 8,
-        "count": 128
-      },
-      {
-        "bucket_min": 16,
-        "count": 272
-      },
-      {
-        "bucket_min": 32,
-        "count": 457
-      }
-    ]
-  }
+    {
+      "bucket_min": 2,
+      "count": 21
+    },
+    {
+      "bucket_min": 4,
+      "count": 92
+    },
+    {
+      "bucket_min": 8,
+      "count": 128
+    },
+    {
+      "bucket_min": 16,
+      "count": 272
+    },
+    {
+      "bucket_min": 32,
+      "count": 457
+    }
+  ]
 }
     """
   )
