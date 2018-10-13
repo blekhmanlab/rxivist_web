@@ -30,6 +30,7 @@ when the server is started and the router for all user requests.
 import re
 
 import bottle
+import requests
 
 import db
 import helpers
@@ -40,6 +41,10 @@ import docs
 
 connection = db.Connection(config.db["host"], config.db["db"], config.db["user"], config.db["password"])
 
+def rxapi(uri):
+  get = requests.get("{}{}".format(config.rxapi, uri))
+  return get.json()
+
 # - ROUTES -
 
 # WEB PAGES
@@ -47,35 +52,47 @@ connection = db.Connection(config.db["host"], config.db["db"], config.db["user"]
 @bottle.get('/')
 @bottle.view('index')
 def index():
-  if connection is None:
-    bottle.response.status = 421
-    return "Database is initializing."
-
-  query = bottle.request.query.q
-  timeframe = bottle.request.query.timeframe
-  category_filter = bottle.request.query.getall('category') # multiple params possible
-  metric = bottle.request.query.metric
-  view = bottle.request.query.view # which format to display results
-  entity = bottle.request.query.entity
-  page = bottle.request.query.page
-  page_size = bottle.request.query.page_size
   error = ""
-
-  # set defaults, throw out bogus values
-  if entity not in ["papers", "authors"]:
+  entity = bottle.request.query.entity
+  if entity is None or entity == "":
     entity = "papers"
-  if entity == "papers":
-    if metric not in ["downloads", "twitter"]:
-      metric = "twitter"
-    if metric == "twitter":
-      if timeframe not in ["alltime", "day", "week", "month", "year"]:
-        timeframe = "day"
-    elif metric == "downloads":
-      if timeframe not in ["alltime", "ytd", "lastmonth"]:
-        timeframe = "alltime"
-  elif entity == "authors":
-    metric = "downloads"
-    timeframe = "alltime"
+  print("entity is {}".format(entity))
+
+  category_list = rxapi("/api/v1/data/collections")["results"]
+  stats = rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
+  results = {} # a list of articles for the current page
+
+  try:
+    if entity == "authors":
+      results = endpoints.author_rankings(connection, category_filter)
+    elif entity == "papers":
+      results = rxapi("/api/v1/papers?{}".format(bottle.request.query_string))
+  except Exception as e:
+    print(e)
+    error = "There was a problem with the submitted query: {}".format(e)
+    bottle.response.status = 500
+
+  # Take the current query string and turn it into a template that any page
+  # number can get plugged into:
+  if "page=" in bottle.request.query_string:
+    pagelink =  "/?{}".format(re.sub(r"page=\d*", "page=", bottle.request.query_string))
+  else:
+    pagelink = "/?{}&page=".format(bottle.request.query_string)
+
+  try:
+    entity = "papers"
+    metric = results["query"]["metric"]
+    timeframe = results["query"]["timeframe"]
+    category_filter = results["query"]["categories"]
+    page = results["query"]["current_page"]
+    page_size = results["query"]["page_size"]
+    totalcount = results["query"]["total_results"]
+    query = results["query"]["text_search"]
+  except Exception as e:
+    if "error" in results.keys():
+      error = results["error"]
+    else:
+      error = e
 
   # figure out the page title
   if entity == "papers":
@@ -101,67 +118,11 @@ def index():
   elif entity == "authors":
     title = "Authors with most downloads, all-time"
 
-  category_list = endpoints.get_categories(connection) # list of all article categories
-
-  # Get rid of a category filter that's just one empty parameter:
-  if len(category_filter) == 1 and category_filter[0] == "":
-    category_filter = []
-  else:
-    # otherwise validate that the categories are valid
-    for cat in category_filter:
-      if cat not in category_list:
-        error = "There was a problem with the submitted query: {} is not a recognized category.".format(cat)
-        bottle.response.status = 500
-        break
-
-  if page == "":
-    page = 0
-  else:
-    try:
-      page = int(page)
-    except Exception as e:
-      error = "Problem recognizing specified page number: {}".format(e)
-
-  if page_size == "":
-    page_size = config.default_page_size
-  else:
-    try:
-      page_size = int(page_size)
-    except Exception as e:
-      error = "Problem recognizing specified page size: {}".format(e)
-      page_size = 0
-
-  if page_size > config.max_page_size_site:
-    page_size = config.max_page_size_site # cap the page size users can ask for
-
-  stats = models.SiteStats(connection) # site-wide metrics (paper count, etc)
-  results = {} # a list of articles for the current page
-  totalcount = 0 # how many results there are in total
-
-  if error == "": # if nothing's gone wrong yet, fetch results:
-    try:
-      if entity == "authors":
-        results = endpoints.author_rankings(connection, category_filter)
-      elif entity == "papers":
-        results, totalcount = endpoints.most_popular(connection, query, category_filter, timeframe, metric, page, page_size)
-    except Exception as e:
-      print(e)
-      error = "There was a problem with the submitted query: {}".format(e)
-      bottle.response.status = 500
-
-  # Take the current query string and turn it into a template that any page
-  # number can get plugged into:
-  if "page=" in bottle.request.query_string:
-    pagelink =  "/?{}".format(re.sub(r"page=\d*", "page=", bottle.request.query_string))
-  else:
-    pagelink = "/?{}&page=".format(bottle.request.query_string)
-
-  return bottle.template('index', results=results,
+  return bottle.template('index', results=results["results"]["items"],
     query=query, category_filter=category_filter, title=title,
-    error=error, stats=stats, category_list=category_list,
-    timeframe=timeframe, metric=metric, querystring=bottle.request.query_string,
-    view=view, entity=entity, google_tag=config.google_tag, page=page,
-    page_size=page_size, totalcount=totalcount, pagelink=pagelink)
+    error=error, stats=stats, category_list=category_list, view="standard",
+    timeframe=timeframe, metric=metric, entity=entity, google_tag=config.google_tag,
+    page=page, page_size=page_size, totalcount=totalcount, pagelink=pagelink)
 
 #     Author details page
 @bottle.get('/authors/<id:int>')
@@ -177,7 +138,7 @@ def display_author_details(id):
     print(e)
     return {"error": "Server error."}
   download_distribution, averages = endpoints.download_distribution(connection, 'author')
-  stats = models.SiteStats(connection)
+  stats = rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
   return bottle.template('author_details', author=author,
     download_distribution=download_distribution, averages=averages, stats=stats,
     google_tag=config.google_tag)
@@ -197,7 +158,7 @@ def display_paper_details(id):
     print(e)
     return {"error": "Server error."}
   download_distribution, averages = endpoints.download_distribution(connection, 'alltime')
-  stats = models.SiteStats(connection)
+  stats = rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
   return bottle.template('paper_details', paper=paper,
     download_distribution=download_distribution, averages=averages, stats=stats,
     google_tag=config.google_tag)
@@ -205,13 +166,13 @@ def display_paper_details(id):
 @bottle.route('/privacy')
 @bottle.view('privacy')
 def privacy():
-  stats = models.SiteStats(connection)
+  stats = rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
   return bottle.template("privacy", google_tag=config.google_tag, stats=stats)
 
 @bottle.route('/docs')
 @bottle.view('api_docs')
 def api_docs():
-  stats = models.SiteStats(connection)
+  stats = rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
   documentation = docs.build_docs(connection)
   return bottle.template("api_docs", google_tag=config.google_tag, stats=stats, docs=documentation)
 

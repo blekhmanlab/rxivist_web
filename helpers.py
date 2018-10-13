@@ -30,6 +30,8 @@ def num_to_month(monthnum):
   the number is not recognized, it returns an empty string.
 
   """
+  monthnum = int(monthnum)
+
   months = {
     1: "Jan",
     2: "Feb",
@@ -47,6 +49,11 @@ def num_to_month(monthnum):
   if monthnum is None or monthnum < 1 or monthnum > 12:
     return ""
   return months[monthnum]
+
+def formatDate(datestring):
+  # yyyy-mm-dd to dd MMM yyyy
+  x = datestring.split("-")
+  return "{} {} {}".format(x[2], num_to_month(x[1]), x[0])
 
 def formatCategory(cat):
   return cat.replace("-", " ")
