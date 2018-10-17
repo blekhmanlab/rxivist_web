@@ -3,9 +3,9 @@ import docmodels
 import helpers
 
 def build_docs():
-  category_list = helpers.rxapi("/api/v1/data/categories")["results"] # list of all article categories
+  category_list = helpers.rxapi("/v1/data/categories")["results"] # list of all article categories
 
-  return docmodels.Documentation("https://rxivist.org/api/v1",
+  return docmodels.Documentation("https://api.rxivist.org/v1",
     [
       papers(category_list),
       authors(category_list),
@@ -389,9 +389,9 @@ def apidetails():
     """
   )
 
-  counts = api.add_endpoint("Total entities", "/data/counts", "Basic information about how many papers and authors are indexed by Rxivist.")
+  counts = api.add_endpoint("Total entities", "/data/stats", "Basic information about how many papers and authors are indexed by Rxivist.")
   counts.add_example(
-    "", "", "/data/counts",
+    "", "", "/data/stats",
     """{
   "paper_count": 34131,
   "author_count": 161298

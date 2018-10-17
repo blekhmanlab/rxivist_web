@@ -48,8 +48,8 @@ def index():
     entity = "papers"
   print("entity is {}".format(entity))
 
-  category_list = helpers.rxapi("/api/v1/data/categories")["results"]
-  stats = helpers.rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
+  category_list = helpers.rxapi("/v1/data/categories")["results"]
+  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
   results = {} # a list of articles for the current page
 
   try:
@@ -60,9 +60,9 @@ def index():
       else:
         category = category_filter[0] # just one category for author ranks for now
         category_filter = [category_filter[0]]
-      results = helpers.rxapi("/api/v1/authors?category={}".format(category))
+      results = helpers.rxapi("/v1/authors?category={}".format(category))
     elif entity == "papers":
-      results = helpers.rxapi("/api/v1/papers?{}".format(bottle.request.query_string))
+      results = helpers.rxapi("/v1/papers?{}".format(bottle.request.query_string))
   except Exception as e:
     print(e)
     error = "There was a problem with the submitted query: {}".format(e)
@@ -136,7 +136,7 @@ def index():
 @bottle.view('author_details')
 def display_author_details(id):
   try:
-    author = helpers.rxapi("/api/v1/authors/{}".format(id))
+    author = helpers.rxapi("/v1/authors/{}".format(id))
   except helpers.NotFoundError as e:
     bottle.response.status = 404
     return e.message
@@ -144,10 +144,10 @@ def display_author_details(id):
     bottle.response.status = 500
     print(e)
     return {"error": "Server error."}
-  distro = helpers.rxapi("/api/v1/data/distributions/author/downloads")
+  distro = helpers.rxapi("/v1/data/distributions/author/downloads")
   download_distribution = distro["histogram"]
   averages = distro["averages"]
-  stats = helpers.rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
   return bottle.template('author_details', author=author,
     download_distribution=download_distribution, averages=averages, stats=stats,
     google_tag=config.google_tag)
@@ -157,7 +157,7 @@ def display_author_details(id):
 @bottle.view('paper_details')
 def display_paper_details(id):
   try:
-    paper = helpers.rxapi("/api/v1/papers/{}".format(id))
+    paper = helpers.rxapi("/v1/papers/{}".format(id))
   except helpers.NotFoundError as e:
     bottle.response.status = 404
     return e.message
@@ -165,11 +165,11 @@ def display_paper_details(id):
     bottle.response.status = 500
     print(e)
     return {"error": "Server error."}
-  traffic = helpers.rxapi("/api/v1/papers/{}/downloads".format(id))["results"]
-  distro = helpers.rxapi("/api/v1/data/distributions/paper/downloads")
+  traffic = helpers.rxapi("/v1/papers/{}/downloads".format(id))["results"]
+  distro = helpers.rxapi("/v1/data/distributions/paper/downloads")
   download_distribution = distro["histogram"]
   averages = distro["averages"]
-  stats = helpers.rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
   return bottle.template('paper_details', paper=paper, traffic=traffic,
     download_distribution=download_distribution, averages=averages, stats=stats,
     google_tag=config.google_tag)
@@ -177,13 +177,13 @@ def display_paper_details(id):
 @bottle.route('/privacy')
 @bottle.view('privacy')
 def privacy():
-  stats = helpers.rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
   return bottle.template("privacy", google_tag=config.google_tag, stats=stats)
 
 @bottle.route('/docs')
 @bottle.view('api_docs')
 def api_docs():
-  stats = helpers.rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
   documentation = docs.build_docs()
   return bottle.template("api_docs", google_tag=config.google_tag, stats=stats, docs=documentation)
 
