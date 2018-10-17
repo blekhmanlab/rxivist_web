@@ -31,10 +31,8 @@ import re
 
 import bottle
 
-import db
 import helpers
 import config
-import models
 import docs
 
 # - ROUTES -
@@ -50,7 +48,7 @@ def index():
     entity = "papers"
   print("entity is {}".format(entity))
 
-  category_list = helpers.rxapi("/api/v1/data/collections")["results"]
+  category_list = helpers.rxapi("/api/v1/data/categories")["results"]
   stats = helpers.rxapi("/api/v1/data/counts") # site-wide metrics (paper count, etc)
   results = {} # a list of articles for the current page
 

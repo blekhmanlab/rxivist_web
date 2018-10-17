@@ -3,7 +3,7 @@ import docmodels
 import helpers
 
 def build_docs():
-  category_list = helpers.rxapi("/api/v1/data/collections")["results"] # list of all article categories
+  category_list = helpers.rxapi("/api/v1/data/categories")["results"] # list of all article categories
 
   return docmodels.Documentation("https://rxivist.org/api/v1",
     [
@@ -52,7 +52,7 @@ def papers(category_list):
       "title": "Example Paper Here: A compelling placeholder",
       "url": "https://www.biorxiv.org/content/early/2018/fake_url",
       "doi": "10.1101/00000",
-      "collection": "cancer-biology",
+      "category": "cancer-biology",
       "first_posted": "19-09-18",
       "abstract": "This is where the abstract would go.",
       "authors": [
@@ -66,7 +66,7 @@ def papers(category_list):
       "title": "Deep image reconstruction from human brain activity",
       "url": "https://www.biorxiv.org/content/early/2017/12/30/240317",
       "doi": "10.1101/240317",
-      "collection": "neuroscience",
+      "category": "neuroscience",
       "first_posted": "28-12-2017",
       "abstract": "Machine learning-based analysis of human functional magnetic resonance imaging (fMRI) patterns has enabled the visualization of perceptual content. However, it has been limited to the reconstruction with low-level image bases or to the matching to exemplars. Recent work showed that visual cortical activity can be decoded (translated) into hierarchical features of a deep neural network (DNN) for the same input image, providing a way to make use of the information from hierarchical visual features. Here, we present a novel image reconstruction method, in which the pixel values of an image are optimized to make its DNN features similar to those decoded from human brain activity at multiple layers. We found that the generated images resembled the stimulus images (both natural images and artificial shapes) and the subjective visual content during imagery. While our model was solely trained with natural images, our method successfully generalized the reconstruction to artificial shapes, indicating that our model indeed reconstructs or generates images from brain activity, not simply matches to exemplars. A natural image prior introduced by another deep neural network effectively rendered semantically meaningful details to reconstructions by constraining reconstructed images to be similar to natural images. Furthermore, human judgment of reconstructions suggests the effectiveness of combining multiple DNN layers to enhance visual quality of generated images. The results suggest that hierarchical visual information in the brain can be effectively combined to reconstruct perceptual and subjective images.",
       "authors": [
@@ -82,7 +82,7 @@ def papers(category_list):
       "title": "Could a neuroscientist understand a microprocessor?",
       "url": "https://www.biorxiv.org/content/early/2016/11/14/055624",
       "doi": "10.1101/055624",
-      "collection": "neuroscience",
+      "category": "neuroscience",
       "first_posted": "26-05-2016",
       "abstract": "There is a popular belief in neuroscience that we are primarily data limited, and that producing large, multimodal, and complex datasets will, with the help of advanced data analysis algorithms, lead to fundamental insights into the way the brain processes information. These datasets do not yet exist, and if they did we would have no way of evaluating whether or not the algorithmically-generated insights were sufficient or even correct. To address this, here we take a classical microprocessor as a model organism, and use our ability to perform arbitrary experiments on it to see if popular data analysis methods from neuroscience can elucidate the way it processes information. Microprocessors are among those artificial information processing systems that are both complex and that we understand at all levels, from the overall logical flow, via logical gates, to the dynamics of transistors. We show that the approaches reveal interesting structure in the data but do not meaningfully describe the hierarchy of information processing in the microprocessor. This suggests current analytic approaches in neuroscience may fall short of producing meaningful understanding of neural systems, regardless of the amount of data. Additionally, we argue for scientists using complex non-linear dynamical systems with known ground truth, such as the microprocessor as a validation platform for time-series and structure discovery methods.",
       "authors": [
@@ -350,11 +350,11 @@ def authors(category_list):
 
 def apidetails():
   api = docmodels.Chapter("API details", "Summary information about the Rxivist data.")
-  collections = api.add_endpoint("Collection list", "/data/collections", "A list of all bioRxiv \"collections,\" or categories, currently available via Rxivist.")
-  collections.add_example(
+  categories = api.add_endpoint("Category list", "/data/categories", "A list of all bioRxiv \"collections,\" or categories, currently available via Rxivist.")
+  categories.add_example(
     "",
     "",
-    "/data/collections",
+    "/data/categories",
     """{
   "results": [
     "animal-behavior-and-cognition",
