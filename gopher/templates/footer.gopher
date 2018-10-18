@@ -1,0 +1,3 @@
+
+{{ '_' * gopher.width }}
+{{ ('Served by ' + request.environ['SERVER_SOFTWARE']) | rjust }}

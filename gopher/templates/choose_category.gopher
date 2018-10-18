@@ -1,0 +1,9 @@
+{% include 'header.gopher' %}
+
+Results based on {{ metric }} - limit to a particular category?
+{{ gopher.menu.submenu('All categories!', "/search/{}/all".format(metric)) }}
+{% for category in categories %}
+{{ gopher.menu.submenu(category, "/search/{}/{}".format(metric, category)) }}
+{% endfor %}
+
+{% include 'footer.gopher' %}

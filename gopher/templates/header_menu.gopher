@@ -1,0 +1,6 @@
+{% include 'header.gopher' %}
+
+{{ gopher.menu.submenu('Home', url_for('index')) }}
+{{ gopher.menu.submenu('Most tweeted papers', '/search/twitter') }}
+{{ gopher.menu.submenu('Most downloaded papers', '/search/downloads') }}
+{{ gopher.menu.file('About', url_for('about')) }}

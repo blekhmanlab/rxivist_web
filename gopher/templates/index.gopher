@@ -1,0 +1,10 @@
+{% include 'header_menu.gopher' %}
+
+
+--
+MOST TWEETED BIORXIV PAPERS, LAST 24 HOURS:
+--
+{{ results }}
+
+
+{% include 'footer.gopher' %}

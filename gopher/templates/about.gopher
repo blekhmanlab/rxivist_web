@@ -1,0 +1,7 @@
+{% include 'header.gopher' %}
+
+
+
+{{ "Rxivist indexes and sorts metadata from bioRxiv, a preprint server operated by Cold Spring Harbor Laboratory. There is no official association between bioRxiv and this project. Social media information and publication metadata is provided by Crossref." | wrap }}
+
+{{ "Rxivist was developed in 2018 by PhD student Richard Abdill, of the Blekhman Lab at the University of Minnesota. The primary implementation of Rxivist is an HTTP-based web application and API that can be found at https://rxivist.org, where you can also find information about the source code and documentation for the programmatic interface." | wrap }}

@@ -1,0 +1,13 @@
+{% include 'header_menu.gopher' %}
+
+
+--
+QUERY RESULTS:
+Ranking papers based on {{ metric }}, {{ timeframe }}
+{% if category != "all" %}in category {{ category }}{% endif %}
+
+--
+{{ results }}
+
+
+{% include 'footer.gopher' %}
