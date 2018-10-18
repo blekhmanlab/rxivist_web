@@ -18,7 +18,7 @@
     <div class="col-lg-5">
       <ul>
         <li><strong>Rxivist is in development.</strong> If you're here, you're almost definitely lost.
-        <li>Currently indexing <strong>{{ helpers.formatNumber(stats["paper_count"]) }} bioRxiv papers</strong> from <strong>{{ helpers.formatNumber(stats["author_count"]) }} authors</strong>
+        <li>Currently indexing <strong>{{ helpers.formatNumber(stats["papers_indexed"]) }} bioRxiv papers</strong> from <strong>{{ helpers.formatNumber(stats["authors_indexed"]) }} authors</strong>
         <li><a href=
           % if entity == "papers":
             "/?entity=authors&category={{"" if len(category_filter) == 0 else category_filter[0]}}">Author leaderboards

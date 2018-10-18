@@ -56,8 +56,14 @@ def papers(category_list):
       "first_posted": "19-09-18",
       "abstract": "This is where the abstract would go.",
       "authors": [
-        "Richard Abdill",
-        "Another Person"
+        {
+          "id": 1,
+          "name": "Richard Abdill"
+        },
+        {
+          "id": 24802,
+          "name": "Another Person"
+        }
       ]
     },
     {
@@ -86,8 +92,14 @@ def papers(category_list):
       "first_posted": "26-05-2016",
       "abstract": "There is a popular belief in neuroscience that we are primarily data limited, and that producing large, multimodal, and complex datasets will, with the help of advanced data analysis algorithms, lead to fundamental insights into the way the brain processes information. These datasets do not yet exist, and if they did we would have no way of evaluating whether or not the algorithmically-generated insights were sufficient or even correct. To address this, here we take a classical microprocessor as a model organism, and use our ability to perform arbitrary experiments on it to see if popular data analysis methods from neuroscience can elucidate the way it processes information. Microprocessors are among those artificial information processing systems that are both complex and that we understand at all levels, from the overall logical flow, via logical gates, to the dynamics of transistors. We show that the approaches reveal interesting structure in the data but do not meaningfully describe the hierarchy of information processing in the microprocessor. This suggests current analytic approaches in neuroscience may fall short of producing meaningful understanding of neural systems, regardless of the amount of data. Additionally, we argue for scientists using complex non-linear dynamical systems with known ground truth, such as the microprocessor as a validation platform for time-series and structure discovery methods.",
       "authors": [
-        "Eric Jonas",
-        "Konrad Kording"
+        {
+          "id": 1,
+          "name": "Richard Abdill"
+        },
+        {
+          "id": 24802,
+          "name": "Another Person"
+        }
       ]
     }
   ]
@@ -95,7 +107,7 @@ def papers(category_list):
     """
   )
 
-  details = papers.add_endpoint("Details", "/papers/<id>", "Retrieve data about a single paper and all of its authors")
+  details = papers.add_endpoint("Details", "/papers/<id>", "Retrieve data about a single paper and all of its authors. Note: Unlike the author rankings, paper rankings do NOT incorporate the concept of ties.")
   details.add_argument("path", "id", "Rxivist paper ID associated with the paper you want ", required=True)
   details.add_example(
     "Paper detail request",
@@ -393,8 +405,28 @@ def apidetails():
   counts.add_example(
     "", "", "/data/stats",
     """{
-  "paper_count": 34131,
-  "author_count": 161298
+  "papers_indexed": 34409,
+  "authors_indexed": 145540,
+  "missing_abstract": 0,
+  "missing_date": 3539,
+  "outdated_count": {
+    "biophysics": 66,
+    "cell-biology": 134,
+    "developmental-biology": 356,
+    "ecology": 3,
+    "epidemiology": 1,
+    "evolutionary-biology": 87,
+    "genetics": 1250,
+    "genomics": 292,
+    "immunology": 93,
+    "microbiology": 407,
+    "molecular-biology": 212,
+    "neuroscience": 391,
+    "pharmacology-and-toxicology": 57,
+    "physiology": 56,
+    "plant-biology": 68,
+    "scientific-communication-and-education": 51
+  }
 }
     """
   )
