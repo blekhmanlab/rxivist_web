@@ -1,0 +1,30 @@
+version: '3'
+
+services:
+  nginx-proxy:
+    image: jwilder/nginx-proxy
+    ports:
+      - "80:80"
+    volumes:
+      - /var/run/docker.sock:/tmp/docker.sock:ro
+
+  rxapi:
+    image: rxapi:0.8.0
+    expose:
+      - "80"
+    environment:
+      - VIRTUAL_HOST=origin-api.rxivist.org
+      - RX_DBHOST=asdf
+      - RX_DBPASSWORD=asdf
+
+  rxweb:
+    image: rxweb:0.8.0
+    expose:
+      - "80"
+    environment:
+      - VIRTUAL_HOST=origin.rxivist.org
+
+  rxgopher:
+    image: rxgopher:0.8.0
+    ports:
+      - "0.0.0.0:70:70"
