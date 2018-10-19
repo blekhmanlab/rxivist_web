@@ -22,7 +22,7 @@ def search1(metric):
 @app.route('/search/<metric>/<category>')
 def search2(metric, category):
   timeframes = ["alltime", "ytd", "lastmonth"] # downloads
-  if metric == "tweets":
+  if metric == "twitter":
     timeframes = ["alltime", "day", "week", "month", "year"]
 
   categories = helpers.rxapi("/v1/data/categories")
@@ -41,7 +41,7 @@ def search3(metric, category, timeframe):
     return "Invalid value specified for category"
 
   timeframes = ["alltime", "ytd", "lastmonth"] # downloads
-  if metric == "tweets":
+  if metric == "twitter":
     timeframes = ["alltime", "day", "week", "month", "year"]
   if timeframe not in timeframes:
     return "Invalid value specified for timeframe"

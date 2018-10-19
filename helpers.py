@@ -73,4 +73,6 @@ def findCategory(needle, haystack):
 
 def rxapi(uri):
   get = requests.get("{}{}".format(config.rxapi, uri))
+  if get.status_code == 404:
+    raise NotFoundError(uri)
   return get.json()
