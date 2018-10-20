@@ -1,4 +1,4 @@
-{% include 'header_menu.gopher' %}
+{% include 'header.gopher' %}
 
 {{ "-------------" | center }}
 {{ results["title"] | center }}

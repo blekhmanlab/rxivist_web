@@ -1,3 +1,3 @@
 import os
 
-rxapi = "http://api.rxivist.org"
+rxapi = "https://api.rxivist.org"

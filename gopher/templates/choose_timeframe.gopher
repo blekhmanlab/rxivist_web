@@ -1,9 +1,0 @@
-{% include 'header.gopher' %}
-
-Results based on {{ metric }} from {{ category }}
-Limit to a particular timeframe?
-{% for t in timeframes %}
-{{ gopher.menu.submenu(t, "/search/{}/{}/{}".format(metric, category, t)) }}
-{% endfor %}
-
-{% include 'footer.gopher' %}
