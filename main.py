@@ -30,6 +30,7 @@ when the server is started and the router for all user requests.
 import re
 
 import bottle
+import requests
 
 import helpers
 import config
@@ -46,8 +47,6 @@ def index():
   entity = bottle.request.query.entity
   if entity is None or entity == "":
     entity = "papers"
-  print("entity is {}".format(entity))
-
   category_list = helpers.rxapi("/v1/data/categories")["results"]
   stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
   results = {} # a list of articles for the current page
@@ -129,14 +128,28 @@ def index():
     query=query, category_filter=category_filter, title=title,
     error=error, stats=stats, category_list=category_list, view="standard",
     timeframe=timeframe, metric=metric, entity=entity, google_tag=config.google_tag,
-    page=page, page_size=page_size, totalcount=totalcount, pagelink=pagelink)
+    page=page, page_size=page_size, totalcount=totalcount, pagelink=pagelink,
+    querystring=bottle.request.query_string)
 
 #     Author details page
 @bottle.get('/authors/<id:int>')
 @bottle.view('author_details')
 def display_author_details(id):
   try:
-    author = helpers.rxapi("/v1/authors/{}".format(id))
+    get = requests.get("{}/v1/authors/{}".format(config.rxapi, id))
+    if get.status_code == 404:
+      raise NotFoundError(uri)
+    # make sure the URL we ended at matches the URL we asked for:
+    new_id = re.search('/(\d+)$', get.url)
+    if new_id and len(new_id.groups()) > 0:
+      try:
+        new_id = int(new_id.group(1))
+      except Exception:
+        bottle.response.status = 500
+        return {"error": "Server errror."}
+      if new_id != id: # if we got redirected to a new URL
+        return bottle.redirect("/authors/{}".format(new_id), 301)
+    author = get.json()
   except helpers.NotFoundError as e:
     bottle.response.status = 404
     return e.message
@@ -144,6 +157,7 @@ def display_author_details(id):
     bottle.response.status = 500
     print(e)
     return {"error": "Server error."}
+
   distro = helpers.rxapi("/v1/data/distributions/author/downloads")
   download_distribution = distro["histogram"]
   averages = distro["averages"]
