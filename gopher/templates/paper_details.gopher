@@ -1,12 +1,11 @@
 {% include 'header.gopher' %}
 
-{{ "-------------" | center }}
-{{ results["title"] | center }}
-{{ "--------" | center }}
-
+-------------
+{{ results["title"] | wrap }}
+--------
 By
 {% for author in results["authors"] %}
-  {{ author["name"] }}
+  {{ author["name"] | wrap }}
 {% endfor %}
 
 DOI: {{ results["doi"] }}
