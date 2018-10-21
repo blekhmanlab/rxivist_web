@@ -38,7 +38,7 @@
           %include("components/paper_stats", paper=paper)
         </div>
       </div>
-      % if "ranks" in paper.keys():
+      % if "ranks" in paper.keys() and helpers.formatNumber(paper["ranks"]["alltime"]["rank"]) != "None":
         <div class="row">
           <div class="col-md-6">
             <h3>Downloads over time</h3>
