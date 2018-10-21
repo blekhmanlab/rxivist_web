@@ -29,7 +29,7 @@ def papers(category_list):
 
   query.add_argument("get", "page", "Number of the page of results to retrieve. Shorthand for an offset based on the specified page_size", 0)
 
-  query.add_argument("get", "page_size", "How many results to return at one time. Capped at {}.".format(config.max_page_size_api), 20)
+  query.add_argument("get", "page_size", "How many results to return at one time.", 20)
 
   query.add_example(
     "Top 3 downloaded papers, all time",
