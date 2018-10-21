@@ -148,7 +148,7 @@ def display_author_details(id):
         bottle.response.status = 500
         return {"error": "Server errror."}
       if new_id != id: # if we got redirected to a new URL
-        return bottle.redirect("/authors/{}".format(new_id), 301)
+        return bottle.redirect("{}/authors/{}".format(config.host, new_id), 301)
     author = get.json()
   except helpers.NotFoundError as e:
     bottle.response.status = 404
