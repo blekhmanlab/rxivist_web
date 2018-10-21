@@ -1,4 +1,4 @@
 import os
 
 rxapi = "https://api.rxivist.org"
-host = "localhost"
+host = "origin.rxivist.org"
