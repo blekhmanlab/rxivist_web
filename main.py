@@ -138,7 +138,7 @@ def display_author_details(id):
   try:
     get = requests.get("{}/v1/authors/{}".format(config.rxapi, id))
     if get.status_code == 404:
-      raise NotFoundError(uri)
+      raise helpers.NotFoundError(id)
     # make sure the URL we ended at matches the URL we asked for:
     new_id = re.search('/(\d+)$', get.url)
     if new_id and len(new_id.groups()) > 0:
