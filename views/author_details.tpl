@@ -4,6 +4,13 @@
   <head>
     %include("components/metadata.tpl", google_tag=google_tag)
     <title>{{author["name"]}} author profile – Rxivist</title>
+    <meta name="description" content="Research profile for
+    % if "institution" in author.keys() and author["institution"] != "":
+      {{author["name"]}} ({{ author["institution"] }}),
+    % else:
+      {{author["name"]}},
+    % end
+    provided by Rxivist, the site that helps you find the most discussed biology preprints on the internet."/>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.5/chartjs-plugin-annotation.js"></script>
     <script src="https://cdn.rawgit.com/chartjs/Chart.js/master/samples/utils.js"></script>
@@ -16,6 +23,8 @@
       <div class="row">
         <div class="col-sm-12">
           <h1>Author: {{author["name"]}}</h1>
+        </div>
+        <div class="col-sm-6">
           <ul>
             % alltime = helpers.findCategory("alltime", author["ranks"])
             % if alltime is not None:
@@ -32,7 +41,7 @@
                 % if entry["category"] == "alltime":
                 %   continue
                 % end
-                <li>{{ entry["category"] }}: {{ helpers.formatNumber(entry["downloads"]) }} (rank: <strong>{{ helpers.formatNumber(entry["rank"]) }}</strong>
+                <li>{{ helpers.formatCategory(entry["category"]) }}: {{ helpers.formatNumber(entry["downloads"]) }} (rank: <strong>{{ helpers.formatNumber(entry["rank"]) }}</strong>
                 %if entry["tie"]:
                   (tie)
                 %end
@@ -41,6 +50,33 @@
               </ul>
             % end
           </ul>
+        </div>
+        <div class="col-sm-6">
+          % if ("institution" in author.keys() and author["institution"] != "") or ("emails" in author.keys() and len(author["emails"]) > 0):
+            <div>
+              <h3 style="display:inline;">Contact info</h3>
+              <a href="#" data-toggle="modal" data-target="#contact_caveat" style="padding-left: 20px; line-height: .5em;">
+                <i class="far fa-question-circle" font-size: 1.5em;"></i>
+              </a>
+            </div>
+            <ul>
+              % if "institution" in author.keys() and author["institution"] != "":
+                <li>Most recently observed institution: <strong>{{author["institution"]}}</strong>
+              % end
+              % if "emails" in author.keys() and len(author["emails"]) > 0:
+                % if len(author["emails"]) > 1:
+                  <li>Email addresses:
+                  <ul>
+                    % for email in author["emails"]:
+                      <li>{{ email }}
+                    % end
+                  </ul>
+                % else:
+                  <li>Email address: <strong>{{ author["emails"][0] }}</strong>
+                % end
+              % end
+            </ul>
+          % end
         </div>
       </div>
       <div class="row">
@@ -68,6 +104,6 @@
       % end
     </div>
     %include("components/footer")
-
+    %include("components/modal_contact_caveats")
   </body>
 </html>

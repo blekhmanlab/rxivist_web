@@ -20,7 +20,7 @@
         ["Since yesterday", "day"],
         ["Last 7 days", "week"],
         ["Last 30 days", "month"],
-        ["Last 365 days", "year"],
+      //  ["Last 365 days", "year"],
         ["All time", "alltime"]
       ]);
       download_options = createOptions([
