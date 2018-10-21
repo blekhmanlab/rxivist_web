@@ -15,7 +15,7 @@ def index():
 @app.route('/papers/<id>')
 def paper(id):
   results = helpers.rxapi("/v1/papers/{}".format(id))
-  return gopher.render_menu_template('paper_details.gopher', results=results)
+  return flask.render_template('paper_details.gopher', results=results)
 
 @app.route('/about')
 def about():
