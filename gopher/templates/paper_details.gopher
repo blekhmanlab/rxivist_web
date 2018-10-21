@@ -10,9 +10,9 @@ By
 
 DOI: {{ results["doi"] }}
 
-{{ gopher.menu.html('On bioRxiv', results["biorxiv_url"]) }}
+On bioRxiv: {{ results["biorxiv_url"] }}
 {% if "publication" in results.keys() and results["publication"] != {} %}
-{{ gopher.menu.html('At {}'.format(results["publication"]["journal"]), 'https://doi.org/{}'.format(results["publication"]["doi"])) }}
+{{ 'At {}: {}'.format(results["publication"]["journal"], results["publication"]["doi"]) }}
 {% endif %}
 
 {{ results["abstract"] | wrap }}

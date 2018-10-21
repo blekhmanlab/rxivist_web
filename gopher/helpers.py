@@ -16,7 +16,7 @@ def render_searchmenu(gopher, results):
       gopher.menu.info("{} {}:".format(paper["metric"], printunit))
     )
     components.append(
-      gopher.menu.submenu(paper["title"], "/papers/{}".format(paper["id"]))
+      gopher.menu.file(paper["title"], "/papers/{}".format(paper["id"]))
     )
   return gopher.render_menu(*components)
 
