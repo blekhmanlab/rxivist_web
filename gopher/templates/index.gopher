@@ -1,8 +1,6 @@
 {% include 'header.gopher' %}
 
-{{ gopher.menu.submenu('Most tweeted papers', '/search/twitter') }}
-{{ gopher.menu.submenu('Most downloaded papers', '/search/downloads') }}
-{{ gopher.menu.file('About', '/about') }}
+{{ headermenu }}
 
 --
 MOST TWEETED BIORXIV PAPERS, LAST 24 HOURS:

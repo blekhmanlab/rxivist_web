@@ -10,7 +10,9 @@ gopher = GopherExtension(app)
 def index():
   results = helpers.rxapi("/v1/papers")
   results = helpers.render_searchmenu(gopher, results)
-  return gopher.render_menu_template('index.gopher', results=results)
+  headermenu = helpers.render_headermenu(gopher)
+  return gopher.render_menu_template('index.gopher',
+    results=results, headermenu=headermenu)
 
 @app.route('/search/<metric>')
 def search1(metric):

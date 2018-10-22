@@ -2,6 +2,14 @@ import requests
 
 import config
 
+def render_headermenu(gopher):
+  components = [
+    "1Most tweeted papers\t/search/twitter\t{}\t70".format(config.host),
+    "1Most downloaded papers\t/search/downloads\t{}\t70".format(config.host),
+    "1About\t/about\t{}\t70".format(config.host)
+  ]
+  return gopher.render_menu(*components)
+
 def render_searchmenu(gopher, results):
   components = []
   if results["query"]["metric"] == "downloads":
