@@ -1,6 +1,8 @@
 import flask
 from flask_gopher import GopherExtension, GopherRequestHandler
+import requests
 
+import config
 import menus
 
 def rxapi(uri):
@@ -56,7 +58,7 @@ def search3(metric, category, timeframe):
   if category != "all":
     query += "&category={}".format(category)
   results = rxapi(query)
-  results = menus.searchmenu(gopher, results)
+  results = menus.searchmenu0(gopher, results)
 
   return gopher.render_menu_template('results.gopher',
     results=results, category=category, metric=metric,
