@@ -19,7 +19,7 @@
           <li><a href="https://docker.com/" target="_blank">Docker</a> containerization
           <li><a href="https://getbootstrap.org" target="_blank">Bootstrap</a> display elements
         </ul>
-        You can also browse a text-only version of this application using the <a href="https://en.wikipedia.org/wiki/Gopher_(protocol)" target="_blank">Gopher protocol</a> from a supported browser such as <a href="http://brewformulas.org/Lynx" target="_blank">Lynx</a> or an HTTP proxy like the one <a href="https://gopher.floodgap.com/gopher/gw" target="_blank">hosted by Floodgap Systems</a>.
+        You can also browse a text-only version of this application at <code>gopher://origin.rxivist.org</code> using the <a href="https://en.wikipedia.org/wiki/Gopher_(protocol)" target="_blank">Gopher protocol</a> from a supported browser such as <a href="http://brewformulas.org/Lynx" target="_blank">Lynx</a> or an HTTP proxy like the one <a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Forigin.rxivist.org" target="_blank">hosted by Floodgap Systems</a>.
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

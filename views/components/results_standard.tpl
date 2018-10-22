@@ -28,8 +28,8 @@
       <div id="collapse{{result["id"]}}" class="collapse" aria-labelledby="heading{{result["id"]}}" data-parent="#alltime">
         <div class="card-body">
           <div class="float-right">
-            <a href="/papers/{{result["id"]}}" class="btn btn-altcolor " role="button">more details</a>
-            <a href="{{result["url"]}}" target="_blank" class="btn btn-altcolor " role="button">view paper</a>
+            <a href="/papers/{{ result["id"] }}" class="btn btn-altcolor " role="button">more details</a>
+            <a href="{{ result["biorxiv_url"] }}" target="_blank" class="btn btn-altcolor " role="button">view paper</a>
           </div>
           <p>
           % for i, author in enumerate(result["authors"]):

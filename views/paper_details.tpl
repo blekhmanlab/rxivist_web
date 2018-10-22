@@ -28,6 +28,17 @@
           % for i, coauthor in enumerate(paper["authors"]):
             <a href="/authors/{{ coauthor["id"] }}">{{ coauthor["name"] }}</a>{{", " if i < (len(paper["authors"]) - 1) else ""}}
           % end
+          <em>
+            % if ("first_posted" in paper.keys() and paper["first_posted"] != "") or ("ranks" in paper.keys() and paper["ranks"]["alltime"]["downloads"] is not None):
+              <p>
+            % end
+            % if "first_posted" in paper.keys() and paper["first_posted"] != "":
+              Posted {{ helpers.formatDate(paper["first_posted"]) }}
+            % end
+            % if "ranks" in paper.keys() and paper["ranks"]["alltime"]["downloads"] is not None:
+              (downloaded {{ helpers.formatNumber(paper["ranks"]["alltime"]["downloads"]) }} times)
+            % end
+          </em>
         </div>
       </div>
       <div class="row">
@@ -41,8 +52,10 @@
       % if "ranks" in paper.keys() and helpers.formatNumber(paper["ranks"]["alltime"]["rank"]) != "None":
         <div class="row">
           <div class="col-md-6">
-            <h3>Downloads over time</h3>
-            <canvas id="downloadsOverTime"></canvas>
+            % if len(traffic) > 1:
+              <h3>Downloads over time</h3>
+              <canvas id="downloadsOverTime"></canvas>
+            % end
           </div>
           <div class="col-md-6">
             <h3>Distribution of downloads per paper, site-wide</h3>

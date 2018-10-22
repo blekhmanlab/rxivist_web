@@ -5,7 +5,7 @@
     %include("components/metadata.tpl", google_tag=google_tag)
     <title>{{author["name"]}} author profile – Rxivist</title>
     <meta name="description" content="Research profile for
-    % if "institution" in author.keys() and author["institution"] != "":
+    % if "institution" in author.keys() and author["institution"] is not None:
       {{author["name"]}} ({{ author["institution"] }}),
     % else:
       {{author["name"]}},
@@ -25,6 +25,9 @@
           <h1>Author: {{author["name"]}}</h1>
         </div>
         <div class="col-sm-6">
+          % if len(author["ranks"]) > 0:
+            <h3>Rankings</h3>
+          % end
           <ul>
             % alltime = helpers.findCategory("alltime", author["ranks"])
             % if alltime is not None:
@@ -52,20 +55,23 @@
           </ul>
         </div>
         <div class="col-sm-6">
-          % if ("institution" in author.keys() and author["institution"] != "") or ("emails" in author.keys() and len(author["emails"]) > 0):
+          % if ("institution" in author.keys() and author["institution"] is not None) or ("emails" in author.keys() and len(author["emails"]) > 0):
             <div>
-              <h3 style="display:inline;">Contact info</h3>
+              <h3 style="display:inline;">Affiliation info</h3>
               <a href="#" data-toggle="modal" data-target="#contact_caveat" style="padding-left: 20px; line-height: .5em;">
                 <i class="far fa-question-circle" font-size: 1.5em;"></i>
               </a>
             </div>
             <ul>
-              % if "institution" in author.keys() and author["institution"] != "":
+              % if "orcid" in author.keys() and author["orcid"] is not None:
+                <li>ORCiD: <strong><a href="{{author["orcid"]}}" target="_blank">{{ author["orcid"] }}</a></strong>
+              % end
+              % if "institution" in author.keys() and author["institution"] is not None:
                 <li>Most recently observed institution: <strong>{{author["institution"]}}</strong>
               % end
               % if "emails" in author.keys() and len(author["emails"]) > 0:
                 % if len(author["emails"]) > 1:
-                  <li>Email addresses:
+                  <li>Email addresses listed on bioRxiv:
                   <ul>
                     % for email in author["emails"]:
                       <li>{{ email }}
@@ -87,8 +93,8 @@
           <div class="col-md-6">
             <h2 style="font-size: 1.2em; padding-top: 20px; margin-bottom: 0;">{{result["title"]}}</h2>
             <a href="/?metric=downloads&timeframe=alltime&category={{result["category"]}}"><span class="badge btn-secondary" style="margin-left: 10px;">{{ helpers.formatCategory(result["category"]) }}</span></a>
-            <a href="/papers/{{result["id"]}}"><span class="badge btn-altcolor">more details</span></a>
-            <a href="{{result["url"]}}" target="_blank"><span class="badge btn-altcolor">view paper</span></a>
+            <a href="/papers/{{ result["id"] }}"><span class="badge btn-altcolor">more details</span></a>
+            <a href="{{ result["biorxiv_url"] }}" target="_blank"><span class="badge btn-altcolor">view paper</span></a>
             %include("components/paper_stats", paper=result)
           </div>
         % end

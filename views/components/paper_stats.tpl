@@ -3,11 +3,6 @@
 % if "ranks" not in paper.keys() or helpers.formatNumber(paper["ranks"]["alltime"]["downloads"]) == "None":
 <p><em>No bioRxiv download data for this paper yet.</em></p>
 % else:
-{{ helpers.formatNumber(paper["ranks"]["alltime"]["downloads"]) }} downloads
-  %if "first_posted" in paper.keys() and paper["first_posted"] != "":
-    since {{ helpers.formatDate(paper["first_posted"]) }}
-  %end
-
 <ul>
   <li><strong>Download rankings, all-time:</strong>
     <ul>
