@@ -2,7 +2,7 @@ import requests
 
 import config
 
-def render_headermenu(gopher):
+def headermenu(gopher):
   components = [
     "1Most tweeted papers\t/search/twitter\t{}\t70".format(config.host),
     "1Most downloaded papers\t/search/downloads\t{}\t70".format(config.host),
@@ -10,7 +10,7 @@ def render_headermenu(gopher):
   ]
   return gopher.render_menu(*components)
 
-def render_searchmenu(gopher, results):
+def searchmenu0(gopher, results):
   components = []
   if results["query"]["metric"] == "downloads":
       unit = "download"
@@ -28,6 +28,16 @@ def render_searchmenu(gopher, results):
     )
   return gopher.render_menu(*components)
 
-def rxapi(uri):
-  get = requests.get("{}{}".format(config.rxapi, uri))
-  return get.json()
+def searchmenu1(gopher, metric, categories):
+  components = [
+    "1All categories!\t/search/{}/all\t{}\t70".format(metric, config.host),
+  ]
+  for category in categories:
+    components.append("1{0}\t/search/{1}/{0}\t{2}\t70".format(category, metric, config.host))
+  return gopher.render_menu(*components)
+
+def searchmenu2(gopher, metric, category, timeframes):
+  components = []
+  for t in timeframes:
+    components.append("1{0}\t/search/{1}/{2}/{0}\t{3}\t70".format(t, metric, category, config.host))
+  return gopher.render_menu(*components)
