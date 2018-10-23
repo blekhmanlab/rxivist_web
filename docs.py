@@ -43,14 +43,16 @@ def papers(category_list):
     "metric": "downloads",
     "page_size": 3,
     "current_page": 0,
-    "final_page": 11138
+    "final_page": 11138,
+    "total_results": 33416
   },
   "results": [
     {
       "id": 12345,
       "metric": 166288,
       "title": "Example Paper Here: A compelling placeholder",
-      "url": "https://www.biorxiv.org/content/early/2018/fake_url",
+      "url": "https://api.rxivist.org/v1/papers/12345",
+      "biorxiv_url": "https://www.biorxiv.org/content/early/2018/fake_url",
       "doi": "10.1101/00000",
       "category": "cancer-biology",
       "first_posted": "19-09-18",
@@ -66,42 +68,7 @@ def papers(category_list):
         }
       ]
     },
-    {
-      "id": 12346,
-      "metric": 106169,
-      "title": "Deep image reconstruction from human brain activity",
-      "url": "https://www.biorxiv.org/content/early/2017/12/30/240317",
-      "doi": "10.1101/240317",
-      "category": "neuroscience",
-      "first_posted": "28-12-2017",
-      "abstract": "Machine learning-based analysis of human functional magnetic resonance imaging (fMRI) patterns has enabled the visualization of perceptual content. However, it has been limited to the reconstruction with low-level image bases or to the matching to exemplars. Recent work showed that visual cortical activity can be decoded (translated) into hierarchical features of a deep neural network (DNN) for the same input image, providing a way to make use of the information from hierarchical visual features. Here, we present a novel image reconstruction method, in which the pixel values of an image are optimized to make its DNN features similar to those decoded from human brain activity at multiple layers. We found that the generated images resembled the stimulus images (both natural images and artificial shapes) and the subjective visual content during imagery. While our model was solely trained with natural images, our method successfully generalized the reconstruction to artificial shapes, indicating that our model indeed reconstructs or generates images from brain activity, not simply matches to exemplars. A natural image prior introduced by another deep neural network effectively rendered semantically meaningful details to reconstructions by constraining reconstructed images to be similar to natural images. Furthermore, human judgment of reconstructions suggests the effectiveness of combining multiple DNN layers to enhance visual quality of generated images. The results suggest that hierarchical visual information in the brain can be effectively combined to reconstruct perceptual and subjective images.",
-      "authors": [
-        "Guohua Shen",
-        "Tomoyasu Horikawa",
-        "Kei Majima",
-        "Yukiyasu Kamitani"
-      ]
-    },
-    {
-      "id": 12347,
-      "metric": 99096,
-      "title": "Could a neuroscientist understand a microprocessor?",
-      "url": "https://www.biorxiv.org/content/early/2016/11/14/055624",
-      "doi": "10.1101/055624",
-      "category": "neuroscience",
-      "first_posted": "26-05-2016",
-      "abstract": "There is a popular belief in neuroscience that we are primarily data limited, and that producing large, multimodal, and complex datasets will, with the help of advanced data analysis algorithms, lead to fundamental insights into the way the brain processes information. These datasets do not yet exist, and if they did we would have no way of evaluating whether or not the algorithmically-generated insights were sufficient or even correct. To address this, here we take a classical microprocessor as a model organism, and use our ability to perform arbitrary experiments on it to see if popular data analysis methods from neuroscience can elucidate the way it processes information. Microprocessors are among those artificial information processing systems that are both complex and that we understand at all levels, from the overall logical flow, via logical gates, to the dynamics of transistors. We show that the approaches reveal interesting structure in the data but do not meaningfully describe the hierarchy of information processing in the microprocessor. This suggests current analytic approaches in neuroscience may fall short of producing meaningful understanding of neural systems, regardless of the amount of data. Additionally, we argue for scientists using complex non-linear dynamical systems with known ground truth, such as the microprocessor as a validation platform for time-series and structure discovery methods.",
-      "authors": [
-        {
-          "id": 1,
-          "name": "Richard Abdill"
-        },
-        {
-          "id": 24802,
-          "name": "Another Person"
-        }
-      ]
-    }
+    # (More responses go here...)
   ]
 }
     """
@@ -117,7 +84,7 @@ def papers(category_list):
   "id": 25770,
   "doi": "10.1101/096727",
   "biorxiv_url": "https://www.biorxiv.org/content/early/2016/12/29/096727",
-  "url": "https://rxivist.org/papers/25770",
+  "url": "https://api.rxivist.org/v1/papers/25770",
   "title": "Parallel adaptation to higher temperatures in divergent clades of the nematode Pristionchus pacificus",
   "category": "evolutionary-biology",
   "first_posted": "2016-12-29",
@@ -169,7 +136,7 @@ def papers(category_list):
     "ytd": {
       "rank": 22951,
       "tie": false,
-      "downloads": 65
+      "downloads": 68
     },
     "lastmonth": {
       "rank": 28283,
@@ -204,27 +171,32 @@ def papers(category_list):
     {
       "month": 6,
       "year": 2018,
-      "downloads": 205
+      "downloads": 205,
+      "views": 259
     },
     {
       "month": 7,
       "year": 2018,
-      "downloads": 153
+      "downloads": 153,
+      "views": 199
     },
     {
       "month": 8,
       "year": 2018,
-      "downloads": 88
+      "downloads": 88,
+      "views": 98
     },
     {
       "month": 9,
       "year": 2018,
-      "downloads": 118
+      "downloads": 118,
+      "views": 159
     },
     {
       "month": 10,
       "year": 2018,
-      "downloads": 10
+      "downloads": 10,
+      "views": 18
     }
   ]
 }
@@ -305,7 +277,7 @@ def authors(category_list):
       "id": 25770,
       "doi": "10.1101/096727",
       "biorxiv_url": "https://www.biorxiv.org/content/early/2016/12/29/096727",
-      "url": "https://rxivist.org/papers/25770",
+      "url": "https://api.rxivist.org/v1/papers/25770",
       "title": "Parallel adaptation to higher temperatures in divergent clades of the nematode Pristionchus pacificus",
       "category": "evolutionary-biology",
       "ranks": {
