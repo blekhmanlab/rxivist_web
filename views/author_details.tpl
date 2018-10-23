@@ -23,6 +23,14 @@
       <div class="row">
         <div class="col-sm-12">
           <h1>Author: {{author["name"]}}</h1>
+          <ul>
+            % if "orcid" in author.keys() and author["orcid"] is not None:
+              <li>ORCiD: <strong><a href="{{author["orcid"]}}" target="_blank">{{ author["orcid"] }}</a></strong>
+            % end
+            % if "institution" in author.keys() and author["institution"] is not None:
+              <li>Most recently observed institution: <strong>{{author["institution"]}}</strong>
+            % end
+          </ul>
         </div>
         <div class="col-sm-6">
           % if len(author["ranks"]) > 0:
@@ -54,36 +62,13 @@
             % end
           </ul>
         </div>
-        <div class="col-sm-6">
-          % if ("institution" in author.keys() and author["institution"] is not None) or ("emails" in author.keys() and len(author["emails"]) > 0):
-            <div>
-              <h3 style="display:inline;">Affiliation info</h3>
-              <a href="#" data-toggle="modal" data-target="#contact_caveat" style="padding-left: 20px; line-height: .5em;">
-                <i class="far fa-question-circle" font-size: 1.5em;"></i>
-              </a>
-            </div>
-            <ul>
-              % if "orcid" in author.keys() and author["orcid"] is not None:
-                <li>ORCiD: <strong><a href="{{author["orcid"]}}" target="_blank">{{ author["orcid"] }}</a></strong>
-              % end
-              % if "institution" in author.keys() and author["institution"] is not None:
-                <li>Most recently observed institution: <strong>{{author["institution"]}}</strong>
-              % end
-              % if "emails" in author.keys() and len(author["emails"]) > 0:
-                % if len(author["emails"]) > 1:
-                  <li>Email addresses listed on bioRxiv:
-                  <ul>
-                    % for email in author["emails"]:
-                      <li>{{ email }}
-                    % end
-                  </ul>
-                % else:
-                  <li>Email address: <strong>{{ author["emails"][0] }}</strong>
-                % end
-              % end
-            </ul>
-          % end
-        </div>
+        % if alltime is not None:
+          <div class="col-md-6">
+            <h3>Downloads per author, site-wide</h3>
+            <canvas id="downloadsDistribution"></canvas>
+          </div>
+          %include("components/download_distribution", entity=author, entity_name="author", download_distribution=download_distribution, averages=averages)
+        % end
       </div>
       <div class="row">
         <div class="col-md-12">
@@ -99,15 +84,6 @@
           </div>
         % end
       </div>
-      % if alltime is not None:
-        <div class="row">
-          <div class="col-md-8 offset-md-2">
-            <h3>Downloads per author, site-wide</h3>
-            <canvas id="downloadsDistribution"></canvas>
-          </div>
-          %include("components/download_distribution", entity=author, entity_name="author", download_distribution=download_distribution, averages=averages)
-        </div>
-      % end
     </div>
     %include("components/footer")
     %include("components/modal_contact_caveats")
