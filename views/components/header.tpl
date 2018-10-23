@@ -1,4 +1,5 @@
 % import helpers
+% import config
 <div class="row" id="header">
   <div class="col-md-6" style="padding-left: 35px;">
     <a href="/"><img src="/static/rxivist_logo.png" class="img-fluid" alt="Rxivist logo" title="It's pronounced 'Archivist.'" width="350"></a>
@@ -31,14 +32,16 @@
         </a>
         <li><a href="/docs">API documentation</a>
         <li><a href="#" data-toggle="modal" data-target="#about">About the project</a><br>
-        <span class="social-logo"><a href="https://www.github.com/rabdill/rxivist" target="_blank"><img src="/static/github.png" ></a></span>
-        <span class="social-logo"><a href="https://twitter.com/rxivist" target="_blank"><img src="/static/twitter.png"></a></span>
+        <span class="social-logo"><a href="{{ config.repo }}" target="_blank"><img src="/static/github.png" ></a></span>
+        <span class="social-logo"><a href="https://twitter.com/{{ config.twitter }}" target="_blank"><img src="/static/twitter.png"></a></span>
       </ul>
-      <div class="col-sm-12">
-        <div class="alert alert-primary" role="alert">
-          <strong><a href="*tk">The Rxivist preprint</a></strong> is now available for download from bioRxiv!
+      % if config.paper_url != "":
+        <div class="col-sm-12">
+          <div class="alert alert-primary" role="alert">
+            <strong><a href="{{ config.paper_url }}">The Rxivist preprint</a></strong> is now available for download from bioRxiv!
+          </div>
         </div>
-      </div>
+      % end
     </div>
   % end
 
