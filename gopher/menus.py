@@ -3,12 +3,11 @@ import requests
 import config
 
 def headermenu(gopher):
-  components = [
+  return gopher.render_menu(
     "1Most tweeted papers\t/search/twitter\t{}\t70".format(config.host),
     "1Most downloaded papers\t/search/downloads\t{}\t70".format(config.host),
-    "1About\t/about\t{}\t70".format(config.host)
-  ]
-  return gopher.render_menu(*components)
+    "0About\t/about\t{}\t70".format(config.host)
+  )
 
 def searchmenu0(gopher, results):
   components = []

@@ -1,9 +1,17 @@
+from datetime import datetime
+
 import flask
 from flask_gopher import GopherExtension, GopherRequestHandler
 import requests
 
 import config
 import menus
+
+filename = datetime.now().strftime('./logs/%Y-%m-%d_%H-%M-%S.log')
+
+def log(req):
+  with open(filename, "a+") as logfile:
+    logfile.write("{}: {} | {}\n".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), req.remote_addr,req.url))
 
 def rxapi(uri):
   get = requests.get("{}{}".format(config.rxapi, uri))
@@ -14,6 +22,7 @@ gopher = GopherExtension(app)
 
 @app.route('/')
 def index():
+  log(flask.request)
   results = rxapi("/v1/papers")
   results = menus.searchmenu0(gopher, results)
   headermenu = menus.headermenu(gopher)
@@ -22,6 +31,7 @@ def index():
 
 @app.route('/search/<metric>')
 def search1(metric):
+  log(flask.request)
   categories = rxapi("/v1/data/categories")
   categories = categories["results"]
   menu = menus.searchmenu1(gopher, metric, categories)
@@ -30,6 +40,7 @@ def search1(metric):
 
 @app.route('/search/<metric>/<category>')
 def search2(metric, category):
+  log(flask.request)
   timeframes = ["alltime", "ytd", "lastmonth"] # downloads
   if metric == "twitter":
     timeframes = ["alltime", "day", "week", "month", "year"]
@@ -40,6 +51,7 @@ def search2(metric, category):
 
 @app.route('/search/<metric>/<category>/<timeframe>')
 def search3(metric, category, timeframe):
+  log(flask.request)
   categories = rxapi("/v1/data/categories")
   categories = categories["results"]
 
@@ -66,11 +78,13 @@ def search3(metric, category, timeframe):
 
 @app.route('/papers/<id>')
 def paper(id):
+  log(flask.request)
   results = rxapi("/v1/papers/{}".format(id))
   return flask.render_template('paper_details.gopher', results=results)
 
 @app.route('/about')
 def about():
+  log(flask.request)
   return flask.render_template('about.gopher')
 
 if __name__ == '__main__':
