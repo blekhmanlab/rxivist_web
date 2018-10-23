@@ -10,6 +10,8 @@ import menus
 filename = datetime.now().strftime('./logs/%Y-%m-%d_%H-%M-%S.log')
 
 def log(req):
+  if req.remote_addr == "127.0.0.1":
+    return # Ignore healthchecks
   with open(filename, "a+") as logfile:
     logfile.write("{}: {} | {}\n".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), req.remote_addr,req.url))
 
