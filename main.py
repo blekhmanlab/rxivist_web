@@ -59,12 +59,12 @@ def index():
       else:
         category = category_filter[0] # just one category for author ranks for now
         category_filter = [category_filter[0]]
-      results = helpers.rxapi("/v1/authors?category={}".format(category))
+      results = helpers.rxapi(f"/v1/authors?category={category}")
     elif entity == "papers":
-      results = helpers.rxapi("/v1/papers?{}".format(bottle.request.query_string))
+      results = helpers.rxapi(f"/v1/papers?{bottle.request.query_string}")
   except Exception as e:
     print(e)
-    error = "There was a problem with the submitted query: {}".format(e)
+    error = f"There was a problem with the submitted query: {e}"
     bottle.response.status = 500
 
   # Take the current query string and turn it into a template that any page
@@ -72,7 +72,7 @@ def index():
   if "page=" in bottle.request.query_string:
     pagelink =  "/?{}".format(re.sub(r"page=\d*", "page=", bottle.request.query_string))
   else:
-    pagelink = "/?{}&page=".format(bottle.request.query_string)
+    pagelink = f"/?{bottle.request.query_string}&page="
 
 
   metric = ""
@@ -108,7 +108,7 @@ def index():
     elif metric == "downloads":
       title += "downloaded"
     if query != "":
-      title += " papers related to \"{},\" ".format(query)
+      title += f" papers related to \"{query},\" "
     else:
       title += " bioRxiv papers, "
     printable_times = {
@@ -136,7 +136,7 @@ def index():
 @bottle.view('author_details')
 def display_author_details(id):
   try:
-    get = requests.get("{}/v1/authors/{}".format(config.rxapi, id))
+    get = requests.get(f"{config.rxapi}/v1/authors/{id}")
     if get.status_code == 404:
       raise helpers.NotFoundError(id)
     # make sure the URL we ended at matches the URL we asked for:
@@ -148,7 +148,7 @@ def display_author_details(id):
         bottle.response.status = 500
         return {"error": "Server errror."}
       if new_id != id: # if we got redirected to a new URL
-        return bottle.redirect("{}/authors/{}".format(config.host, new_id), 301)
+        return bottle.redirect(f"{config.host}/authors/{new_id}", 301)
     author = get.json()
   except helpers.NotFoundError as e:
     bottle.response.status = 404
@@ -171,7 +171,7 @@ def display_author_details(id):
 @bottle.view('paper_details')
 def display_paper_details(id):
   try:
-    paper = helpers.rxapi("/v1/papers/{}".format(id))
+    paper = helpers.rxapi(f"/v1/papers/{id}")
   except helpers.NotFoundError as e:
     bottle.response.status = 404
     return e.message
@@ -179,7 +179,7 @@ def display_paper_details(id):
     bottle.response.status = 500
     print(e)
     return {"error": "Server error."}
-  traffic = helpers.rxapi("/v1/papers/{}/downloads".format(id))["results"]
+  traffic = helpers.rxapi(f"/v1/papers/{id}/downloads")["results"]
   distro = helpers.rxapi("/v1/data/distributions/paper/downloads")
   download_distribution = distro["histogram"]
   averages = distro["averages"]
@@ -203,7 +203,7 @@ def api_docs():
 
 
 # Search engine stuff
-@bottle.route('/{}'.format(config.google_validation_file))
+@bottle.route(f'/{config.google_validation_file}')
 def callback():
   return bottle.static_file(filename=config.google_validation_file, root='./static/')
 @bottle.route('/robots.txt')

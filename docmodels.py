@@ -30,7 +30,7 @@ class Endpoint:
     elif category == "get":
       self.get_arguments.append(new)
     else:
-      raise Exception("Unrecognized argument type {}".format(category))
+      raise Exception(f"Unrecognized argument type {category}")
     return new
 
   def add_example(self, title, description, url, response=""):

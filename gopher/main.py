@@ -16,7 +16,7 @@ def log(req):
     logfile.write("{}: {} | {}\n".format(datetime.now().strftime('%Y-%m-%d %H:%M:%S'), req.remote_addr,req.url))
 
 def rxapi(uri):
-  get = requests.get("{}{}".format(config.rxapi, uri))
+  get = requests.get(f"{config.rxapi}{uri}")
   return get.json()
 
 app = flask.Flask(__name__)
@@ -68,9 +68,9 @@ def search3(metric, category, timeframe):
   if timeframe not in timeframes:
     return "Invalid value specified for timeframe"
 
-  query = "/v1/papers?timeframe={}&metric={}".format(timeframe, metric)
+  query = f"/v1/papers?timeframe={timeframe}&metric={metric}"
   if category != "all":
-    query += "&category={}".format(category)
+    query += f"&category={category}"
   results = rxapi(query)
   results = menus.searchmenu0(gopher, results)
 
@@ -81,7 +81,7 @@ def search3(metric, category, timeframe):
 @app.route('/papers/<id>')
 def paper(id):
   log(flask.request)
-  results = rxapi("/v1/papers/{}".format(id))
+  results = rxapi(f"/v1/papers/{id}")
   return flask.render_template('paper_details.gopher', results=results)
 
 @app.route('/about')

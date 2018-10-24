@@ -79,7 +79,7 @@
                   <h4>Arguments</h4>
                   <ul>
                     % for arg in endpoint.path_arguments + endpoint.get_arguments:
-                      <li><code>{{ arg.name }}</code> &ndash; {{ arg.description }} {{ "Default: {} ".format(arg.default) if arg.default is not None else "" }}{{ "<em>Required.</em>" if arg.required else "" }}
+                      <li><code>{{ arg.name }}</code> &ndash; {{ arg.description }} {{ f"Default: {arg.default} " if arg.default is not None else "" }}{{ "<em>Required.</em>" if arg.required else "" }}
                       % if len(arg.acceptable) > 0:
                         <ul><li>Acceptable values:
                           % for i, val in enumerate(arg.acceptable):

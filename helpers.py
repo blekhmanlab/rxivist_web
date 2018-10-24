@@ -8,7 +8,7 @@ import requests
 
 class NotFoundError(Exception):
   def __init__(self, id):
-    self.message = "Entity could not be found with id {}".format(id)
+    self.message = f"Entity could not be found with id {id}"
 
 def get_traffic(connection, id):
   """Collects data about a single paper's download statistics.
@@ -22,7 +22,7 @@ def get_traffic(connection, id):
 
   """
 
-  traffic = connection.read("SELECT SUM(abstract), SUM(pdf) FROM article_traffic WHERE article={};".format(id))
+  traffic = connection.read("SELECT SUM(abstract), SUM(pdf) FROM article_traffic WHERE article=%s;", (id,))
   if len(traffic) == 0:
     raise NotFoundError(id)
   return traffic[0] # "traffic" is an array of tuples; we only want a tuple.

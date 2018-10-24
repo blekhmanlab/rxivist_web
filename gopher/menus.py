@@ -4,9 +4,9 @@ import config
 
 def headermenu(gopher):
   return gopher.render_menu(
-    "1Most tweeted papers\t/search/twitter\t{}\t70".format(config.host),
-    "1Most downloaded papers\t/search/downloads\t{}\t70".format(config.host),
-    "0About\t/about\t{}\t70".format(config.host)
+    f"1Most tweeted papers\t/search/twitter\t{config.host}\t70",
+    f"1Most downloaded papers\t/search/downloads\t{config.host}\t70",
+    f"0About\t/about\t{config.host}\t70"
   )
 
 def searchmenu0(gopher, results):
@@ -20,16 +20,14 @@ def searchmenu0(gopher, results):
     if paper["metric"] > 1:
       printunit += "s"
     components.append(
-      gopher.menu.info("{} {}:".format(paper["metric"], printunit))
+      gopher.menu.info(f'{paper["metric"]} {printunit}:')
     )
-    components.append(
-      "0{}\t/papers/{}\t{}\t70".format(paper["title"], paper["id"], config.host)
-    )
+    components.append(f'0{paper["title"]}\t/papers/{paper["id"]}\t{config.host}\t70')
   return gopher.render_menu(*components)
 
 def searchmenu1(gopher, metric, categories):
   components = [
-    "1All categories!\t/search/{}/all\t{}\t70".format(metric, config.host),
+    f"1All categories!\t/search/{metric}/all\t{config.host}\t70",
   ]
   for category in categories:
     components.append("1{0}\t/search/{1}/{0}\t{2}\t70".format(category, metric, config.host))
