@@ -16,7 +16,7 @@
 
       <div class="row">
         <div class="col-sm-12">
-          <h1>API documentation</h1>
+          <h1>Rxivist API documentation</h1>
         </div>
         <div class="col-sm-10 offset-sm-1">
           <p>The Rxivist API offers free, programmatic access to all of our bioRxiv metadata in a JSON interface. It's open to all&mdash;no keys or authentication here, at least for now. We do ask that you go easy on the requests, as this is a small project with limited funding for server infrastructure.
