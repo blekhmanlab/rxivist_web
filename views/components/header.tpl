@@ -1,11 +1,8 @@
 % import helpers
 % import config
 <div class="row" id="header">
-  <div class="col-md-6" style="padding-left: 35px;">
+  <div class="col-lg-5" style="padding-left: 35px;">
     <a href="/"><img src="/static/rxivist_logo.png" class="img-fluid" alt="Rxivist logo" title="It's pronounced 'Archivist.'" width="350"></a>
-    <div style="padding: 15px 90px 0 15px;">
-      <p>Rxivist combines preprints from <a href="https://biorxiv.org" target="_blank">bioRxiv</a> with data from Twitter to help you <strong>find the papers being discussed in your field</strong>.
-    </div>
   </div>
   % try:
   %  entity
@@ -19,9 +16,8 @@
   %  displaystats = False
   % end
   % if displaystats:
-    <div class="col-lg-6">
+    <div class="col-lg-3">
       <ul>
-        <li>Currently indexing <strong>{{ helpers.formatNumber(stats["papers_indexed"]) }} bioRxiv papers</strong> from <strong>{{ helpers.formatNumber(stats["authors_indexed"]) }} authors</strong>
         <li><a href="/">Home</a>
         <li><a href=
           % if entity == "papers":
@@ -45,5 +41,8 @@
       % end
     </div>
   % end
+  <div class="col-lg-4">
+    <p>Rxivist combines preprints from <a href="https://biorxiv.org" target="_blank">bioRxiv</a> with data from Twitter to help you <strong>find the papers being discussed</strong> in your field. Currently indexing <strong>{{ helpers.formatNumber(stats["papers_indexed"]) }} bioRxiv papers</strong> from <strong>{{ helpers.formatNumber(stats["authors_indexed"]) }} authors</strong>.
+  </div>
 
 </div>
