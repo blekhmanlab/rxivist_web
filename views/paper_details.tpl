@@ -18,7 +18,10 @@
         <div class="col">
           <h1>{{paper["title"]}}</h1>
           <div>
-            <a href="/?metric=downloads&timeframe=alltime&category={{paper["category"]}}" class="btn btn-secondary " role="button">{{ helpers.formatCategory(paper["category"]) }}</a>
+            % if paper["category"] != "unknown":
+              <a href="/?metric=downloads&timeframe=alltime&category={{paper["category"]}}" class="btn btn-secondary " role="button">{{ helpers.formatCategory(paper["category"]) }}</a>
+            % end
+
             <a href="{{paper["biorxiv_url"]}}" target="_blank" class="btn btn-altcolor " role="button">view on bioRxiv</a>
             % if "publication" in paper.keys() and len(paper["publication"].keys()) > 0:
               <a href="https://doi.org/{{ paper["publication"]["doi"] }}" target="_blank" class="btn btn-warning" role="button">view in {{ "publication" if "journal" not in paper["publication"].keys() or paper["publication"]["journal"] == "" else paper["publication"]["journal"] }}</a>

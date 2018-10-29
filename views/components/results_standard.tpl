@@ -16,7 +16,11 @@
           % elif metric == "twitter":
             <small>{{ "tweets" if result["metric"] > 1 else "tweet" }}</small>
           % end
-        <span class="badge {{ result["category"].replace("-", "") }}" style="margin-left: 10px;">{{ helpers.formatCategory(result["category"]) }}</span>
+
+        % if result["category"] != "unknown":
+          <span class="badge {{ result["category"].replace("-", "") }}" style="margin-left: 10px;">{{ helpers.formatCategory(result["category"]) }}</span>
+        % end
+
         <p class="text-right" style="margin-top: -1.5em; margin-bottom: 0;"><small>Posted to bioRxiv
           % if "first_posted" in result.keys() and result["first_posted"] != "":
             {{ helpers.formatDate(result["first_posted"]) }}

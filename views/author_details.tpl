@@ -77,7 +77,9 @@
         % for result in author["articles"]:
           <div class="col-md-6">
             <h2 style="font-size: 1.2em; padding-top: 20px; margin-bottom: 0;">{{result["title"]}}</h2>
-            <a href="/?metric=downloads&timeframe=alltime&category={{result["category"]}}"><span class="badge btn-secondary" style="margin-left: 10px;">{{ helpers.formatCategory(result["category"]) }}</span></a>
+            % if result["category"] != "unknown":
+              <a href="/?metric=downloads&timeframe=alltime&category={{result["category"]}}"><span class="badge btn-secondary" style="margin-left: 10px;">{{ helpers.formatCategory(result["category"]) }}</span></a>
+            % end
             <a href="/papers/{{ result["id"] }}"><span class="badge btn-altcolor">more details</span></a>
             <a href="{{ result["biorxiv_url"] }}" target="_blank"><span class="badge btn-altcolor">view paper</span></a>
             %include("components/paper_stats", paper=result)
