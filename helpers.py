@@ -71,8 +71,11 @@ def findCategory(needle, haystack):
     if x["category"] == needle:
       return x
 
-def rxapi(uri):
+def rxapi(uri, headers=False):
+  # The "headers" flag controls whether the response headers are returned
   get = requests.get("{}{}".format(config.rxapi, uri))
   if get.status_code == 404:
     raise NotFoundError(uri)
+  if headers:
+    return (get.json(), get.headers)
   return get.json()

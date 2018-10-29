@@ -50,6 +50,7 @@ def index():
   category_list = helpers.rxapi("/v1/data/categories")["results"]
   stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
   results = {} # a list of articles for the current page
+  respheaders = None
 
   try:
     if entity == "authors":
@@ -61,7 +62,7 @@ def index():
         category_filter = [category_filter[0]]
       results = helpers.rxapi(f"/v1/authors?category={category}")
     elif entity == "papers":
-      results = helpers.rxapi(f"/v1/papers?{bottle.request.query_string}")
+      results, respheaders = helpers.rxapi(f"/v1/papers?{bottle.request.query_string}", headers=True)
   except Exception as e:
     print(e)
     error = f"There was a problem with the submitted query: {e}"
@@ -123,6 +124,12 @@ def index():
     title += printable_times[timeframe]
   elif entity == "authors":
     title = "Authors with most downloads, all-time"
+
+  if bottle.request.query_string == "":
+    bottle.response.set_header("Cache-Control", "max-age=3600, stale-while-revalidate=172800")
+  # use whatever cache-control headers are sent to us from the API
+  if respheaders is not None and "Cache-Control" in respheaders.keys():
+    bottle.response.set_header("Cache-Control", respheaders["Cache-Control"])
 
   return bottle.template('index', results=results,
     query=query, category_filter=category_filter, title=title,
