@@ -22,11 +22,7 @@
         % end
 
         <p class="text-right" style="margin-top: -1.5em; margin-bottom: 0;"><small>Posted to bioRxiv
-          % if "first_posted" in result.keys() and result["first_posted"] != "":
-            {{ helpers.formatDate(result["first_posted"]) }}
-          % else:
-            very recently
-          % end
+          {{ helpers.formatDate(result["first_posted"]) }}
         </small></p>
       </div>
       <div id="collapse{{result["id"]}}" class="collapse" aria-labelledby="heading{{result["id"]}}" data-parent="#alltime">

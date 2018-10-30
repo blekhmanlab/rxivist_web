@@ -44,6 +44,9 @@ import docs
 @bottle.view('index')
 def index():
   error = ""
+  view = bottle.request.query.view
+  if view is None or view not in ["standard", "news"]:
+    view = "standard"
   entity = bottle.request.query.entity
   if entity is None or entity == "":
     entity = "papers"
@@ -133,7 +136,7 @@ def index():
 
   return bottle.template('index', results=results,
     query=query, category_filter=category_filter, title=title,
-    error=error, stats=stats, category_list=category_list, view="standard",
+    error=error, stats=stats, category_list=category_list, view=view,
     timeframe=timeframe, metric=metric, entity=entity, google_tag=config.google_tag,
     page=page, page_size=page_size, totalcount=totalcount, pagelink=pagelink,
     querystring=bottle.request.query_string)
