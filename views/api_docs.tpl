@@ -19,6 +19,8 @@
           <h1>Rxivist API documentation</h1>
         </div>
         <div class="col-sm-10 offset-sm-1">
+          <p><strong><a href="https://status.rxivist.org/">System health dashboard</a></strong>
+
           <p>The Rxivist API offers free, programmatic access to all of our bioRxiv metadata in a JSON interface. It's open to all&mdash;no keys or authentication here, at least for now. We do ask that you go easy on the requests, as this is a small project with limited funding for server infrastructure.
 
           <p>If you are looking for data to use offline somewhere, there's also no need to send 200,000 API requests to get all of it: <strong>We generate weekly database dumps that contain all Rxivist information,</strong> and you're welcome to download them. Not only is that easier for our servers to handle, but it may be much easier for you to process. The PostgreSQL dumps are available <a href="{{ config.s3buckethome }}">for direct download</a>.

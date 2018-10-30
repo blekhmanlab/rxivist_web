@@ -49,14 +49,14 @@
               case "month":
                 timeField.selectedIndex = 2;
                 break;
-              case "year":
+              /* case "year":
+                timeField.selectedIndex = 3;
+                break; */
+              case "alltime":
                 timeField.selectedIndex = 3;
                 break;
-              case "alltime":
-                timeField.selectedIndex = 4;
-                break;
               default:
-                timeField.selectedIndex = 4;
+                timeField.selectedIndex = 0;
             }
           } else {
             // download metric is selected:

@@ -27,7 +27,6 @@
           % end
         </a>
         <li><a href="/docs">The API</a>
-        <li><a href="https://status.rxivist.org/">System health dashboard</a>
         <li><a href="#" data-toggle="modal" data-target="#about">About the project</a><br>
         <span class="social-logo"><a href="{{ config.repo }}" target="_blank"><img src="/static/github.png" ></a></span>
         <span class="social-logo"><a href="https://twitter.com/{{ config.twitter }}" target="_blank"><img src="/static/twitter.png"></a></span>
