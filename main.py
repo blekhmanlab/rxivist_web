@@ -44,7 +44,7 @@ import docs
 def index():
   error = ""
   view = bottle.request.query.view
-  if view is None or view not in ["standard", "news"]:
+  if view is None or view not in ["standard", "print"]:
     view = "standard"
   entity = bottle.request.query.entity
   if entity is None or entity == "":
@@ -133,7 +133,7 @@ def index():
   if respheaders is not None and "Cache-Control" in respheaders.keys():
     bottle.response.set_header("Cache-Control", respheaders["Cache-Control"])
 
-  temp = 'print' if view == "news" else 'index'
+  temp = 'print' if view == "print" else 'index'
   return bottle.template(temp, results=results,
     query=query, category_filter=category_filter, title=title,
     error=error, stats=stats, category_list=category_list, view=view,

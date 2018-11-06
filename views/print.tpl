@@ -6,11 +6,12 @@
     <title>Rxivist: Popular biology pre-print papers ranked</title>
   </head>
   <body>
-    <div class="container" id="main">
-     % include("components/header_print", stats=stats)
-
+    <div id="main">
       <div class="row">
-        <div class="col">
+        % include("components/header_print", stats=stats)
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
           % if error != "":
             <div class="alert alert-danger" role="alert" style="display: {{"none" if error == "" else "block"}}">
               {{error}}
@@ -28,18 +29,21 @@
                 %end
               </h4>
             %end
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12">
             % if len(results) == 0 and metric == "twitter":
             %  # just adding a new "metric" param at the end of the query string overrides
             %  # any that appear earlier in the query, once bottle gets it
               <div><p>Search was based on articles with Twitter activity data&mdash;redo search <a href="/?{{querystring}}&timeframe=alltime&metric=downloads">with download data</a> instead?</p></div>
             % end
-
-            % if len(results) > 0:
-              % include("components/results_news", results=results)
-            % end
-          % end  # end of conditional for "display this if there's no error"
         </div>
       </div>
+      % if len(results) > 0:
+        % include("components/results_print", results=results)
+      % end
+    % end  # end of conditional for "display this if there's no error"
     </div>
   </body>
 </html>

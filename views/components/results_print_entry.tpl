@@ -5,6 +5,8 @@
     <p><em>
       % if len(result["authors"]) > 1:
         {{ result["authors"][0]["name"] }}, {{ result["authors"][1]["name"] }}
+      % else:
+        {{ result["authors"][0]["name] }}
       % end
       % if len(result["authors"]) > 2:
         et al.
@@ -16,8 +18,8 @@
     % end
 
     % if result["abstract"] is not None:
-      % abstract_length = 525 if width < 7 else 2000
-      <p>{{ (result["abstract"][:abstract_length] + "...") if len(result["abstract"]) > 525 else result["abstract"] }}
+      % abstract_length = 525 if width < 7 else 3000
+      <p>{{ (result["abstract"][:abstract_length] + "...") if len(result["abstract"]) > abstract_length else result["abstract"] }}
     % else:
       <p><em>Paper abstract not yet indexed.</em>
     % end
