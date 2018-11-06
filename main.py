@@ -41,7 +41,6 @@ import docs
 # WEB PAGES
 #     Homepage / search results
 @bottle.get('/')
-@bottle.view('index')
 def index():
   error = ""
   view = bottle.request.query.view
@@ -134,12 +133,14 @@ def index():
   if respheaders is not None and "Cache-Control" in respheaders.keys():
     bottle.response.set_header("Cache-Control", respheaders["Cache-Control"])
 
-  return bottle.template('index', results=results,
+  temp = 'print' if view == "news" else 'index'
+  return bottle.template(temp, results=results,
     query=query, category_filter=category_filter, title=title,
     error=error, stats=stats, category_list=category_list, view=view,
     timeframe=timeframe, metric=metric, entity=entity, google_tag=config.google_tag,
     page=page, page_size=page_size, totalcount=totalcount, pagelink=pagelink,
     querystring=bottle.request.query_string)
+
 
 #     Author details page
 @bottle.get('/authors/<id:int>')

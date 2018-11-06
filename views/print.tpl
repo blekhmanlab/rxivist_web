@@ -7,10 +7,10 @@
   </head>
   <body>
     <div class="container" id="main">
-      % include("components/header", stats=stats)
+     % include("components/header_print", stats=stats)
+
       <div class="row">
         <div class="col">
-          %include("components/searchform")
           % if error != "":
             <div class="alert alert-danger" role="alert" style="display: {{"none" if error == "" else "block"}}">
               {{error}}
@@ -35,27 +35,11 @@
             % end
 
             % if len(results) > 0:
-              % if entity == "authors":
-                  % include("components/author_ranks", results=results)
-              % elif entity == "papers":
-                % if view == "table":
-                  % include("components/results_table", results=results)
-                % else:
-                  % include("components/results_standard", results=results)
-                % end
-              % end
+              % include("components/results_news", results=results)
             % end
           % end  # end of conditional for "display this if there's no error"
         </div>
       </div>
     </div>
-
-    %include("components/footer")
-
-    <script>
-      $(function () {
-        $('[data-toggle="tooltip"]').tooltip()
-      })
-    </script>
   </body>
 </html>
