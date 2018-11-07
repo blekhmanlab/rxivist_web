@@ -15,6 +15,7 @@
       metric = metricField.options[metricField.selectedIndex].value;
       timeField = document.getElementById("timeframe");
       searchField = document.getElementById("basicsearchtext");
+      categoryField = document.getElementById("category");
 
       crossref_options = createOptions([
         ["Since yesterday", "day"],
@@ -39,6 +40,9 @@
             for (let x of crossref_options) {
               timeField.add(x);
             }
+            categoryField.selectedIndex = 0;
+            categoryField.disabled = true;
+
             switch("{{ timeframe }}") {
               case "day":
                 timeField.selectedIndex = 0;
@@ -63,6 +67,7 @@
             for (let x of download_options) {
               timeField.add(x);
             }
+            categoryField.disabled = false;
             switch("{{ timeframe }}") {
               case "lastmonth":
                 timeField.selectedIndex = 0;
