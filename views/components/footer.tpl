@@ -1,7 +1,12 @@
+% import config
 <div class="container">
   <div class="row" id="footer">
     <div class="col-sm-12">
-      <p><a href="/privacy">Privacy</a> | <a href="#" data-toggle="modal" data-target="#about">About</a>
+      <p>
+      % if config.feedback is not None and len(config.feedback) > 0:
+        <a href="{{ config.feedback }}" target="_blank">Feedback</a> |
+      % end
+      <a href="/privacy">Privacy</a> | <a href="#" data-toggle="modal" data-target="#about">About</a>
     </div>
   </div>
 </div>

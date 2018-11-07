@@ -16,8 +16,11 @@ host = "http://url_goes_here.org"
 # HTML file listing all DB dumps available for download:
 s3buckethome = "https://s3.amazonaws.com/bucket_name_here/index.html"
 
+# Link to a form to provide feedback on the website
+feedback = ""
+
 # Project-specific variables that get pulled into the documentation
-paper_url = "*tk"
+paper_url = ""
 paper_title = "*tk"
 repo = "https://github.com/blekhmanlab/rxivist"
 twitter = "twitter_handle_here"
