@@ -7,9 +7,7 @@
   </head>
   <body>
     <div id="main">
-      <div class="row">
-        % include("components/header_print", stats=stats)
-      </div>
+      % include("components/header_print", stats=stats)
       <div class="row">
         <div class="col-lg-12">
           % if error != "":
@@ -20,7 +18,8 @@
             %if len(results) == 0:
               <div><h3>No results found for "{{ query.replace("&", " ") }}"</h3></div>
             %else:
-              <h2>{{title}}</h2>
+              <h2 style="text-align: center;">{{title}}</h2>
+              <p style="text-align: center;"><em>Results {{ 1 + (page * page_size) }} through {{ (page * page_size) + len(results) }} out of {{ totalcount }}</em>
             %end
             %if len(category_filter) > 0:
               <h4 style="padding-left: 20px;">in categor{{ "ies:" if len(category_filter) > 1 else "y" }}
@@ -41,7 +40,20 @@
         </div>
       </div>
       % if len(results) > 0:
-        % include("components/results_print", results=results)
+        <div class="row">
+          <div class="col-sm-2">&nbsp;</div>
+          % include("components/results_print_entry", result=results[0], width=8, rank=(1 + (page * page_size)))
+        </div>
+        <div class="row">
+          % if len(results) > 1:
+            % for i, result in enumerate(results[1:]):
+              % if i % 2 == 0:
+                </div><div class="row">
+              % end
+              % include("components/results_print_entry", result=result, width=6, rank=(i+2 + (page * page_size)))
+            % end
+          % end
+        </div>
       % end
     % end  # end of conditional for "display this if there's no error"
     </div>

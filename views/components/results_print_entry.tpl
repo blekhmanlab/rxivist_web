@@ -1,6 +1,6 @@
 % import config
 <div class="col-lg-{{width}}">
-  <h4 class="text-secondary">{{result["title"]}}</h3>
+  <h4 class="text-secondary">{{ rank }}: {{result["title"]}}</h3>
   <div>
     <p><em>
       % if len(result["authors"]) > 1:

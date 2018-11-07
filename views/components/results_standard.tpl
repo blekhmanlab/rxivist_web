@@ -1,7 +1,7 @@
 <p class="text-right"><em><strong>{{ "{:,}".format(totalcount) }} results found.</strong> For more information, click each entry to expand.</em></p>
 <p class="text-left" style="margin-top: -2.7em;">
-  <a href="{{pagelink}}0&view=print" alt="Printer-friendly front page">
-    <i class="fas fa-print" style="font-size: 1.7em;"></i>
+  <a href="{{pagelink}}{{page}}&view=print" class="btn btn-altcolor" alt="Printer-friendly front page">
+    <i class="fas fa-print"></i>
   </a>
 </p>
 <div class="accordion" id="alltime">

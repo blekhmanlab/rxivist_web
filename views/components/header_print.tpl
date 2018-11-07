@@ -1,7 +1,7 @@
 % import helpers
 <div style="text-align: center;">
   <div class="row">
-    <div class="col">
+    <div class="col-lg-12">
       <a href="/"><img src="/static/rxivist_logo.png" class="img-fluid" alt="Rxivist logo" title="It's pronounced 'Archivist.'" width="350"></a>
     </div>
   </div>
