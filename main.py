@@ -128,7 +128,7 @@ def index():
     title = "Authors with most downloads, all-time"
 
   if bottle.request.query_string == "":
-    bottle.response.set_header("Cache-Control", "max-age=3600, stale-while-revalidate=172800")
+    bottle.response.set_header("Cache-Control", f"max-age={config.front_page_cache}, stale-while-revalidate=172800")
   # use whatever cache-control headers are sent to us from the API
   if respheaders is not None and "Cache-Control" in respheaders.keys():
     bottle.response.set_header("Cache-Control", respheaders["Cache-Control"])

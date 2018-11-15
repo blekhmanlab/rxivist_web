@@ -8,6 +8,9 @@ rxapi = "http://api_url_goes_here.org"
 # code change.
 use_prod_webserver = True
 
+# Maximum time, in seconds, that the front page can be cached
+front_page_cache = 600
+
 # Hostname where users will find your site.
 # This is needed to build redirect URLs that don't
 # break when the web server is behind a reverse proxy.
