@@ -56,6 +56,8 @@ def num_to_month(monthnum):
 def formatDate(datestring):
   # yyyy-mm-dd to dd MMM yyyy
   x = datestring.split("-")
+  if len(x) < 3:
+    return ""
   return "{} {} {}".format(x[2], num_to_month(x[1]), x[0])
 
 def formatCategory(cat):

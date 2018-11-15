@@ -23,7 +23,7 @@
     % else:
       <p><em>Paper abstract not yet indexed.</em>
     % end
-     <p><a href="/papers/{{ result["id"] }}"><code>{{config.base_url}}/papers/{{ result["id"] }}</code></a><br>
+     <p><a href="/papers/{{ result["id"] }}"><code>{{config.host}}/papers/{{ result["id"] }}</code></a><br>
        <a href="https://doi.org/{{ result["doi"] }}"><code>https://doi.org/{{ result["doi"] }}</code></a>
   </div>
 </div>
