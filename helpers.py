@@ -75,7 +75,10 @@ def findCategory(needle, haystack):
 
 def rxapi(uri, headers=False):
   # The "headers" flag controls whether the response headers are returned
-  get = requests.get("{}{}".format(config.rxapi, uri))
+  get = requests.get(
+    "{}{}".format(config.rxapi, uri),
+    headers={"Referer": "rxivist.org"}
+  )
   if get.status_code == 404:
     raise NotFoundError(uri)
   if headers:
