@@ -212,6 +212,10 @@ def api_docs():
   documentation = docs.build_docs()
   return bottle.template("api_docs", google_tag=config.google_tag, stats=stats, docs=documentation)
 
+@bottle.route('/healthcheck')
+@bottle.view('healthcheck')
+def privacy():
+  return bottle.template("healthcheck")
 
 # Search engine stuff
 @bottle.route(f'/{config.google_validation_file}')
