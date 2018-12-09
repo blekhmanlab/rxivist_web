@@ -23,7 +23,7 @@ gopher = GopherExtension(app)
 @app.route('/')
 def index():
   if req.remote_addr == "127.0.0.1":
-    return # ignore healthchecks, don't send API reqs
+    return 'good' # ignore healthchecks, don't send API reqs
   log(flask.request)
   results = rxapi("/v1/papers")
   results = menus.searchmenu0(gopher, results)
