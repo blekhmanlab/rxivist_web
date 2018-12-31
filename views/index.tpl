@@ -21,7 +21,7 @@
             %else:
               <h2>{{title}}</h2>
             %end
-            %if len(category_filter) > 0:
+            %if len(category_filter) > 0 and category_filter[0] != '':
               <h4 style="padding-left: 20px;">in categor{{ "ies:" if len(category_filter) > 1 else "y" }}
                 % for i, cat in enumerate(category_filter):
                   {{ helpers.formatCategory(cat) }}{{", " if i < (len(category_filter)-1) else ""}}
