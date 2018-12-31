@@ -38,14 +38,11 @@
             % if "first_posted" in paper.keys() and paper["first_posted"] != "":
               Posted <strong>{{ helpers.formatDate(paper["first_posted"]) }}</strong>
             % end
-            % if "ranks" in paper.keys() and paper["ranks"]["alltime"]["downloads"] is not None:
-              (downloaded {{ helpers.formatNumber(paper["ranks"]["alltime"]["downloads"]) }} times)
-            % end
-            </em>
-            <br>bioRxiv DOI: <strong>{{ paper["doi"] }}</strong>
-            % if "publication" in paper.keys() and len(paper["publication"].keys()) > 0:
-              (published DOI: <strong>{{ paper["publication"]["doi"] }}</strong>)
-            % end
+          </em>
+          <br>bioRxiv DOI: <strong>{{ paper["doi"] }}</strong>
+          % if "publication" in paper.keys() and len(paper["publication"].keys()) > 0:
+            (published DOI: <strong>{{ paper["publication"]["doi"] }}</strong>)
+          % end
         </div>
       </div>
       <div class="row">
