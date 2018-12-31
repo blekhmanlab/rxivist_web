@@ -6,7 +6,7 @@
       % if len(result["authors"]) > 1:
         {{ result["authors"][0]["name"] }}, {{ result["authors"][1]["name"] }}
       % else:
-        {{ result["authors"][0]["name] }}
+        {{ result["authors"][0]["name"] }}
       % end
       % if len(result["authors"]) > 2:
         et al.

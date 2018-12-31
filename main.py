@@ -199,6 +199,60 @@ def display_paper_details(id):
     download_distribution=download_distribution, averages=averages, stats=stats,
     google_tag=config.google_tag)
 
+#     Annual results
+@bottle.get('/top/<year:int>')
+def topyear(year):
+  error = ''
+  respheaders = None
+  results = None
+
+  if year < 2013:
+    error = "Lists currently available only for 2013 through 2018."
+    bottle.response.status = 404
+
+  try:
+    results, respheaders = helpers.rxapi(f"/v1/top/{year}", headers=True)
+  except Exception as e:
+    print(e)
+    error = f"Sorry&mdash;there was a problem retrieving the results: {e}"
+    bottle.response.status = 500
+
+  if respheaders is not None and "Cache-Control" in respheaders.keys():
+    bottle.response.set_header("Cache-Control", respheaders["Cache-Control"])
+
+  stats = helpers.rxapi("/v1/data/stats")
+
+  yearstats = { # TODO: Put this in the API
+    2013: {
+      "papers": 109,
+      "downloads": 17268
+    },
+    2014: {
+      "papers": 886,
+      "downloads": 311046
+    },
+    2015: {
+      "papers": 1774,
+      "downloads": 679159
+    },
+    2016: {
+      "papers": 4718,
+      "downloads": 2182836
+    },
+    2017: {
+      "papers": 11342,
+      "downloads": 3995108
+    },
+    2018: {
+      "papers": 20050,
+      "downloads": 5730324
+    }
+  }
+
+  return bottle.template('top_year', results=results['results'],
+    year=year, yearpapers=yearstats[year]['papers'], yeardownloads = yearstats[year]['downloads'],
+    error=error, stats=stats, google_tag=config.google_tag)
+
 @bottle.route('/privacy')
 @bottle.view('privacy')
 def privacy():

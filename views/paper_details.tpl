@@ -3,7 +3,7 @@
 <html lang="en">
   <head>
     %include("components/metadata.tpl", google_tag=google_tag)
-    <title>Rxivist details – {{paper["title"]}}</title>
+    <title>Rxivist: {{paper["title"]}}</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.5/chartjs-plugin-annotation.js"></script>
     <script src="https://cdn.rawgit.com/chartjs/Chart.js/master/samples/utils.js"></script>
@@ -19,7 +19,7 @@
           <h1>{{paper["title"]}}</h1>
           <div>
             % if paper["category"] != "unknown":
-              <a href="/?metric=downloads&timeframe=alltime&category={{paper["category"]}}" class="btn btn-secondary " role="button">{{ helpers.formatCategory(paper["category"]) }}</a>
+              <a href="/?metric=downloads&timeframe=alltime&category={{paper["category"]}}" class="btn catbutton {{ paper["category"].replace("-", "") }}" role="button">{{ helpers.formatCategory(paper["category"]) }}</a>
             % end
 
             <a href="{{paper["biorxiv_url"]}}" target="_blank" class="btn btn-altcolor " role="button">view on bioRxiv</a>

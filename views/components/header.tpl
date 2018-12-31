@@ -27,21 +27,21 @@
           % end
         </a>
         <li><a href="/docs">The API</a>
-        <li><a href="#" data-toggle="modal" data-target="#about">About the project</a><br>
+        <li><a href="/about">About the project</a><br>
         <span class="social-logo"><a href="{{ config.repo }}" target="_blank"><img src="/static/github.png" ></a></span>
         <span class="social-logo"><a href="https://twitter.com/{{ config.twitter }}" target="_blank"><img src="/static/twitter.png"></a></span>
       </ul>
-      % if config.paper_url != "":
-        <div class="col-sm-12">
-          <div class="alert alert-primary" role="alert">
-            <strong><a href="{{ config.paper_url }}">The Rxivist preprint</a></strong> is now available for download from bioRxiv!
-          </div>
-        </div>
-      % end
     </div>
   % end
   <div class="col-lg-4">
     <p>Rxivist combines preprints from <a href="https://biorxiv.org" target="_blank">bioRxiv</a> with data from Twitter to help you <strong>find the papers being discussed</strong> in your field. Currently indexing <strong>{{ helpers.formatNumber(stats["papers_indexed"]) }} bioRxiv papers</strong> from <strong>{{ helpers.formatNumber(stats["authors_indexed"]) }} authors</strong>.
+    % if config.paper_url != "":
+      <div class="col-sm-12">
+        <div class="alert alert-primary" role="alert">
+          <strong><a href="{{ config.paper_url }}" target="_blank">The Rxivist preprint</a></strong> is now available for download from bioRxiv!
+        </div>
+      </div>
+    % end
   </div>
 
 </div>
