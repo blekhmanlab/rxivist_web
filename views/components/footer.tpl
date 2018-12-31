@@ -6,12 +6,10 @@
       % if config.feedback is not None and len(config.feedback) > 0:
         <a href="{{ config.feedback }}" target="_blank">Feedback</a> |
       % end
-      <a href="/privacy">Privacy</a> | <a href="#" data-toggle="modal" data-target="#about">About</a>
+      <a href="/privacy">Privacy</a> | <a href="/about">About</a>
     </div>
   </div>
 </div>
-
-%include("components/modal_about")
 
 <script src="/static/jquery-3.3.1.slim.min.js"></script>
 <script src="/static/popper.min.js"></script>

@@ -205,6 +205,12 @@ def privacy():
   stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
   return bottle.template("privacy", google_tag=config.google_tag, stats=stats)
 
+@bottle.route('/about')
+@bottle.view('privacy')
+def privacy():
+  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
+  return bottle.template("about", google_tag=config.google_tag, stats=stats)
+
 @bottle.route('/docs')
 @bottle.view('api_docs')
 def api_docs():
