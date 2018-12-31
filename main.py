@@ -50,7 +50,7 @@ def index():
   if entity is None or entity == "":
     entity = "papers"
   category_list = helpers.rxapi("/v1/data/categories")["results"]
-  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats")
   results = {} # a list of articles for the current page
   respheaders = None
 
@@ -172,17 +172,17 @@ def display_author_details(id):
   distro = helpers.rxapi("/v1/data/distributions/author/downloads")
   download_distribution = distro["histogram"]
   averages = distro["averages"]
-  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats")
   return bottle.template('author_details', author=author,
     download_distribution=download_distribution, averages=averages, stats=stats,
     google_tag=config.google_tag)
 
 #     Paper details page
-@bottle.get('/papers/<id:int>')
+@bottle.get('/papers/<paper_id:path>')
 @bottle.view('paper_details')
-def display_paper_details(id):
+def display_paper_details(paper_id):
   try:
-    paper = helpers.rxapi(f"/v1/papers/{id}")
+    paper = requests.get(f"{config.rxapi}/v1/papers/{paper_id}")
   except helpers.NotFoundError as e:
     bottle.response.status = 404
     return e.message
@@ -190,11 +190,29 @@ def display_paper_details(id):
     bottle.response.status = 500
     print(e)
     return {"error": "Server error."}
-  traffic = helpers.rxapi(f"/v1/papers/{id}/downloads")["results"]
+
+  # make sure the URL we ended at matches the URL we asked for:
+  new_id = re.search('/(\d+)$', paper.url)
+  print(f'NEW ID IS {new_id}')
+  if new_id and len(new_id.groups()) > 0:
+    print("in here")
+    try:
+      new_id = str(new_id.group(1))
+      paper_id = str(paper_id)
+    except Exception:
+      bottle.response.status = 500
+      return {"error": "Server errror."}
+    if new_id != paper_id: # if we got redirected to a new URL
+      print(f"\n\nNEW ONE IS : |{new_id}| VS |{paper_id}|")
+      print("redirecting")
+      return bottle.redirect(f"{config.host}/papers/{new_id}", 301)
+
+  paper = paper.json()
+  traffic = helpers.rxapi(f"/v1/downloads/{paper_id}")["results"]
   distro = helpers.rxapi("/v1/data/distributions/paper/downloads")
   download_distribution = distro["histogram"]
   averages = distro["averages"]
-  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats")
   return bottle.template('paper_details', paper=paper, traffic=traffic,
     download_distribution=download_distribution, averages=averages, stats=stats,
     google_tag=config.google_tag)
@@ -256,19 +274,19 @@ def topyear(year):
 @bottle.route('/privacy')
 @bottle.view('privacy')
 def privacy():
-  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats")
   return bottle.template("privacy", google_tag=config.google_tag, stats=stats)
 
 @bottle.route('/about')
 @bottle.view('privacy')
 def privacy():
-  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats")
   return bottle.template("about", google_tag=config.google_tag, stats=stats)
 
 @bottle.route('/docs')
 @bottle.view('api_docs')
 def api_docs():
-  stats = helpers.rxapi("/v1/data/stats") # site-wide metrics (paper count, etc)
+  stats = helpers.rxapi("/v1/data/stats")
   documentation = docs.build_docs()
   return bottle.template("api_docs", google_tag=config.google_tag, stats=stats, docs=documentation)
 
