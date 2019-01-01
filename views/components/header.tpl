@@ -19,6 +19,7 @@
     <div class="col-lg-3">
       <ul>
         <li><a href="/">Home</a>
+        <li><a href="/top/2018">Top preprints of 2018</a>
         <li><a href=
           % if entity == "papers":
             "/?entity=authors&category={{"" if len(category_filter) == 0 else category_filter[0]}}">Author leaderboards
@@ -32,16 +33,9 @@
         <span class="social-logo"><a href="https://twitter.com/{{ config.twitter }}" target="_blank"><img src="/static/twitter.png"></a></span>
       </ul>
     </div>
+    <div class="col-lg-4">
+      <p>Rxivist combines preprints from <a href="https://biorxiv.org" target="_blank">bioRxiv</a> with data from Twitter to help you <strong>find the papers being discussed</strong> in your field. Currently indexing <strong>{{ helpers.formatNumber(stats["papers_indexed"]) }} bioRxiv papers</strong> from <strong>{{ helpers.formatNumber(stats["authors_indexed"]) }} authors</strong>.
+    </div>
   % end
-  <div class="col-lg-4">
-    <p>Rxivist combines preprints from <a href="https://biorxiv.org" target="_blank">bioRxiv</a> with data from Twitter to help you <strong>find the papers being discussed</strong> in your field. Currently indexing <strong>{{ helpers.formatNumber(stats["papers_indexed"]) }} bioRxiv papers</strong> from <strong>{{ helpers.formatNumber(stats["authors_indexed"]) }} authors</strong>.
-    % if config.paper_url != "":
-      <div class="col-sm-12">
-        <div class="alert alert-primary" role="alert">
-          <strong><a href="{{ config.paper_url }}" target="_blank">The Rxivist preprint</a></strong> is now available for download from bioRxiv!
-        </div>
-      </div>
-    % end
-  </div>
 
 </div>
