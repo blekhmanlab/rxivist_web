@@ -23,7 +23,7 @@
 
           <p>The Rxivist API offers free, programmatic access to all of our bioRxiv metadata in a JSON interface. It's open to all&mdash;no keys or authentication here, at least for now. We do ask that you go easy on the requests, as this is a small project with limited funding for server infrastructure.
 
-          <p>If you are looking for data to use offline somewhere, there's also no need to send 200,000 API requests to get all of it: <strong>We generate weekly database dumps that contain all Rxivist information,</strong> and you're welcome to download them. Not only is that easier for our servers to handle, but it may be much easier for you to process. The PostgreSQL dumps are available <a href="{{ config.s3buckethome }}">for direct download</a>.
+          <p>If you are looking for data to use offline somewhere, there's also no need to send 200,000 API requests to get all of it: <strong>We generate weekly database dumps that contain all Rxivist information,</strong> and you're welcome to download them. Not only is that easier for our servers to handle, but it may be much easier for you to process. The PostgreSQL dumps are available <a href="{{ config.zenodohome }}">for direct download</a>.
 
           <p>If you are planning to use the Rxivist data within a web application, it would be much appreciated if you <strong>link to Rxivist</strong> on any page that displays a non-trivial amount of data pulled from this API. Also, let us know what you're up to! We'd love to find out how this data is being used.
 

@@ -16,8 +16,8 @@ front_page_cache = 600
 # break when the web server is behind a reverse proxy.
 host = "http://url_goes_here.org"
 
-# HTML file listing all DB dumps available for download:
-s3buckethome = "https://s3.amazonaws.com/bucket_name_here/index.html"
+# Repository listing all DB dumps available for download:
+zenodohome = "doi.org/10.5281/zenodo.123456"
 
 # Link to a form to provide feedback on the website
 feedback = ""
@@ -25,6 +25,8 @@ feedback = ""
 # Project-specific variables that get pulled into the documentation
 paper_url = ""
 paper_title = "*tk"
+paper_doi = "10.1101/1234"
+
 repo = "https://github.com/blekhmanlab/rxivist"
 twitter = "twitter_handle_here"
 
