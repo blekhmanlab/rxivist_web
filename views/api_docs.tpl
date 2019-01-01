@@ -25,13 +25,7 @@
 
           <p>If you are looking for data to use offline somewhere, there's also no need to send 200,000 API requests to get all of it: <strong>We generate weekly database dumps that contain all Rxivist information,</strong> and you're welcome to download them. Not only is that easier for our servers to handle, but it may be much easier for you to process. The PostgreSQL dumps are available <a href="{{ config.s3buckethome }}">for direct download</a>.
 
-          <p>If you are planning to use the Rxivist data within a web application, it would be much appreciated if you <strong>link to Rxivist</strong> on any page that displays a non-trivial amount of data pulled from this API.
-
-          % if config.paper_url != "":
-            If you use Rxivist data in your research, please cite our paper, <a href="{{ config.paper_url }}">"{{ config.paper_title }}."</a>
-          % end
-
-          Also, let us know what you're up to! We'd love to find out how this data is being used.
+          <p>If you are planning to use the Rxivist data within a web application, it would be much appreciated if you <strong>link to Rxivist</strong> on any page that displays a non-trivial amount of data pulled from this API. Also, let us know what you're up to! We'd love to find out how this data is being used.
 
           <p>While we're talking about third-party web applications, we should here that <strong>we can't guarantee this API will be around forever</strong>. We plan to keep it running (and updated!) for the foreseeable future, but if you're going to build something using the Rxivist API that requires a strong uptime commitment or a concrete promise of long-term functionality, consider deploying your own version of <a href="{{ config.repo }}">the software</a>. We'll provide as much guidance as we can.
 
@@ -47,8 +41,21 @@
 
             <p>Alas, not all people are polite. And for this reason we reserve the right to impose rate limits and/or to block clients that are disrupting the public service.
 
-            <p><em>"Etiquette" section based on the <a href="https://github.com/CrossRef/rest-api-doc#etiquette" target="_blank">Crossref API documentation</a>, available via <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons license</a>.
+            <p><em>"Etiquette" section based on the <a href="https://github.com/CrossRef/rest-api-doc#etiquette" target="_blank">Crossref API documentation</a>, available via <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons license</a>.</em>
 
+          % if config.paper_url != "":
+            <h3>How to cite Rxivist</h3>
+
+            <p>If you use Rxivist data in your research, please cite our paper, which is <a href="{{ config.paper_url }}" target="_blank">now available on bioRxiv</a> (of course):
+
+            <div class="card">
+              <div class="card-body">
+                <tt>Abdill, Richard J., and Ran Blekhman. "{{ config.paper_title }}." BioRxiv (2019). doi: {{ config.paper_doi }}.</tt>
+              </div>
+            </div>
+
+
+          % end
 
         </div>
       </div>

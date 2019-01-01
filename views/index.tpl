@@ -1,4 +1,5 @@
 % import helpers
+% import config
 <!doctype html>
 <html lang="en" ng-app="app">
   <head>
@@ -19,6 +20,13 @@
             %if len(results) == 0:
               <div><h3>No results found for "{{ query.replace("&", " ") }}"</h3></div>
             %else:
+              % if config.paper_url != "":
+                <div class="col-sm-12">
+                  <div class="alert alert-primary" role="alert">
+                    <strong><a href="{{ config.paper_url }}" target="_blank">The Rxivist preprint</a></strong> is now available for download from bioRxiv!
+                  </div>
+                </div>
+              % end
               <h2>{{title}}</h2>
             %end
             %if len(category_filter) > 0 and category_filter[0] != '':

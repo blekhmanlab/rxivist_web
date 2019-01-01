@@ -157,12 +157,12 @@ def papers(category_list):
     """
   )
 
-  downloads = papers.add_endpoint("Download data", "/papers/<id>/downloads", "Retrieve monthly download statistics for a single paper. PLEASE NOTE that currently, the author list for a given paper is based on the authors retrieved the first time a paper was indexed by Rxivist; if a paper was revised later and the author list modified, that would not have been updated here.")
+  downloads = papers.add_endpoint("Download data", "/downloads/<id>", "Retrieve monthly download statistics for a single paper.")
   downloads.add_argument("path", "id", "Rxivist paper ID associated with the download data you want.", required=True)
   downloads.add_example(
     "Paper download data request",
     "",
-    "/papers/12345/downloads",
+    "/downloads/12345",
     """{
   "query": {
     "id": 12345

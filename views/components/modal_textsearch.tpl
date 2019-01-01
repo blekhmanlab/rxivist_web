@@ -11,6 +11,8 @@
         <p>The Rxivist text search uses your query to search for relevant articles based on the article's <strong>title, abstract and list of authors</strong>. So a search for <code>Smith</code> will return any articles that include "Smith" in the title/abstract, or that include someone named "Smith" in the list of authors.
 
         <p>You can also use quotation marks (<code>"</code> or <code>'</code>) to indicate phrases, and the Boolean operators "AND" (<code>&</code>), "OR" (<code>|</code>) and "NOT" (<code>!</code>) within your search.
+
+        <p>To find the information for a paper with a known DOI number, navigate to <code>https://rxivist.org/papers/$DOI_NUMBER_HERE</code>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

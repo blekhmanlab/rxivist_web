@@ -7,7 +7,7 @@
   </div>
   <div class="row">
     <div class="col-lg-8 offset-lg-2">
-      <p><em>rxivist.org combines preprints from <strong>bioRxiv.org</strong> with data from Twitter to help you <strong>find the papers being discussed</strong> in your field.
+      <p><em>Rxivist.org combines preprints from <strong>bioRxiv.org</strong> with data from Twitter to help you <strong>find the papers being discussed</strong> in your field.
       <br>Currently indexing <strong>{{ helpers.formatNumber(stats["papers_indexed"]) }} bioRxiv papers</strong> from <strong>{{ helpers.formatNumber(stats["authors_indexed"]) }} authors</strong>.</em>
     </div>
   </div>

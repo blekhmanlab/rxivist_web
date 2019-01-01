@@ -22,7 +22,7 @@
 
           <p>Social media information and publication metadata is provided by <a href="https://www.crossref.org" target="_blank">Crossref</a>.
 
-          <p>Rxivist was developed in 2018 by PhD student Richard Abdill, of the <a href="http://blekhmanlab.org">Blekhman Lab</a> at the <a href="https://cbs.umn.edu/academics/departments/gcd" target="_blank">University of Minnesota</a>. Its source code is available on GitHub in two locations, for <a href="https://github.com/rabdill/rxivist" target="_blank">the API</a> and <a href="https://github.com/rabdill/rxivist_web" target="_blank">this web application</a>. Its main components are:
+          <p>Rxivist was developed in 2018 by PhD student Richard Abdill, of the <a href="http://blekhmanlab.org">Blekhman Lab</a> at the <a href="https://cbs.umn.edu/academics/departments/gcd" target="_blank">University of Minnesota</a>. Its source code is available on GitHub in two locations, for <a href="https://github.com/blekhmanlab/rxivist" target="_blank">the API</a> and <a href="https://github.com/blekhmanlab/rxivist_web" target="_blank">this web application</a>. Its main components are:
           <ul>
             <li><a href="https://python.org" target="_blank">Python 3</a>, the <a href="https://bottlepy.org/" target="_blank">Bottle</a> web framework and the <a href="https://html.python-requests.org/" target="_blank">Requests-HTML</a> module (for web crawling)
             <li><a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a> database and the <a href="http://initd.org/psycopg/docs/index.html" target="_blank">Psycopg</a> SDK
