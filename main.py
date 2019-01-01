@@ -315,7 +315,7 @@ def error404(error):
 @bottle.error(500)
 @bottle.view('error')
 def error500(error):
-  return bottle.template("error", google_tag=config.google_tag)
+  return bottle.static_file('500.html', root='./static/')
 
 # - SERVER -
 @bottle.route('/static/<path:path>')
