@@ -312,6 +312,11 @@ def callback():
 def error404(error):
   return bottle.template("error", google_tag=config.google_tag)
 
+@bottle.error(500)
+@bottle.view('error')
+def error500(error):
+  return bottle.template("error", google_tag=config.google_tag)
+
 # - SERVER -
 @bottle.route('/static/<path:path>')
 def callback(path):
