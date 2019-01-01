@@ -21,10 +21,10 @@
         <li><a href="/">Home</a>
         <li><a href="/top/2018">Top preprints of 2018</a>
         <li><a href=
-          % if entity == "papers":
-            "/?entity=authors&category={{"" if len(category_filter) == 0 else category_filter[0]}}">Author leaderboards
-          % else:
+          % if entity == "authors":
             "/?category={{"" if len(category_filter) == 0 else category_filter[0]}}">Paper search
+          % else:
+            "/?entity=authors&category={{"" if len(category_filter) == 0 else category_filter[0]}}">Author leaderboards
           % end
         </a>
         <li><a href="/docs">The API</a>
