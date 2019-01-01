@@ -87,14 +87,14 @@
 <div id="searchform">
   <form action="/" method="get">
   % if entity == "papers":
-    <div class="input-group mb-3 col-sm-9">
+    <div class="input-group mb-3 col-md-9">
       <input type="text" class="form-control form-control-lg" id="basicsearchtext" name="q" placeholder="Enter search terms here (optional)" value="{{ query.replace("&", " ") }}">
       <a href="#" data-toggle="modal" data-target="#textsearch" style="margin-top: 10px;">
         <i class="far fa-question-circle" font-size: 1.5em;"></i>
       </a>
     </div>
     <div class="input-group mb-3 col-md-9">
-      <select class="form-control  col-sm-3" id="metric" name="metric" onchange="fixForm('metric');">
+      <select class="form-control col-md-3" id="metric" name="metric" onchange="fixForm('metric');">
         <option value="downloads"
         %if metric == "downloads":
           selected
@@ -106,7 +106,11 @@
         %end
         >Twitter activity</option>
       </select>
-      <select class="form-control col-sm-3" id="category" name="category">
+
+      <!-- for fixing responsiveness of input group -->
+      <div class="d-md-none w-100"></div>
+
+      <select class="form-control col-md-3" id="category" name="category">
         <option value="">all categories</option>
         % for cat in category_list:
           <option value="{{cat}}"
@@ -116,10 +120,15 @@
           >{{ helpers.formatCategory(cat) }}</option>
         %end
       </select>
-      <select class="form-control  col-sm-3" id="timeframe" name="timeframe" onchange="fixForm('timeframe');">
 
+      <div class="d-md-none w-100"></div>
+
+      <select class="form-control col-md-3" id="timeframe" name="timeframe" onchange="fixForm('timeframe');">
       </select>
-      <select class="form-control  col-sm-3" id="page_size" name="page_size">
+
+      <div class="d-md-none w-100"></div>
+
+      <select class="form-control col-md-3" id="page_size" name="page_size">
         <option value="20"
           %if page_size == 20:
             selected
@@ -141,6 +150,9 @@
           %end
         >100 results per page</option>
       </select>
+
+      <div class="d-md-none w-100"></div>
+
       <input type="hidden" name="view" value="{{ view }}"></input>
       <div class="input-group-append">
         <button type="submit" class="btn btn-altcolor">Search</button>

@@ -9,12 +9,24 @@
     <div class="card">
       <div class="card-header context" id="heading{{result["id"]}}"  data-toggle="collapse" data-target="#collapse{{result["id"]}}" aria-expanded="true" aria-controls="collapse{{result["id"]}}">
         <strong>{{i+1 + (page * page_size)}}:</strong>
-        % if metric == "twitter" and timeframe == "day" and result["metric"] > 80:
-          <i class="fab fa-hotjar text-danger" style="font-size: 2em;"></i>
-        % end
-        {{result["title"]}}
+        <span class="d-md-none">{{result["title"]}}</span>
+        <div class="d-md-none w-100"></div>
+
+        <div class="float-right text-right">
+          <a href="/papers/{{ result["id"] }}" class="btn btn-sm btn-altcolor " role="button">more details</a>
+          <a href="{{ result["biorxiv_url"] }}" target="_blank" class="btn btn-sm btn-altcolor " role="button">view paper</a>
+
+          <p style="margin-top: 0; margin-bottom: 0;"><small>Posted to bioRxiv
+            {{ helpers.formatDate(result["first_posted"]) }}
+          </small></p>
+        </div>
+
+        <span class="d-none d-md-inline">{{result["title"]}}</span>
 
         <br>
+          % if metric == "twitter" and timeframe == "day" and result["metric"] > 80:
+            <i class="fab fa-hotjar text-danger" style="font-size: 2em;"></i>
+          % end
           <strong>{{ helpers.formatNumber(result["metric"]) }}</strong>
           % if metric == "downloads":
             <small>{{ "downloads" if result["metric"] > 1 else "download" }}</small>
@@ -25,17 +37,9 @@
         % if result["category"] != "unknown":
           <span class="badge {{ result["category"].replace("-", "") }}" style="margin-left: 10px;">{{ helpers.formatCategory(result["category"]) }}</span>
         % end
-
-        <p class="text-right" style="margin-top: -1.5em; margin-bottom: 0;"><small>Posted to bioRxiv
-          {{ helpers.formatDate(result["first_posted"]) }}
-        </small></p>
       </div>
       <div id="collapse{{result["id"]}}" class="collapse" aria-labelledby="heading{{result["id"]}}" data-parent="#alltime">
         <div class="card-body">
-          <div class="float-right">
-            <a href="/papers/{{ result["id"] }}" class="btn btn-altcolor " role="button">more details</a>
-            <a href="{{ result["biorxiv_url"] }}" target="_blank" class="btn btn-altcolor " role="button">view paper</a>
-          </div>
           <p>
           % for i, author in enumerate(result["authors"]):
             <a href="/authors/{{ author["id"] }}">{{ author["name"] }}</a>{{", " if i < (len(result["authors"]) - 1) else ""}}
