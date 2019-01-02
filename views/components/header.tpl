@@ -28,13 +28,17 @@
           % end
         </a>
         <li><a href="/docs">The API</a>
-        <li><a href="/about">About the project</a><br>
-        <span class="social-logo"><a href="{{ config.repo }}" target="_blank"><img src="/static/github.png" ></a></span>
-        <span class="social-logo"><a href="https://twitter.com/{{ config.twitter }}" target="_blank"><img src="/static/twitter.png"></a></span>
+        <li><a href="/about">About the project</a>
+        % if config.paper_url != "":
+          <li><a href="{{ config.paper_url }}" target="_blank">Rxivist preprint (NEW!)</a>
+        % end
       </ul>
     </div>
     <div class="col-lg-4">
       <p>Rxivist combines preprints from <a href="https://biorxiv.org" target="_blank">bioRxiv</a> with data from Twitter to help you <strong>find the papers being discussed</strong> in your field. Currently indexing <strong>{{ helpers.formatNumber(stats["papers_indexed"]) }} bioRxiv papers</strong> from <strong>{{ helpers.formatNumber(stats["authors_indexed"]) }} authors</strong>.
+      <br>
+      <span class="social-logo"><a href="{{ config.repo }}" target="_blank"><img src="/static/github.png" ></a></span>
+      <span class="social-logo"><a href="https://twitter.com/{{ config.twitter }}" target="_blank"><img src="/static/twitter.png"></a></span>
     </div>
   % end
 
