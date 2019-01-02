@@ -72,7 +72,7 @@
       </div>
       <div class="row">
         <div class="col-md-12">
-          <h2>Articles</h2>
+          <h2>Preprints</h2>
         </div>
         % for result in author["articles"]:
           <div class="col-md-6">

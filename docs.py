@@ -14,7 +14,7 @@ def build_docs():
   )
 
 def papers(category_list):
-  papers = docmodels.Chapter("Papers", "Search all bioRxiv papers and retrieve details.")
+  papers = docmodels.Chapter("Preprints", "Search all bioRxiv papers and retrieve details.")
   query = papers.add_endpoint("Search", "/papers", "Retrieve a list of papers matching the given criteria.")
   query.add_argument("get", "query", "A search string to filter results based on their titles, abstracts and authors.", "")
 

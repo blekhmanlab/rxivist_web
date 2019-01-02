@@ -1,4 +1,5 @@
 % import helpers
+% import config
 <!doctype html>
 <html lang="en">
   <head>
@@ -19,6 +20,9 @@
       <div class="row">
         <div class="col-md-12">
           <p>Rxivist indexes and sorts metadata from <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a>, a <a href="http://www.sciencemag.org/news/2017/09/are-preprints-future-biology-survival-guide-scientists" target="_blank">preprint</a> server<sup>1</sup> operated by Cold Spring Harbor Laboratory. There is no official association between bioRxiv and this project.
+          % if config.paper_url != "":
+            A preprint about Rxivist is <a href="{{ config.paper_url }}" target="_blank">now available on bioRxiv</a>.
+          % end
 
           <p>Social media information and publication metadata is provided by <a href="https://www.crossref.org" target="_blank">Crossref</a>.
 
