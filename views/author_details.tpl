@@ -11,6 +11,12 @@
       {{author["name"]}},
     % end
     provided by Rxivist, the site that helps you find the most discussed biology preprints on the internet."/>
+
+    <meta name="twitter:card" content="summary"></meta>
+    <meta property="og:title" content="{{author["name"]}} on Rxivist" />
+    <meta property="og:description" content="Research profile for {{author["name"]}} from the website that helps you find the preprints people are talking about." />
+    <meta property="og:image" content="https://rxivist.org/static/rxivist_r.png" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.5/chartjs-plugin-annotation.js"></script>
     <script src="https://cdn.rawgit.com/chartjs/Chart.js/master/samples/utils.js"></script>

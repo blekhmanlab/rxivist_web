@@ -4,6 +4,12 @@
   <head>
     %include("components/metadata.tpl", google_tag=google_tag)
     <title>Rxivist: {{paper["title"]}}</title>
+
+    <meta name="twitter:card" content="summary"></meta>
+    <meta property="og:title" content="Rxivist: {{paper["title"]}}" />
+    <meta property="og:description" content="Usage stats for {{paper["title"]}} from the website that helps you find the preprints people are talking about." />
+    <meta property="og:image" content="https://rxivist.org/static/rxivist_r.png" />
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.5/chartjs-plugin-annotation.js"></script>
     <script src="https://cdn.rawgit.com/chartjs/Chart.js/master/samples/utils.js"></script>
