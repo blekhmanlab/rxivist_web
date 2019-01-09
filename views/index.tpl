@@ -5,6 +5,10 @@
   <head>
     %include("components/metadata.tpl", google_tag=google_tag)
     <title>Rxivist: Popular biology pre-print papers ranked</title>
+    <meta name="twitter:card" content="summary"></meta>
+    <meta property="og:title" content="Rxivist: Find interesting preprints" />
+    <meta property="og:description" content="Rxivist indexes tens of thousands of preprints from bioRxiv to help you find the ones people are talking about." />
+    <meta property="og:image" content="https://rxivist.org/static/rxivist_r.png" />
   </head>
   <body>
     <div class="container" id="main">
