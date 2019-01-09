@@ -305,6 +305,9 @@ def callback():
 @bottle.route('/favicon.ico')
 def callback():
   return bottle.static_file(filename='favicon.ico', root='./static/')
+@bottle.route('/loaderio-e996b3027e124ab5c8e1aadc6e8dece2.txt')
+def callback():
+  return bottle.static_file(filename='loaderio-e996b3027e124ab5c8e1aadc6e8dece2.txt', root='./static/')
 
 # ---- Errors
 @bottle.error(404)
