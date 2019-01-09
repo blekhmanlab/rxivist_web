@@ -4,6 +4,12 @@
   <head>
     %include("components/metadata.tpl", google_tag=google_tag)
     <title>Most popular preprints of {{year}} – Rxivist</title>
+
+    <meta name="twitter:card" content="summary"></meta>
+    <meta property="og:title" content="Most downloaded preprints of {{year}}" />
+    <meta property="og:description" content="Top bioRxiv preprints from {{year}} from Rxivist, the website that helps you find the preprints people are talking about." />
+    <meta property="og:image" content="https://rxivist.org/static/rxivist_r.png" />
+
   </head>
   <body>
     <div class="container" id="main">
