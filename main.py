@@ -235,8 +235,9 @@ def topyear(year):
     error = f"Sorry&mdash;there was a problem retrieving the results: {e}"
     bottle.response.status = 500
 
-  if respheaders is not None and "Cache-Control" in respheaders.keys():
-    bottle.response.set_header("Cache-Control", respheaders["Cache-Control"])
+  # if respheaders is not None and "Cache-Control" in respheaders.keys():
+  #   bottle.response.set_header("Cache-Control", respheaders["Cache-Control"])
+  bottle.response.set_header("Cache-Control", 'max-age=600, stale-while-revalidate=172800')
 
   stats = helpers.rxapi("/v1/data/stats")
 
@@ -305,9 +306,6 @@ def callback():
 @bottle.route('/favicon.ico')
 def callback():
   return bottle.static_file(filename='favicon.ico', root='./static/')
-@bottle.route('/loaderio-e996b3027e124ab5c8e1aadc6e8dece2.txt')
-def callback():
-  return bottle.static_file(filename='loaderio-e996b3027e124ab5c8e1aadc6e8dece2.txt', root='./static/')
 
 # ---- Errors
 @bottle.error(404)
