@@ -178,8 +178,10 @@
       </div>
     </div>
   % end
-
   </form>
+  <div style="font-size: 0.65em; padding-left: 2em;">
+    <em>Note: "All-time" Twitter metrics only include data dating back to September 2018.</em>
+  </div>
 </div>
 
 %include("components/modal_textsearch")
