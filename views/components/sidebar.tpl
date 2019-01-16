@@ -19,6 +19,7 @@
     </a>
     <li><a href="/docs">The API</a>
     <li><a href="/about">About the project</a>
+    <li><a href="/newsletter">Email newsletter</a>
     % if config.paper_url != "":
       <li><a href="{{ config.paper_url }}" target="_blank">Rxivist preprint (NEW!)</a>
     % end
@@ -28,11 +29,10 @@
   <div id="mc_embed_signup">
     <form action="https://rxivist.us20.list-manage.com/subscribe/post?u=c273a6689e7b42e4355a1af54&amp;id=6b93ccc8c8" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
       <div id="mc_embed_signup_scroll">
-        <p><strong>Receive a collection of the week's most discussed bioRxiv preprints every Friday. Sign up for the Rxivist weekly newsletter!</strong>
-        <div class="mc-field-group">
-          <label for="mce-EMAIL">Email</label>
-          <input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL">
-        </div>
+        <p><strong>Sign up for the Rxivist weekly newsletter!</strong> (<a href="/newsletter">Click here</a> for more details.)
+
+        <input type="email" class="form-control" value="" name="EMAIL" class="required email" id="mce-EMAIL" placeholder="Enter email address here">
+
         <div id="mce-responses" class="clear">
           <div class="response" id="mce-error-response" style="display:none"></div>
           <div class="response" id="mce-success-response" style="display:none"></div>
@@ -42,7 +42,6 @@
         <div style="text-align: center;">
           <input type="submit" value="Subscribe" name="subscribe" id="mc-embedded-subscribe" class="btn btn-altcolor">
         </div>
-        <p><a href="https://us20.campaign-archive.com/home/?u=c273a6689e7b42e4355a1af54&id=6b93ccc8c8" target="_blank" title="View previous newsletters">View previous newsletters</a></p>
       </div>
     </form>
   </div>

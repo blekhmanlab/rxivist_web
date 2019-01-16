@@ -279,10 +279,16 @@ def privacy():
   return bottle.template("privacy", google_tag=config.google_tag, stats=stats)
 
 @bottle.route('/about')
-@bottle.view('privacy')
+@bottle.view('about')
 def privacy():
   stats = helpers.rxapi("/v1/data/stats")
   return bottle.template("about", google_tag=config.google_tag, stats=stats)
+
+@bottle.route('/newsletter')
+@bottle.view('newsletter')
+def privacy():
+  stats = helpers.rxapi("/v1/data/stats")
+  return bottle.template("newsletter", google_tag=config.google_tag, stats=stats)
 
 @bottle.route('/docs')
 @bottle.view('api_docs')
