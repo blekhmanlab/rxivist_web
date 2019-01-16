@@ -17,64 +17,68 @@
 
   <body>
     <div class="container" id="main">
-
-      %include("components/header")
-
       <div class="row">
-        <div class="col">
-          <h1>{{paper["title"]}}</h1>
-          <div>
-            % if paper["category"] != "unknown":
-              <a href="/?metric=downloads&timeframe=alltime&category={{paper["category"]}}" class="btn catbutton {{ paper["category"].replace("-", "") }}" role="button">{{ helpers.formatCategory(paper["category"]) }}</a>
-            % end
+        <div class="col-lg-9">
+          % include("components/header")
 
-            <a href="{{paper["biorxiv_url"]}}" target="_blank" class="btn btn-altcolor " role="button">view on bioRxiv</a>
-            % if "publication" in paper.keys() and len(paper["publication"].keys()) > 0:
-              <a href="https://doi.org/{{ paper["publication"]["doi"] }}" target="_blank" class="btn btn-warning" role="button">view in {{ "publication" if "journal" not in paper["publication"].keys() or paper["publication"]["journal"] == "" else paper["publication"]["journal"] }}</a>
-            % end
+          <div class="row">
+            <div class="col">
+              <h1>{{paper["title"]}}</h1>
+              <div>
+                % if paper["category"] != "unknown":
+                  <a href="/?metric=downloads&timeframe=alltime&category={{paper["category"]}}" class="btn catbutton {{ paper["category"].replace("-", "") }}" role="button">{{ helpers.formatCategory(paper["category"]) }}</a>
+                % end
+
+                <a href="{{paper["biorxiv_url"]}}" target="_blank" class="btn btn-altcolor " role="button">view on bioRxiv</a>
+                % if "publication" in paper.keys() and len(paper["publication"].keys()) > 0:
+                  <a href="https://doi.org/{{ paper["publication"]["doi"] }}" target="_blank" class="btn btn-warning" role="button">view in {{ "publication" if "journal" not in paper["publication"].keys() or paper["publication"]["journal"] == "" else paper["publication"]["journal"] }}</a>
+                % end
+              </div>
+              <p>By
+              % for i, coauthor in enumerate(paper["authors"]):
+                <a href="/authors/{{ coauthor["id"] }}">{{ coauthor["name"] }}</a>{{", " if i < (len(paper["authors"]) - 1) else ""}}
+              % end
+              <em>
+                % if ("first_posted" in paper.keys() and paper["first_posted"] != "") or ("ranks" in paper.keys() and paper["ranks"]["alltime"]["downloads"] is not None):
+                  <p>
+                % end
+                % if "first_posted" in paper.keys() and paper["first_posted"] != "":
+                  Posted <strong>{{ helpers.formatDate(paper["first_posted"]) }}</strong>
+                % end
+              </em>
+              <br>bioRxiv DOI: <strong>{{ paper["doi"] }}</strong>
+              % if "publication" in paper.keys() and len(paper["publication"].keys()) > 0:
+                (published DOI: <strong>{{ paper["publication"]["doi"] }}</strong>)
+              % end
+            </div>
           </div>
-          <p>By
-          % for i, coauthor in enumerate(paper["authors"]):
-            <a href="/authors/{{ coauthor["id"] }}">{{ coauthor["name"] }}</a>{{", " if i < (len(paper["authors"]) - 1) else ""}}
+          <div class="row">
+            <div class="col-md-6">
+              <p>{{paper["abstract"]}}
+            </div>
+            <div class="col-md-6">
+              %include("components/paper_stats", paper=paper)
+            </div>
+          </div>
+          % if "ranks" in paper.keys() and helpers.formatNumber(paper["ranks"]["alltime"]["rank"]) != "None":
+            <div class="row">
+              <div class="col-md-6">
+                % if len(traffic) > 1:
+                  <h3>Downloads over time</h3>
+                  <canvas id="downloadsOverTime"></canvas>
+                % end
+              </div>
+              <div class="col-md-6">
+                <h3>Distribution of downloads per paper, site-wide</h3>
+                <canvas id="downloadsDistribution"></canvas>
+              </div>
+              %include("components/download_distribution", entity=paper,  entity_name="paper", download_distribution=download_distribution, averages=averages)
+              %include("components/download_graph", paper=paper)
+            </div>
           % end
-          <em>
-            % if ("first_posted" in paper.keys() and paper["first_posted"] != "") or ("ranks" in paper.keys() and paper["ranks"]["alltime"]["downloads"] is not None):
-              <p>
-            % end
-            % if "first_posted" in paper.keys() and paper["first_posted"] != "":
-              Posted <strong>{{ helpers.formatDate(paper["first_posted"]) }}</strong>
-            % end
-          </em>
-          <br>bioRxiv DOI: <strong>{{ paper["doi"] }}</strong>
-          % if "publication" in paper.keys() and len(paper["publication"].keys()) > 0:
-            (published DOI: <strong>{{ paper["publication"]["doi"] }}</strong>)
-          % end
         </div>
+        %include("components/sidebar")
       </div>
-      <div class="row">
-        <div class="col-md-6">
-          <p>{{paper["abstract"]}}
-        </div>
-        <div class="col-md-6">
-          %include("components/paper_stats", paper=paper)
-        </div>
-      </div>
-      % if "ranks" in paper.keys() and helpers.formatNumber(paper["ranks"]["alltime"]["rank"]) != "None":
-        <div class="row">
-          <div class="col-md-6">
-            % if len(traffic) > 1:
-              <h3>Downloads over time</h3>
-              <canvas id="downloadsOverTime"></canvas>
-            % end
-          </div>
-          <div class="col-md-6">
-            <h3>Distribution of downloads per paper, site-wide</h3>
-            <canvas id="downloadsDistribution"></canvas>
-          </div>
-          %include("components/download_distribution", entity=paper,  entity_name="paper", download_distribution=download_distribution, averages=averages)
-          %include("components/download_graph", paper=paper)
-        </div>
-       % end
     </div>
 
     %include("components/footer")

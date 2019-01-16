@@ -87,13 +87,13 @@
 <div id="searchform">
   <form action="/" method="get">
   % if entity == "papers":
-    <div class="input-group mb-3 col-md-9">
+    <div class="input-group mb-3">
       <input type="text" class="form-control form-control-lg" id="basicsearchtext" name="q" placeholder="Enter search terms here (optional)" value="{{ query.replace("&", " ") }}">
       <a href="#" data-toggle="modal" data-target="#textsearch" style="margin-top: 10px;">
         <i class="far fa-question-circle" font-size: 1.5em;"></i>
       </a>
     </div>
-    <div class="input-group mb-3 col-md-9">
+    <div class="input-group mb-3">
       <select class="form-control col-md-3" id="metric" name="metric" onchange="fixForm('metric');">
         <option value="downloads"
         %if metric == "downloads":
@@ -179,9 +179,6 @@
     </div>
   % end
   </form>
-  <div style="font-size: 0.65em; padding-left: 2em;">
-    <em>Note: "All-time" Twitter metrics only include data dating back to September 2018.</em>
-  </div>
 </div>
 
 %include("components/modal_textsearch")

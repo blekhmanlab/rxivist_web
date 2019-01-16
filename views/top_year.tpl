@@ -13,9 +13,9 @@
   </head>
   <body>
     <div class="container" id="main">
-      % include("components/header", stats=stats)
       <div class="row">
-        <div class="col">
+        <div class="col-lg-9">
+          % include("components/header")
           % if error != "":
             <div class="alert alert-danger" role="alert" style="display: {{"none" if error == "" else "block"}}">
               {{error}}
@@ -31,7 +31,11 @@
             % end
           % end
         </div>
+
+        %include("components/sidebar")
+
       </div>
+
     </div>
 
     %include("components/footer")

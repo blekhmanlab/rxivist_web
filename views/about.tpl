@@ -10,15 +10,12 @@
   <body>
     <div class="container" id="main">
 
-      %include("components/header")
 
       <div class="row">
-        <div class="col">
+        <div class="col-lg-9">
+          % include("components/header")
+
           <h1>About</h1>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-12">
           <p>Rxivist indexes and sorts metadata from <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a>, a <a href="http://www.sciencemag.org/news/2017/09/are-preprints-future-biology-survival-guide-scientists" target="_blank">preprint</a> server<sup>1</sup> operated by Cold Spring Harbor Laboratory. There is no official association between bioRxiv and this project.
           % if config.paper_url != "":
             A preprint about Rxivist is <a href="{{ config.paper_url }}" target="_blank">now available on bioRxiv</a>.
@@ -41,6 +38,8 @@
             <li>The Gopher protocol was a precursor to HTTP and the World Wide Web, <a href="https://en.wikipedia.org/wiki/Gopher_(protocol)" target="_blank">developed at UMN</a> in the early 1990s.
           </ol>
         </div>
+
+        % include("components/sidebar")
       </div>
     </div>
 

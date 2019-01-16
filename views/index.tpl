@@ -1,5 +1,4 @@
 % import helpers
-% import config
 <!doctype html>
 <html lang="en" ng-app="app">
   <head>
@@ -12,10 +11,10 @@
   </head>
   <body>
     <div class="container" id="main">
-      % include("components/header", stats=stats)
       <div class="row">
-        <div class="col">
-          %include("components/searchform")
+        <div class="col-lg-9">
+          % include("components/header")
+          % include("components/searchform")
           % if error != "":
             <div class="alert alert-danger" role="alert" style="display: {{"none" if error == "" else "block"}}">
               {{error}}
@@ -52,6 +51,9 @@
             % end
           % end  # end of conditional for "display this if there's no error"
         </div>
+
+        % include("components/sidebar")
+
       </div>
     </div>
 
