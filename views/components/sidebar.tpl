@@ -50,7 +50,7 @@
   <div>
     <strong>Data notes:</strong>
     <ul>
-      <li>"All-time" Twitter metrics currently only include data <strong>dating back to September 2018</strong>. We will be adding more in the coming weeks.
+      <li>"All-time" Twitter metrics (from <a href="https://crossref.org">Crossref</a>) currently <strong>date back to February 2017</strong>.
       <li>BioRxiv download metrics are <strong>updated for each paper about once every two weeks</strong>, which means there may be a discrepency between the totals reported on bioRxiv and the totals reported here.
     </ul>
   </div>
