@@ -272,6 +272,15 @@ def topyear(year):
     year=year, yearpapers=yearstats[year]['papers'], yeardownloads = yearstats[year]['downloads'],
     error=error, stats=stats, google_tag=config.google_tag)
 
+# Getting email code:
+@bottle.get('/emailcode')
+def emailcode():
+  results, _ = helpers.rxapi(f"/v1/papers?timeframe=week&page_size=20", headers=True)
+  results = results["results"]
+  bottle.response.set_header("Cache-Control", f"max-age=0, stale-while-revalidate=0")
+
+  return bottle.template('emailtemplate', results=results)
+
 @bottle.route('/privacy')
 @bottle.view('privacy')
 def privacy():
