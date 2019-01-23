@@ -64,7 +64,7 @@
             <div class="row">
               <div class="col-md-6">
                 % if len(traffic) > 1:
-                  <h3>Downloads over time</h3>
+                  <h3><br>Downloads over time</h3>
                   <canvas id="downloadsOverTime"></canvas>
                 % end
               </div>
