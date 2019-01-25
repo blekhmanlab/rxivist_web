@@ -1,3 +1,5 @@
+% import config
+
 <p class="text-right"><em><strong>{{ "{:,}".format(totalcount) }} results found.</strong> For more information, click each entry to expand.</em></p>
 <p class="text-left" style="margin-top: -2.7em;">
   <a href="{{pagelink}}{{page}}&view=print" class="btn btn-altcolor" alt="Printer-friendly front page">
@@ -24,8 +26,11 @@
         <span class="d-none d-md-inline">{{result["title"]}}</span>
 
         <br>
-          % if metric == "twitter" and timeframe == "day" and result["metric"] > 80:
-            <i class="fab fa-hotjar text-danger" style="font-size: 2em;"></i>
+          % if metric == "twitter":
+            % if (timeframe == "day" and result["metric"] > config.hot_tweetcount) or \
+            %    (timeframe == "week" and result["metric"] > 2.5 * config.hot_tweetcount):
+              <i class="fab fa-hotjar text-danger" style="font-size: 2em;"></i>
+            % end
           % end
           <strong>{{ helpers.formatNumber(result["metric"]) }}</strong>
           % if metric == "downloads":

@@ -8,6 +8,10 @@ rxapi = "http://api_url_goes_here.org"
 # code change.
 use_prod_webserver = True
 
+# How many tweets should a paper accumulate in a day to earn a little
+# fire icon next to its entry in the list?
+hot_tweetcount = 90
+
 # Maximum time, in seconds, that the front page can be cached
 front_page_cache = 600
 
