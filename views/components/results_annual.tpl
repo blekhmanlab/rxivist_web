@@ -3,7 +3,7 @@
     <div>
       % if i < 3 and year > 2014:
         <div style="text-align: center;">
-          <a href="{{ result["biorxiv_url"] }}" target="_blank"><img class="img-fluid" src="/static/figures/{{ result["id"] }}.png"></a>
+          <a href="https://doi.org/{{ result["doi"] }}" target="_blank"><img class="img-fluid" src="/static/figures/{{ result["id"] }}.png"></a>
         </div>
       % end
       <h3><strong>{{ i+1 }}:</strong>
@@ -21,7 +21,7 @@
 
       <div class="float-right">
         <a href="/papers/{{ result["id"] }}" class="btn btn-altcolor " role="button">more details</a>
-        <a href="{{ result["biorxiv_url"] }}" target="_blank" class="btn btn-altcolor " role="button">view paper</a>
+        <a href="https://doi.org/{{ result["doi"] }}" target="_blank" class="btn btn-altcolor " role="button">view paper</a>
       </div>
 
       <strong>{{ helpers.formatNumber(result["metric"]) }}</strong>

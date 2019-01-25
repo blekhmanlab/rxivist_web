@@ -14,7 +14,7 @@
 
         <div class="float-right text-right">
           <a href="/papers/{{ result["id"] }}" class="btn btn-sm btn-altcolor " role="button">more details</a>
-          <a href="{{ result["biorxiv_url"] }}" target="_blank" class="btn btn-sm btn-altcolor " role="button">view paper</a>
+          <a href="https://doi.org/{{ result["doi"] }}" target="_blank" class="btn btn-sm btn-altcolor " role="button">view paper</a>
 
           <p style="margin-top: 0; margin-bottom: 0;"><small>Posted to bioRxiv
             {{ helpers.formatDate(result["first_posted"]) }}
