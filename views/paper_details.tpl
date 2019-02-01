@@ -13,6 +13,7 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-annotation/0.5.5/chartjs-plugin-annotation.js"></script>
     <script src="https://cdn.rawgit.com/chartjs/Chart.js/master/samples/utils.js"></script>
+    <script type='text/javascript' src='https://d1bxh8uas1mnw7.cloudfront.net/assets/embed.js'></script>
   </head>
 
   <body>
@@ -26,17 +27,17 @@
               <h1>{{paper["title"]}}</h1>
               <div>
                 % if paper["category"] != "unknown":
-                  <a href="/?metric=downloads&timeframe=alltime&category={{paper["category"]}}" class="btn catbutton {{ paper["category"].replace("-", "") }}" role="button">{{ helpers.formatCategory(paper["category"]) }}</a>
+                  <a href="/?metric=downloads&timeframe=alltime&category={{ paper['category'] }}" class="btn catbutton {{ paper["category"].replace("-", "") }}" role="button">{{ helpers.formatCategory(paper["category"]) }}</a>
                 % end
 
-                <a href="https://doi.org/{{ paper["doi"] }}" target="_blank" class="btn btn-altcolor " role="button">view on bioRxiv</a>
+                <a href="https://doi.org/{{ paper['doi'] }}" target="_blank" class="btn btn-altcolor " role="button">view on bioRxiv</a>
                 % if "publication" in paper.keys() and len(paper["publication"].keys()) > 0:
-                  <a href="https://doi.org/{{ paper["publication"]["doi"] }}" target="_blank" class="btn btn-warning" role="button">view in {{ "publication" if "journal" not in paper["publication"].keys() or paper["publication"]["journal"] == "" else paper["publication"]["journal"] }}</a>
+                  <a href="https://doi.org/{{ paper['publication']['doi'] }}" target="_blank" class="btn btn-warning" role="button">view in {{ "publication" if "journal" not in paper["publication"].keys() or paper["publication"]["journal"] == "" else paper["publication"]["journal"] }}</a>
                 % end
               </div>
               <p>By
               % for i, coauthor in enumerate(paper["authors"]):
-                <a href="/authors/{{ coauthor["id"] }}">{{ coauthor["name"] }}</a>{{", " if i < (len(paper["authors"]) - 1) else ""}}
+                <a href="/authors/{{ coauthor['id'] }}">{{ coauthor["name"] }}</a>{{", " if i < (len(paper["authors"]) - 1) else ""}}
               % end
               <em>
                 % if ("first_posted" in paper.keys() and paper["first_posted"] != "") or ("ranks" in paper.keys() and paper["ranks"]["alltime"]["downloads"] is not None):
@@ -57,7 +58,10 @@
               <p>{{paper["abstract"]}}
             </div>
             <div class="col-md-6">
+              <h4>Download data</h4>
               %include("components/paper_stats", paper=paper)
+              <h4>Altmetric data</h4>
+              <div data-badge-details="right" data-badge-type="medium-donut" data-doi="{{ paper['doi'] }}" class="altmetric-embed"></div>
             </div>
           </div>
           % if "ranks" in paper.keys() and helpers.formatNumber(paper["ranks"]["alltime"]["rank"]) != "None":

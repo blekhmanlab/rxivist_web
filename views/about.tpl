@@ -21,7 +21,7 @@
             A preprint about Rxivist is <a href="{{ config.paper_url }}" target="_blank">now available on bioRxiv</a>.
           % end
 
-          <p>Social media information and publication metadata is provided by <a href="https://www.crossref.org" target="_blank">Crossref</a>.
+          <p>Twitter data used on the front page is provided by <a href="https://www.crossref.org" target="_blank">Crossref</a>. Social media interaction data displayed on preprint detail pages is provided by <a href="https://www.altmetric.com/">Altmetric</a>.
 
           <p>Rxivist was developed in 2018 by the <a href="http://blekhmanlab.org">Blekhman Lab</a> at the <a href="https://cbs.umn.edu/academics/departments/gcd" target="_blank">University of Minnesota</a>. Its source code is available on GitHub in two locations, for <a href="https://github.com/blekhmanlab/rxivist" target="_blank">the API</a> and <a href="https://github.com/blekhmanlab/rxivist_web" target="_blank">this web application</a>. Its main components are:
           <ul>

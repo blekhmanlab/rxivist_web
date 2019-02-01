@@ -21,7 +21,7 @@
     <li><a href="/about">About the project</a>
     <li><a href="/newsletter">Email newsletter</a>
     % if config.paper_url != "":
-      <li><a href="{{ config.paper_url }}" target="_blank">Rxivist preprint (NEW!)</a>
+      <li><a href="{{ config.paper_url }}" target="_blank">Rxivist preprint</a>
     % end
   </ul>
   <hr>
