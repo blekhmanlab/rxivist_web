@@ -28,7 +28,7 @@
         <br>
           % if metric == "twitter":
             % if (timeframe == "day" and result["metric"] > config.hot_tweetcount) or \
-            %    (timeframe == "week" and result["metric"] > 2.5 * config.hot_tweetcount):
+            %    (timeframe == "week" and result["metric"] > 3.5 * config.hot_tweetcount):
               <i class="fab fa-hotjar text-danger" style="font-size: 2em;"></i>
             % end
           % end

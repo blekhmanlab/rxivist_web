@@ -21,7 +21,7 @@ front_page_cache = 600
 host = "http://url_goes_here.org"
 
 # Repository listing all DB dumps available for download:
-zenodohome = "https://doi.org/10.5281/zenodo.2465688"
+zenodohome = "https://doi.org/10.5281/zenodo.123456" # EXAMPLE VALUE
 
 # Link to a form to provide feedback on the website
 feedback = ""

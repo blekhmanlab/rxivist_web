@@ -47,11 +47,11 @@
   </div>
   <!--End mc_embed_signup-->
   <hr>
-  <div>
-    <strong>Data notes:</strong>
-    <ul>
-      <li>"All-time" Twitter metrics (from <a href="https://crossref.org">Crossref</a>) currently <strong>date back to February 2017</strong>.
-      <li>BioRxiv download metrics are <strong>updated for each paper about once every two weeks</strong>, which means there may be a discrepency between the totals reported on bioRxiv and the totals reported here.
-    </ul>
-  </div>
+  <h2>News</h2>
+  <ul>
+    <li><strong>8 Feb 2019:</strong> Data from <a href="https://altmetric.com">Altmetric</a> is now available on the Rxivist details page for every preprint. Look for the "donut" under the download metrics.
+    <li><strong>30 Jan 2019:</strong> preLights has <a href="https://prelights.biologists.com/highlights/tracking-the-popularity-and-outcomes-of-all-biorxiv-preprints/" target="_blank">featured the Rxivist preprint</a> and written about our findings.
+    <li><strong>22 Jan 2019:</strong> <em>Nature</em> just published <a href="https://www.nature.com/articles/d41586-019-00199-6" target="_blank">an article about Rxivist</a> and our data.
+    <li><strong>13 Jan 2019:</strong> The <a href="{{ config.paper_url }}" target="_blank">Rxivist preprint</a> is live!
+  </ul>
 </div>
