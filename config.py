@@ -21,15 +21,15 @@ front_page_cache = 600
 host = "http://url_goes_here.org"
 
 # Repository listing all DB dumps available for download:
-zenodohome = "https://doi.org/10.5281/zenodo.123456"
+zenodohome = "https://doi.org/10.5281/zenodo.123456" # EXAMPLE VALUE
 
 # Link to a form to provide feedback on the website
 feedback = ""
 
 # Project-specific variables that get pulled into the documentation
-paper_url = ""
-paper_title = "*tk"
-paper_doi = "10.1101/1234"
+paper_url = "https://www.biorxiv.org/content/early/2019/01/13/515643"
+paper_title = "Tracking the popularity and outcomes of all bioRxiv preprints"
+paper_doi = "10.1101/515643"
 
 repo = "https://github.com/blekhmanlab/rxivist"
 twitter = "twitter_handle_here"
