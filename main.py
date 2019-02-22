@@ -208,7 +208,13 @@ def display_paper_details(paper_id):
       return bottle.redirect(f"{config.host}/papers/{new_id}", 301)
 
   paper = paper.json()
-  traffic = helpers.rxapi(f"/v1/downloads/{paper_id}")["results"]
+  downloads = helpers.rxapi(f"/v1/downloads/{paper_id}")["results"]
+  # Convert the API response into something we can pass to the generic
+  # template for the graph:
+  traffic = [{
+    'month': x['month'], 'year': x['year'], 'count': x['downloads']
+  } for x in downloads]
+
   distro = helpers.rxapi("/v1/data/distributions/paper/downloads")
   download_distribution = distro["histogram"]
   averages = distro["averages"]
@@ -270,6 +276,27 @@ def topyear(year):
 
   return bottle.template('top_year', results=results['results'],
     year=year, yearpapers=yearstats[year]['papers'], yeardownloads = yearstats[year]['downloads'],
+    error=error, stats=stats, google_tag=config.google_tag)
+
+#     Summary charts
+@bottle.get('/stats')
+def summary():
+  error = ''
+  respheaders = None
+  results = None
+
+  try:
+    results, respheaders = helpers.rxapi(f"/v1/data/summary", headers=True)
+  except Exception as e:
+    print(e)
+    error = f"Sorry&mdash;there was a problem retrieving the results: {e}"
+    bottle.response.status = 500
+
+  # bottle.response.set_header("Cache-Control", 'max-age=600, stale-while-revalidate=172800')
+
+  stats = helpers.rxapi("/v1/data/stats")
+
+  return bottle.template('summary', results=results,
     error=error, stats=stats, google_tag=config.google_tag)
 
 # Getting email code:

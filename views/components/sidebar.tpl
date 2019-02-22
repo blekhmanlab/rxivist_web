@@ -17,6 +17,7 @@
         "/?category={{"" if len(category_filter) == 0 else category_filter[0]}}">Paper search
       % end
     </a>
+    <li><a href="/summary">Overall bioRxiv metrics</a>
     <li><a href="/docs">The API</a>
     <li><a href="/about">About the project</a>
     <li><a href="/newsletter">Email newsletter</a>

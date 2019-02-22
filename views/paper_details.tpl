@@ -77,7 +77,11 @@
                 <canvas id="downloadsDistribution"></canvas>
               </div>
               %include("components/download_distribution", entity=paper,  entity_name="paper", download_distribution=download_distribution, averages=averages)
-              %include("components/download_graph", paper=paper)
+
+              % include("components/graph_line",
+              %   traffic = traffic,
+              %   canvasID = 'downloadsOverTime',
+              %   yaxis = 'Downloads')
             </div>
           % end
         </div>

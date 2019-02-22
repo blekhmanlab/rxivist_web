@@ -1,5 +1,5 @@
 <script>
-var ctx = document.getElementById('downloadsOverTime').getContext('2d');
+var ctx = document.getElementById("{{canvasID}}").getContext('2d');
 var chart = new Chart(ctx, {
   // The type of chart we want to create
   type: 'line',
@@ -17,9 +17,9 @@ var chart = new Chart(ctx, {
       borderColor: '#468847',
       data: [
         % for entry in traffic:
-          {{ entry["downloads"] }},
+          {{ entry["count"] }},
         % end
-      ],
+      ]
     }]
   },
   options: {
@@ -32,7 +32,12 @@ var chart = new Chart(ctx, {
         position: 'left',
         scaleLabel: {
           display: true,
-          labelString: 'Downloads'
+          labelString: '{{yaxis}}'
+        },
+        ticks: {
+          userCallback: function(value, index, values) {
+            return value.toString().split(/(?=(?:...)*$)/).join(',')
+          }
         }
       }],
       xAxes: [{
@@ -40,7 +45,17 @@ var chart = new Chart(ctx, {
           display: true,
           labelString: 'Month'
         }
-      }],
+      }]
+    },
+    tooltips: {
+      callbacks: {
+        label: function(tooltipItem, data) {
+          var label = data.datasets[tooltipItem.datasetIndex].label || '';
+          if (label) label += ': ';
+          label += tooltipItem.yLabel.toString().split(/(?=(?:...)*$)/).join(',')
+          return label;
+        }
+      }
     }
   }
 });
