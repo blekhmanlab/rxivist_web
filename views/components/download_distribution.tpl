@@ -105,6 +105,16 @@ window.onload = function() {
           },*/
         ]
       },
+      tooltips: {
+        callbacks: {
+          label: function(tooltipItem, data) {
+            var label = data.datasets[tooltipItem.datasetIndex].label || '';
+            if (label) label += ': ';
+            label += tooltipItem.yLabel.toString().split(/(?=(?:...)*$)/).join(',')
+            return label;
+          }
+        }
+      },
       scales: {
         yAxes: [{
           display: true,
@@ -118,8 +128,20 @@ window.onload = function() {
           scaleLabel: {
             display: true,
             labelString: 'Downloads, all-time (log scale)'
+          },
+          ticks: {
+            userCallback: function(value, index, values) {
+              return value.toString().split(/(?=(?:...)*$)/).join(',')
+            }
           }
         }],
+        yAxes: [{
+          ticks: {
+            userCallback: function(value, index, values) {
+              return value.toString().split(/(?=(?:...)*$)/).join(',')
+            }
+          }
+        }]
       }
     }
   });
