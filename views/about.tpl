@@ -1,5 +1,5 @@
-% import helpers
 % import config
+% import helpers
 <!doctype html>
 <html lang="en">
   <head>
@@ -21,7 +21,10 @@
             A preprint about Rxivist is <a href="{{ config.paper_url }}" target="_blank">now available on bioRxiv</a>.
           % end
 
-          <p>Twitter data used on the front page is provided by <a href="https://www.crossref.org" target="_blank">Crossref</a>. Social media interaction data displayed on preprint detail pages is provided by <a href="https://www.altmetric.com/">Altmetric</a>.
+          <p>Twitter data used on the front page is provided by <a href="https://www.crossref.org" target="_blank">Crossref</a>.
+          % if config.display_altmetric:
+            Social media interaction data displayed on preprint detail pages is provided by <a href="https://www.altmetric.com/">Altmetric</a>.
+          % end
 
           <p>Rxivist was developed in 2018 by the <a href="http://blekhmanlab.org">Blekhman Lab</a> at the <a href="https://cbs.umn.edu/academics/departments/gcd" target="_blank">University of Minnesota</a>. Its source code is available on GitHub in two locations, for <a href="https://github.com/blekhmanlab/rxivist" target="_blank">the API</a> and <a href="https://github.com/blekhmanlab/rxivist_web" target="_blank">this web application</a>. Its main components are:
           <ul>
@@ -29,6 +32,7 @@
             <li><a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a> database and the <a href="http://initd.org/psycopg/docs/index.html" target="_blank">Psycopg</a> SDK
             <li><a href="https://docker.com/" target="_blank">Docker</a> containerization
             <li><a href="https://getbootstrap.org" target="_blank">Bootstrap</a> display elements
+            <li><a href="http://chartjs.org/" target="_blank">ChartJS</a> data visualization
           </ul>
           <p>You can also browse a text-only version of this application at <code>gopher://origin.rxivist.org</code> from a Gopher-enabled<sup>2</sup> browser such as <a href="http://brewformulas.org/Lynx" target="_blank">Lynx</a> or an HTTP proxy like the one <a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Forigin.rxivist.org" target="_blank">hosted by Floodgap Systems</a>.
 

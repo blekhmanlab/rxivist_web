@@ -23,6 +23,11 @@ host = "http://url_goes_here.org"
 # Repository listing all DB dumps available for download:
 zenodohome = "https://doi.org/10.5281/zenodo.123456" # EXAMPLE VALUE
 
+# PLEASE NOTE: If you are planning to deploy this web application publicly,
+# you need permission from Altmetric to incorporate their "attention score"
+# information. See https://api.altmetric.com/embeds.html for more information.
+display_altmetric = False
+
 # Link to a form to provide feedback on the website
 feedback = ""
 

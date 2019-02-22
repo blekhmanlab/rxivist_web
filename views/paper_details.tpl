@@ -1,3 +1,4 @@
+% import config
 % import helpers
 <!doctype html>
 <html lang="en">
@@ -60,8 +61,10 @@
             <div class="col-md-6">
               <h4>Download data</h4>
               %include("components/paper_stats", paper=paper)
-              <h4>Altmetric data</h4>
-              <div data-badge-details="right" data-badge-type="medium-donut" data-doi="{{ paper['doi'] }}" class="altmetric-embed"></div>
+              % if config.display_altmetric:
+                <h4>Altmetric data</h4>
+                <div data-badge-details="right" data-badge-type="medium-donut" data-doi="{{ paper['doi'] }}" class="altmetric-embed"></div>
+              % end
             </div>
           </div>
           % if "ranks" in paper.keys() and helpers.formatNumber(paper["ranks"]["alltime"]["rank"]) != "None":
