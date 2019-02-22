@@ -26,7 +26,6 @@
             </div>
           % else:
             <h1>Overall bioRxiv metrics</h1>
-            <p><em>The following charts use data scraped from bioRxiv.org to summarize its content and how it is being used.</em></p>
 
             <h2>Monthly downloads</h2>
             <canvas id="monthlyDownloads"></canvas>
@@ -35,22 +34,29 @@
             %   canvasID = 'monthlyDownloads',
             %   yaxis = 'Downloads')
 
-            <h2>Monthly submissions</h2>
+            <p><em>Since per-paper download metrics are updated over time, a month's download count change up to four weeks after it ends.</em></p>
 
-            <h3>Overall</h3>
+
+            <h2>Monthly submissions, overall</h2>
+
             <canvas id="monthlySubmissions"></canvas>
             % include("components/graph_line",
             %   traffic = results['submissions'],
             %   canvasID = 'monthlySubmissions',
             %   yaxis = 'Preprints posted')
 
-            <h3>By category</h3>
+            <p><em>See <a href="http://www.prepubmed.org/monthly_stats/">PrePubMed</a> for a similar chart that puts bioRxiv submissions in context alongside other preprint servers.</em></p>
+
+            <h2>Monthly submissions, by category</h2>
+
             <canvas id="monthlySubmissionsCat"></canvas>
             % include("components/graph_stacked_bar",
             %   traffic = results['submissions_categorical'],
             %   canvasID = 'monthlySubmissionsCat',
             %   yaxis = 'Preprints posted',
             %   stacked = False)
+
+            <p><em>The colors used in this plot are chosen randomly when the page loads. If you are having trouble seeing the lines, try refreshing the page.</em></p>
 
         </div>
 

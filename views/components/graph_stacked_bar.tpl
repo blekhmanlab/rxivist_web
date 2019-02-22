@@ -54,6 +54,7 @@ var chart = new Chart(ctx, {
       mode: 'index',
       intersect: false,
       position: 'custom',
+      caretSize: 0,
       callbacks: {
         label: function(tooltipItem, data) {
           var label = data.datasets[tooltipItem.datasetIndex].label || '';
@@ -66,9 +67,17 @@ var chart = new Chart(ctx, {
     responsive: true,
     scales: {
       xAxes: [{
-        stacked: {{ 'true' if stacked else 'false' }}
+        stacked: {{ 'true' if stacked else 'false' }},
+        scaleLabel: {
+          display: true,
+          labelString: 'Month'
+        },
       }],
       yAxes: [{
+        scaleLabel: {
+          display: true,
+          labelString: '{{yaxis}}'
+        },
         stacked: {{ 'true' if stacked else 'false' }},
         ticks: {
           userCallback: function(value, index, values) {
