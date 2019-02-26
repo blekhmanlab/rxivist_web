@@ -25,17 +25,8 @@
               {{error}}
             </div>
           % else:
-            <h1>Overall bioRxiv metrics</h1>
-
-            <h2>Monthly downloads</h2>
-            <canvas id="monthlyDownloads"></canvas>
-            % include("components/graph_line",
-            %   traffic = results['downloads'],
-            %   canvasID = 'monthlyDownloads',
-            %   yaxis = 'Downloads')
-
-            <p><em>Since per-paper download metrics are updated over time, a month's download count change up to four weeks after it ends.</em></p>
-
+            <h1>Site-wide metrics</h1>
+            <p>The numbers below represent the metrics for all papers hosted on <a href="https://www.biorxiv.org" target="_blank">bioRxiv.org</a>, based on our indexing of the website.
 
             <h2>Monthly submissions, overall</h2>
 
@@ -58,6 +49,17 @@
 
             <p><em>The colors used in this plot are chosen randomly when the page loads. If you are having trouble seeing the lines, try refreshing the page.</em></p>
 
+
+            <h2>Monthly downloads</h2>
+            <canvas id="monthlyDownloads"></canvas>
+            % include("components/graph_line",
+            %   traffic = results['downloads'],
+            %   canvasID = 'monthlyDownloads',
+            %   yaxis = 'Downloads')
+
+            <p><em>Note that, unlike the submission graphs, this graph does not include the current month. Since per-paper download metrics are updated in our database over time, a month's download count can change up to four weeks after it ends.</em></p>
+
+          % end
         </div>
 
         %include("components/sidebar")
