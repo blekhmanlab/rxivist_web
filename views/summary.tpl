@@ -36,16 +36,29 @@
             %   canvasID = 'monthlySubmissions',
             %   yaxis = 'Preprints posted')
 
-            <p><em>See <a href="http://www.prepubmed.org/monthly_stats/">PrePubMed</a> for a similar chart that puts bioRxiv submissions in context alongside other preprint servers.</em></p>
+            <p><em>See <a href="http://www.prepubmed.org/monthly_stats/" target="_blank">PrePubMed</a> for a similar chart that puts bioRxiv submissions in context alongside other preprint servers.</em></p>
 
             <h2>Monthly submissions, by category</h2>
-
-            <canvas id="monthlySubmissionsCat"></canvas>
-            % include("components/graph_stacked_bar",
-            %   traffic = results['submissions_categorical'],
-            %   canvasID = 'monthlySubmissionsCat',
-            %   yaxis = 'Preprints posted',
-            %   stacked = False)
+            <div class="row">
+              <div class="col-md-9">
+                <canvas id="monthlySubmissionsCat" height=200></canvas>
+                % include("components/graph_stacked_bar",
+                %   traffic = results['submissions_categorical'],
+                %   canvasID = 'monthlySubmissionsCat',
+                %   yaxis = 'Preprints posted',
+                %   stacked = False)
+              </div>
+              <div class="col-md-3">
+                <strong>Top categories this month</strong><br>
+                <table class="table table-striped">
+                  % for i in range(0,6):
+                    <tr><td>{{ helpers.formatCategory(top_cats[i]['category']) }}</td>
+                      <td>{{ top_cats[i]['count'] }}</td>
+                    </tr>
+                  % end
+                </table>
+              </div>
+            </div>
 
             <p><em>The colors used in this plot are chosen randomly when the page loads. If you are having trouble seeing the lines, try refreshing the page.</em></p>
 
