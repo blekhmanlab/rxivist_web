@@ -12,7 +12,7 @@ var chart = new Chart(ctx, {
       % end
     ],
     datasets: [{
-      label: "Downloads",
+      label: "{{yaxis}}",
       backgroundColor: '#468847',
       borderColor: '#468847',
       data: [

@@ -32,7 +32,7 @@
             <li><a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a> database and the <a href="http://initd.org/psycopg/docs/index.html" target="_blank">Psycopg</a> SDK
             <li><a href="https://docker.com/" target="_blank">Docker</a> containerization
             <li><a href="https://getbootstrap.org" target="_blank">Bootstrap</a> display elements
-            <li><a href="http://chartjs.org/" target="_blank">ChartJS</a> data visualization
+            <li><a href="http://chartjs.org/" target="_blank">Chart.js</a> data visualization
           </ul>
           <p>You can also browse a text-only version of this application at <code>gopher://origin.rxivist.org</code> from a Gopher-enabled<sup>2</sup> browser such as <a href="http://brewformulas.org/Lynx" target="_blank">Lynx</a> or an HTTP proxy like the one <a href="https://gopher.floodgap.com/gopher/gw?a=gopher%3A%2F%2Forigin.rxivist.org" target="_blank">hosted by Floodgap Systems</a>.
 
