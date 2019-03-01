@@ -13,7 +13,7 @@ var chart = new Chart(ctx, {
     ],
     datasets: [{
       label: "{{yaxis}}",
-      backgroundColor: '#468847',
+      backgroundColor: 'rgba(70,136,71, 0.5)',
       borderColor: '#468847',
       data: [
         % for entry in traffic:

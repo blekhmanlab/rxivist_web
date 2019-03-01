@@ -1,22 +1,9 @@
 % import helpers
 <script>
-function getRandomColor() {
-  /* via BoooYaKa https://stackoverflow.com/questions/25594478/different-color-for-each-bar-in-a-bar-chart-chartjs */
-  var letters = '0123456789ABCDEF'.split('');
-  var color = '#';
-  for (var i = 0; i < 6; i++ ) {
-      color += letters[Math.floor(Math.random() * 16)];
-  }
-  return color;
-}
 function getColor(cat, highlight) {
   if(cat == highlight) return '#468847'
-  return '#bababa'
+  return 'rgba(186,186,186,0.5)'
 }
-colors = [];
-% for i in range(0, len(traffic)):
-  colors.push(getRandomColor());
-% end
 
 Chart.Tooltip.positioners.custom = function(elements, eventPosition) {
     /** @type {Chart.Tooltip} */
@@ -40,6 +27,7 @@ function drawGraph(highlight) {
             label: "{{ helpers.formatCategory(dset['label']) }}",
             backgroundColor: getColor("{{ dset['label'] }}", highlight),
             borderColor: getColor("{{ dset['label'] }}", highlight),
+            pointStyle: 'cross',
             data: [
               % for entry in dset['data']:
                 {{ entry["count"] }},

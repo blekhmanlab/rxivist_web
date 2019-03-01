@@ -36,7 +36,7 @@ window.onload = function() {
         {
           type: 'bar',
           label: "{{entity_name}}s",
-          backgroundColor: "#2f69bf",
+          backgroundColor: "#468847",
           data: [
             % for entry in download_distribution:
               {{ entry["count"] }},
