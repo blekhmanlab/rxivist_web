@@ -193,18 +193,14 @@ def display_paper_details(paper_id):
 
   # make sure the URL we ended at matches the URL we asked for:
   new_id = re.search('/(\d+)$', paper.url)
-  print(f'NEW ID IS {new_id}')
   if new_id and len(new_id.groups()) > 0:
-    print("in here")
     try:
       new_id = str(new_id.group(1))
       paper_id = str(paper_id)
     except Exception:
       bottle.response.status = 500
-      return {"error": "Server errror."}
+      return {"error": "Server error."}
     if new_id != paper_id: # if we got redirected to a new URL
-      print(f"\n\nNEW ONE IS : |{new_id}| VS |{paper_id}|")
-      print("redirecting")
       return bottle.redirect(f"{config.host}/papers/{new_id}", 301)
 
   paper = paper.json()
