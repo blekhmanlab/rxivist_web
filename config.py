@@ -1,5 +1,7 @@
 import os
 
+announcement = 'We now have <a href="/stats">summary statistics</a> about bioRxiv downloads and submissions!'
+
 # Hostname and protocol for the Rxivist API
 rxapi = "http://api_url_goes_here.org"
 # Whether to launch the application with gunicorn as the web server, or
@@ -22,6 +24,10 @@ host = "http://url_goes_here.org"
 
 # Repository listing all DB dumps available for download:
 zenodohome = "https://doi.org/10.5281/zenodo.123456" # EXAMPLE VALUE
+
+# Endpoint to send newsletter signup requests.
+# Set to an empty string to disable.
+mailchimp_post = "https://rxivist.us20.list-manage.com/subscribe/post?u=c273a6689e7b42e4355a1af54&amp;id=6b93ccc8c8"
 
 # PLEASE NOTE: If you are planning to deploy this web application publicly,
 # you need permission from Altmetric to incorporate their "attention score"

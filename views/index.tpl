@@ -1,3 +1,4 @@
+% import config
 % import helpers
 <!doctype html>
 <html lang="en" ng-app="app">
@@ -20,6 +21,11 @@
               {{error}}
             </div>
           % else:
+            % if config.announcement != "":
+              <div class="alert alert-success" role="alert">
+                <strong>Announcement: </strong>{{ !config.announcement }}
+              </div>
+            % end
             %if len(results) == 0:
               <div><h3>No results found for "{{ query.replace("&", " ") }}"</h3></div>
             %else:
