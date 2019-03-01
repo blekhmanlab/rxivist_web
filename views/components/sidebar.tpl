@@ -54,7 +54,7 @@
   % end
   <h2>News</h2>
   <ul>
-    <li><strong>26 Feb 2019:</strong> We now have <a href="/stats">summary statistics</a> about bioRxiv downloads and submissions.
+    <li><strong>1 Mar 2019:</strong> We now have <a href="/stats">summary statistics</a> about bioRxiv downloads and submissions.
     <li><strong>8 Feb 2019:</strong> Data from <a href="https://altmetric.com">Altmetric</a> is now available on the Rxivist details page for every preprint. Look for the "donut" under the download metrics.
     <li><strong>30 Jan 2019:</strong> preLights has <a href="https://prelights.biologists.com/highlights/tracking-the-popularity-and-outcomes-of-all-biorxiv-preprints/" target="_blank">featured the Rxivist preprint</a> and written about our findings.
     <li><strong>22 Jan 2019:</strong> <em>Nature</em> just published <a href="https://www.nature.com/articles/d41586-019-00199-6" target="_blank">an article about Rxivist</a> and our data.
