@@ -1,6 +1,6 @@
 import os
 
-announcement = 'We now have <a href="/stats">summary statistics</a> about bioRxiv downloads and submissions!'
+announcement = ''
 
 # Hostname and protocol for the Rxivist API
 rxapi = "http://api_url_goes_here.org"

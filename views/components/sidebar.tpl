@@ -17,7 +17,7 @@
         "/?category={{"" if len(category_filter) == 0 else category_filter[0]}}">Paper search
       % end
     </a>
-    <li><a href="/stats"><strong>Overall metrics (New!)</strong></a>
+    <li><a href="/stats">Overall metrics</a>
     <li><a href="/docs">The API</a>
     <li><a href="/about">About the project</a>
     % if config.mailchimp_post != "":
