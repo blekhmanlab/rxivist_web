@@ -60,9 +60,6 @@
               </div>
             </div>
 
-            <p><em>The colors used in this plot are chosen randomly when the page loads. If you are having trouble seeing the lines, try refreshing the page.</em></p>
-
-
             <h2>Monthly downloads</h2>
             <canvas id="monthlyDownloads"></canvas>
             % include("components/graph_line",
