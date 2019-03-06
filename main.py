@@ -353,7 +353,10 @@ def callback():
   return bottle.static_file(filename=config.google_validation_file, root='./static/')
 @bottle.route('/robots.txt')
 def callback():
-  return bottle.static_file(filename='robots.txt', root='./static/')
+  if re.search('origin.rxivist.org', bottle.request.urlparts[1]) is None:
+    return bottle.static_file(filename='robots.txt', root='./static/')
+  # tell bots not to index the origin URLs:
+  return bottle.static_file(filename='robots.origin.txt', root='./static/')
 @bottle.route('/favicon.ico')
 def callback():
   return bottle.static_file(filename='favicon.ico', root='./static/')
