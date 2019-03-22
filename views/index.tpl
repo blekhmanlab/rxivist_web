@@ -22,7 +22,7 @@
             </div>
           % else:
             % if config.announcement != "":
-              <div class="alert alert-success" role="alert">
+              <div class="alert alert-{{ config.announcement_class }}" role="alert">
                 <strong>Announcement: </strong>{{ !config.announcement }}
               </div>
             % end

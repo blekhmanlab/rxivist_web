@@ -1,6 +1,10 @@
 import os
 
 announcement = ''
+# possible values for announcement_class:
+# primary secondary success danger warning
+# colors: https://getbootstrap.com/docs/4.3/components/alerts/
+announcement_class = 'success'
 
 # Hostname and protocol for the Rxivist API
 rxapi = "http://api_url_goes_here.org"
