@@ -1,4 +1,4 @@
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-125076477-1"></script>
+<script async src="https://www.googletagmanager.com/gtag/js?id={{ google_tag }}"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}

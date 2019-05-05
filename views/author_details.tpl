@@ -1,8 +1,9 @@
 % import helpers
+% import config
 <!doctype html>
 <html lang="en">
   <head>
-    %include("components/metadata.tpl", google_tag=google_tag)
+    %include("components/metadata.tpl", google_tag=config.google_tag)
     <title>{{author["name"]}} author profile – Rxivist</title>
     <meta name="description" content="Research profile for
     % if "institution" in author.keys() and author["institution"] is not None:
