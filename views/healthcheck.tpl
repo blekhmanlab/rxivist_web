@@ -2,7 +2,7 @@
 <!doctype html>
 <html lang="en" ng-app="app">
   <head>
-    <title>Rxivist: Popular biology pre-print papers ranked</title>
+    <title>Rxivist: Explore popular biology preprints</title>
   </head>
   <body>
     <div class="container" id="main">

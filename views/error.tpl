@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     %include("components/metadata.tpl", google_tag=google_tag)
-    <title>Rxivist: Popular biology pre-print papers ranked</title>
+    <title>Rxivist: Explore popular biology preprints</title>
   </head>
 
   <body>
