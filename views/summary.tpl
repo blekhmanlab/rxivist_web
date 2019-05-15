@@ -70,6 +70,8 @@
             <p><em>Note that, unlike the submission graphs, this graph does not include the current month. Since per-paper download metrics are updated in our database over time, a month's download count can change up to four weeks after it ends.</em></p>
 
           % end
+
+          <p><a rel="license" href="http://creativecommons.org/licenses/by/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by/4.0/88x31.png" /></a><br />These charts are free to use and licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
         </div>
 
         %include("components/sidebar")
