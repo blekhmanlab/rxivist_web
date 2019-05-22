@@ -23,7 +23,7 @@
           % else:
             % if config.announcement != "":
               <div class="alert alert-{{ config.announcement_class }}" role="alert">
-                <strong>Announcement: </strong>{{ !config.announcement }}
+                <strong>Note: </strong>{{ !config.announcement }}
               </div>
             % end
             %if len(results) == 0:
