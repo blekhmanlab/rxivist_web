@@ -16,7 +16,7 @@ use_prod_webserver = True
 
 # How many tweets should a paper accumulate in a day to earn a little
 # fire icon next to its entry in the list?
-hot_tweetcount = 90
+hot_tweetcount = 110
 
 # Maximum time, in seconds, that the front page can be cached
 front_page_cache = 600
@@ -39,12 +39,7 @@ mailchimp_post = "https://rxivist.us20.list-manage.com/subscribe/post?u=c273a668
 display_altmetric = False
 
 # Link to a form to provide feedback on the website
-feedback = ""
-
-# Project-specific variables that get pulled into the documentation
-paper_url = "https://www.biorxiv.org/content/early/2019/01/13/515643"
-paper_title = "Tracking the popularity and outcomes of all bioRxiv preprints"
-paper_doi = "10.1101/515643"
+feedback = "https://docs.google.com/forms/d/e/1FAIpQLSfFRRtEYTnhB9XPbG4lat76zdD5CJRpnR_--xGg7WkVTDXl5Q/viewform?usp=sf_link"
 
 repo = "https://github.com/blekhmanlab/rxivist"
 twitter = "twitter_handle_here"
