@@ -10,22 +10,14 @@
   <ul>
     <li><a href="/">Home</a>
     <li><a href="/top/2018">Top preprints of 2018</a>
-    <li><a href=
-      % if entity == "papers":
-        "/?entity=authors&category={{"" if len(category_filter) == 0 else category_filter[0]}}">Author leaderboards
-      % else:
-        "/?category={{"" if len(category_filter) == 0 else category_filter[0]}}">Paper search
-      % end
-    </a>
+    <li><a href="/?category={{"" if len(category_filter) == 0 else category_filter[0]}}">Paper search</a>
+    <li><a href="/?entity=authors&category={{"" if len(category_filter) == 0 else category_filter[0]}}">Author leaderboards</a>
     <li><a href="/stats">Overall metrics</a>
     <li><a href="/docs">The API</a>
-    <li><a href="/about">About the project</a>
     % if config.mailchimp_post != "":
       <li><a href="/newsletter">Email newsletter</a>
     % end
-    % if config.paper_url != "":
-      <li><a href="/papers/{{ config.paper_doi }}">Rxivist preprint</a>
-    % end
+    <li><a href="/about">About</a>
   </ul>
   <hr>
   % if config.mailchimp_post != "":
@@ -54,10 +46,12 @@
   % end
   <h2>News</h2>
   <ul>
+    <li><strong>21 May 2019:</strong> <em>PLOS Biology</em> has published <a href="https://doi.org/10.1371/journal.pbio.3000269">a community page</a> about Rxivist.org and its design.
+    <li><strong>10 May 2019:</strong> The paper analyzing the Rxivist dataset has been <a href="https://elifesciences.org/articles/45133">published at <em>eLife</em></a>.
     <li><strong>1 Mar 2019:</strong> We now have <a href="/stats">summary statistics</a> about bioRxiv downloads and submissions.
     <li><strong>8 Feb 2019:</strong> Data from <a href="https://altmetric.com">Altmetric</a> is now available on the Rxivist details page for every preprint. Look for the "donut" under the download metrics.
     <li><strong>30 Jan 2019:</strong> preLights has <a href="https://prelights.biologists.com/highlights/tracking-the-popularity-and-outcomes-of-all-biorxiv-preprints/" target="_blank">featured the Rxivist preprint</a> and written about our findings.
     <li><strong>22 Jan 2019:</strong> <em>Nature</em> just published <a href="https://www.nature.com/articles/d41586-019-00199-6" target="_blank">an article about Rxivist</a> and our data.
-    <li><strong>13 Jan 2019:</strong> The <a href="{{ config.paper_url }}" target="_blank">Rxivist preprint</a> is live!
+    <li><strong>13 Jan 2019:</strong> The <a href="https://doi.org/10.1101/515643" target="_blank">Rxivist preprint</a> is live!
   </ul>
 </div>

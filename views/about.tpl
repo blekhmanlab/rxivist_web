@@ -17,16 +17,19 @@
 
           <h1>About</h1>
           <p>Rxivist indexes and sorts metadata from <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a>, a <a href="http://www.sciencemag.org/news/2017/09/are-preprints-future-biology-survival-guide-scientists" target="_blank">preprint</a> server<sup>1</sup> operated by Cold Spring Harbor Laboratory. There is no official association between bioRxiv and this project.
-          % if config.paper_url != "":
-            A preprint about Rxivist is <a href="{{ config.paper_url }}" target="_blank">now available on bioRxiv</a>.
-          % end
+
+          <p><strong>Papers about the Rxivist project:</strong>
+          <ul>
+            <li><a href="https://elifesciences.org/articles/45133" target="_blank">Tracking the popularity and outcomes of all bioRxiv preprints</a>. <em>eLife</em>. doi: <code>10.7554/eLife.45133</code>.
+            <li><a href="https://doi.org/10.1371/journal.pbio.3000269" target="_blank">Rxivist.org: Sorting biology preprints using social media and readership metrics</a>. <em>PLOS Biology</em>. doi: <code>10.1371/journal.pbio.3000269</code>.
+          </ul>
 
           <p>Twitter data used on the front page is provided by <a href="https://www.crossref.org" target="_blank">Crossref</a>.
           % if config.display_altmetric:
             Social media interaction data displayed on preprint detail pages is provided by <a href="https://www.altmetric.com/">Altmetric</a>.
           % end
 
-          <p>Rxivist was developed in 2018 by the <a href="http://blekhmanlab.org">Blekhman Lab</a> at the <a href="https://cbs.umn.edu/academics/departments/gcd" target="_blank">University of Minnesota</a>. Its source code is available on GitHub in two locations, for <a href="https://github.com/blekhmanlab/rxivist" target="_blank">the API</a> and <a href="https://github.com/blekhmanlab/rxivist_web" target="_blank">this web application</a>. Its main components are:
+          <p>Rxivist is developed and maintained by the <a href="http://blekhmanlab.org">Blekhman Lab</a> at the <a href="https://cbs.umn.edu/academics/departments/gcd" target="_blank">University of Minnesota</a>. Its source code is available on GitHub in two locations, for <a href="https://github.com/blekhmanlab/rxivist" target="_blank">the API</a> and <a href="https://github.com/blekhmanlab/rxivist_web" target="_blank">this web application</a>. Its main components are:
           <ul>
             <li><a href="https://python.org" target="_blank">Python 3</a>, the <a href="https://bottlepy.org/" target="_blank">Bottle</a> web framework and the <a href="https://html.python-requests.org/" target="_blank">Requests-HTML</a> module (for web crawling)
             <li><a href="https://www.postgresql.org/" target="_blank">PostgreSQL</a> database and the <a href="http://initd.org/psycopg/docs/index.html" target="_blank">Psycopg</a> SDK
