@@ -56,7 +56,7 @@
           <div class="row">
             <div class="col-12">
               <ul>
-                <li>"All-time" Twitter metrics (from <a href="https://crossref.org">Crossref</a>) currently <strong>date back to February 2017</strong>. This is pulled from a different source than Altmetric, so their totals will liekly be different.
+                <li>"All-time" Twitter metrics (from <a href="https://crossref.org">Crossref</a>) currently <strong>date back to February 2017</strong>. This is pulled from a different source than Altmetric, so their totals will likely be different.
                 <li>BioRxiv download metrics are <strong>updated for each paper about once every two weeks</strong>, which means there may be a discrepency between the totals reported on bioRxiv and the totals reported here.
               </ul>
             </div>
