@@ -43,19 +43,16 @@
 
             <p><em>"Etiquette" section based on the <a href="https://github.com/CrossRef/rest-api-doc#etiquette" target="_blank">Crossref API documentation</a>, available via <a href="https://creativecommons.org/licenses/by/4.0/" target="_blank">Creative Commons license</a>.</em>
 
-          % if config.paper_url != "":
-            <h3>How to cite Rxivist</h3>
 
-            <p>If you use Rxivist data in your research, please cite our paper, which is <a href="{{ config.paper_url }}" target="_blank">now available on bioRxiv</a> (of course):
+          <h3>How to cite Rxivist</h3>
+
+            <p>If you use Rxivist data in your research, please cite our paper, which is <a href="https://doi.org/10.7554/eLife.45133" target="_blank">now available at <em>eLife</em></a>:
 
             <div class="card">
               <div class="card-body">
-                <tt>Abdill, Richard J., and Ran Blekhman. "{{ config.paper_title }}." BioRxiv (2019). doi: {{ config.paper_doi }}.</tt>
+                <tt>Abdill RJ, Blekhman R. "Tracking the popularity and outcomes of all bioRxiv preprints." eLife (2019). doi: 10.7554/eLife.45133.</tt>
               </div>
             </div>
-
-
-          % end
 
         </div>
       </div>
