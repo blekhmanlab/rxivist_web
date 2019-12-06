@@ -1,5 +1,13 @@
 User-agent: *
 Disallow: /db/
+Crawl-Delay: 5
+Request-rate: 1/5s
+
+User-agent: GoogleBot
+Crawl-Delay: 1
+
+User-agent: Bingbot
+Crawl-Delay: 1
 
 User-agent: MJ12bot
 Disallow: /
