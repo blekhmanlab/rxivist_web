@@ -11,7 +11,6 @@
     <li><a href="/">Home</a>
     <li><a href="/top/2018">Top preprints of 2018</a>
     <li><a href="/?category={{"" if len(category_filter) == 0 else category_filter[0]}}">Paper search</a>
-    <li><a href="/?entity=authors&category={{"" if len(category_filter) == 0 else category_filter[0]}}">Author leaderboards</a>
     <li><a href="/stats">Overall metrics</a>
     <li><a href="/docs">The API</a>
     % if config.mailchimp_post != "":
