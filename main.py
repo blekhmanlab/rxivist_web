@@ -172,9 +172,9 @@ def display_author_details(id):
   distro = helpers.rxapi("/v1/data/distributions/author/downloads")
   download_distribution = distro["histogram"]
   averages = distro["averages"]
-  stats = helpers.rxapi("/v1/data/stats")
+  #stats = helpers.rxapi("/v1/data/stats")
   return bottle.template('author_details', author=author,
-    download_distribution=download_distribution, averages=averages, stats=stats,
+    download_distribution=download_distribution, averages=averages,
     google_tag=config.google_tag)
 
 #     Paper details page
@@ -214,9 +214,9 @@ def display_paper_details(paper_id):
   distro = helpers.rxapi("/v1/data/distributions/paper/downloads")
   download_distribution = distro["histogram"]
   averages = distro["averages"]
-  stats = helpers.rxapi("/v1/data/stats")
+  #stats = helpers.rxapi("/v1/data/stats")
   return bottle.template('paper_details', paper=paper, traffic=traffic,
-    download_distribution=download_distribution, averages=averages, stats=stats,
+    download_distribution=download_distribution, averages=averages,
     google_tag=config.google_tag)
 
 #     Annual results
@@ -320,27 +320,27 @@ def emailcode():
 @bottle.route('/privacy')
 @bottle.view('privacy')
 def privacy():
-  stats = helpers.rxapi("/v1/data/stats")
-  return bottle.template("privacy", google_tag=config.google_tag, stats=stats)
+  #stats = helpers.rxapi("/v1/data/stats")
+  return bottle.template("privacy", google_tag=config.google_tag)
 
 @bottle.route('/about')
 @bottle.view('about')
 def privacy():
-  stats = helpers.rxapi("/v1/data/stats")
-  return bottle.template("about", google_tag=config.google_tag, stats=stats)
+  #stats = helpers.rxapi("/v1/data/stats")
+  return bottle.template("about", google_tag=config.google_tag)
 
 @bottle.route('/newsletter')
 @bottle.view('newsletter')
 def privacy():
-  stats = helpers.rxapi("/v1/data/stats")
-  return bottle.template("newsletter", google_tag=config.google_tag, stats=stats)
+  #stats = helpers.rxapi("/v1/data/stats")
+  return bottle.template("newsletter", google_tag=config.google_tag)
 
 @bottle.route('/docs')
 @bottle.view('api_docs')
 def api_docs():
-  stats = helpers.rxapi("/v1/data/stats")
+  #stats = helpers.rxapi("/v1/data/stats")
   documentation = docs.build_docs()
-  return bottle.template("api_docs", google_tag=config.google_tag, stats=stats, docs=documentation)
+  return bottle.template("api_docs", google_tag=config.google_tag, docs=documentation)
 
 @bottle.route('/healthcheck')
 @bottle.view('healthcheck')
@@ -377,4 +377,5 @@ def callback(path):
 if config.use_prod_webserver:
   bottle.run(host='0.0.0.0', port=80, server="gunicorn")
 else:
+  print("NOT PROD")
   bottle.run(host='0.0.0.0', port=80, debug=True, reloader=True)
