@@ -14,6 +14,10 @@
           % include("components/header")
 
           <h1>About the newsletter</h1>
+
+          <p><strong>PLEASE NOTE: The Rxivist newsletter is currently suspended until a new source of social media data becomes available.</strong>
+
+          <br><br><br><br><br><br>
           <p>Rxivist indexes and sorts metadata from <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a>. Rxivist allows users to sort preprints based on Twitter activity or download metrics across a number of categories and timeframes&mdash;our weekly newsletter brings <strong>a slice of this information to your email inbox every Friday</strong>: We'll send the top 20 <strong>most tweeted bioRxiv preprints of the week</strong>, with titles, snippets of abstracts, and links to read more.
 
           <p>The newsletter (and its formatting) is still a work in progress, so these specs may change. The main goal, however, will not: to help you <strong>find the most discussed preprints in the life sciences</strong>. You can <a href="https://us20.campaign-archive.com/home/?u=c273a6689e7b42e4355a1af54&id=6b93ccc8c8" target="_blank" title="View previous newsletters">view previous newsletters</a> to get an idea of what's on the way. If you think it's for you, <strong>sign up for free below</strong> or in the sidebar:

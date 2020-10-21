@@ -18,11 +18,11 @@ def papers(category_list):
   query = papers.add_endpoint("Search", "/papers", "Retrieve a list of papers matching the given criteria.")
   query.add_argument("get", "q", "A search string to filter results based on their titles, abstracts and authors.", "")
 
-  metric = query.add_argument("get", "metric", "Which field to use when sorting results.", "twitter")
-  metric.add_values(["downloads", "twitter"])
-
-  timeframe = query.add_argument("get", "timeframe", "How far back to look for the cumulative results of the chosen metric. (\"ytd\" and \"lastmonth\" are only available for the \"downloads\" metric.", "\"day\" for Twitter metrics, \"alltime\" for downloads.")
-  timeframe.add_values(["alltime", "ytd", "lastmonth", "day", "week", "month", "year"])
+  metric = query.add_argument("get", "metric", "Which field to use when sorting results.", "downloads")
+  #metric.add_values(["downloads", "twitter"])
+  metric.add_values(["downloads"])
+  timeframe = query.add_argument("get", "timeframe", "How far back to look for the cumulative results of the chosen metric.")
+  timeframe.add_values(["alltime", "ytd", "lastmonth", "week", "month", "year"])
 
   catfilter = query.add_argument("get", "category_filter", "An array of categories to which the results should be limited.", "[]")
   catfilter.add_values(category_list)
@@ -407,7 +407,7 @@ def apidetails():
   entity = distributions.add_argument("path", "entity", "Which object should be used to group the metric totals.", "papers")
   entity.add_values(["paper", "author"])
 
-  metric = distributions.add_argument("path", "metric", "Which metric to evaluate. Not currently available for Twitter data.", "downloads")
+  metric = distributions.add_argument("path", "metric", "Which metric to evaluate.", "downloads")
   metric.add_values(["downloads"])
 
   distributions.add_example(
