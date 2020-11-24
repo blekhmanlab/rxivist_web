@@ -100,7 +100,11 @@
           selected
         %end
         >downloads</option>
-        
+        <option value="twitter"
+        %if metric == "twitter":
+          selected
+        %end
+        >Twitter activity</option>
       </select>
 
       <!-- for fixing responsiveness of input group -->
