@@ -9,10 +9,11 @@
 <div class="col-lg-3">
   <ul>
     <li><a href="/">Home</a>
-    <li><a href="/top/2018">Top preprints of 2018</a>
+    <!--<li><a href="/top/2018">Top preprints of 2018</a>-->
     <li><a href="/?category={{"" if len(category_filter) == 0 else category_filter[0]}}">Paper search</a>
     <li><a href="/stats">Overall metrics</a>
     <li><a href="/docs">The API</a>
+    <li><a href="https://doi.org/10.5281/zenodo.2529922">The dataset</a>
     % if config.mailchimp_post != "":
       <li><a href="/newsletter">Email newsletter</a>
     % end
