@@ -1,7 +1,7 @@
 % import config
 
 <div class="row">
-  <div class="col-md-6" style="padding-bottom: 35px;">
+  <div class="col-md-6" style="padding-top: 15px;">
     <a href="/"><img src="/static/rxivist_logo.png" class="img-fluid" alt="Rxivist logo" title="It's pronounced 'Archivist.'" width="350"></a>
   </div>
   % try:
