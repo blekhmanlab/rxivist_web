@@ -6,13 +6,7 @@ function getColor(repo) {
   return 'rgba(186,186,186,0.5)'
 }
 
-Chart.Tooltip.positioners.custom = function(elements, eventPosition) {
-    /** @type {Chart.Tooltip} */
-    var tooltip = this;
-    return {x: 10, y: 0};
-}
-
-function drawGraph(highlight) {
+function drawGraph() {
   var ctx = document.getElementById("{{canvasID}}").getContext('2d');
   var chart = new Chart(ctx, {
     type: '{{ 'bar' if stacked else 'line' }}',
@@ -47,7 +41,6 @@ function drawGraph(highlight) {
       tooltips: {
         mode: 'index',
         intersect: false,
-        position: 'custom',
         caretSize: 0,
         callbacks: {
           label: function(tooltipItem, data) {
@@ -83,7 +76,7 @@ function drawGraph(highlight) {
     }
   });
 }
-drawGraph("bioinformatics");
+drawGraph();
 
 
 </script>
