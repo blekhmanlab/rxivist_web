@@ -19,7 +19,7 @@
             <p>Newsletter sign-ups are stored by MailChimp and are not shared with any outside organizations.
 
           <h2>Content</h2>
-            <p>Rxivist builds profiles of papers and authors using only content pulled directly from <a href="https://biorxiv.org">bioRxiv</a>. If we have erroneously interpreted the data, or have problematically outdated information about a paper or author, please contact Richard Abdill at <strong>rxivist@umn.edu</strong>.
+            <p>Rxivist builds profiles of papers and authors using only content pulled directly from the preprint servers. If we have erroneously interpreted the data, or have problematically outdated information about a paper or author, please contact Richard Abdill at <strong>rxivist@umn.edu</strong>.
         </div>
         % include("components/sidebar")
       </div>

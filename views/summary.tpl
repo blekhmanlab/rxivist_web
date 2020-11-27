@@ -3,11 +3,11 @@
 <html lang="en" ng-app="app">
   <head>
     %include("components/metadata.tpl", google_tag=google_tag)
-    <title>bioRxiv summary statistics – Rxivist</title>
+    <title>Preprint summary statistics – Rxivist</title>
 
     <meta name="twitter:card" content="summary"></meta>
-    <meta property="og:title" content="bioRxiv summary metrics" />
-    <meta property="og:description" content="Overall metrics on the bioRxiv corpus, from Rxivist, the website that helps you find the preprints people are talking about." />
+    <meta property="og:title" content="Preprint summary metrics" />
+    <meta property="og:description" content="Overall metrics on the bioRxiv/medRxiv corpus, from Rxivist, the website that helps you find the preprints people are talking about." />
     <meta property="og:image" content="https://rxivist.org/static/rxivist_r.png" />
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.js"></script>
@@ -26,7 +26,7 @@
             </div>
           % else:
             <h1>Site-wide metrics</h1>
-            <p>The numbers below represent the metrics for all papers hosted on <a href="https://www.biorxiv.org" target="_blank">bioRxiv.org</a>, based on our indexing of the website.
+            <p>The numbers below represent the metrics for all papers hosted on <a href="https://www.biorxiv.org" target="_blank">bioRxiv.org</a> and <a href="https://www.medrxiv.org" target="_blank">medRxiv.org</a>, based on our indexing of the website.
 
             <h2>Monthly submissions, overall</h2>
 
