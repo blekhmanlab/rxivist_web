@@ -45,6 +45,9 @@
             % end
 
             % if len(results) > 0:
+              % if metric == 'twitter':
+                <p style="font-size: 0.8em;"><i>*There are gaps in historical Twitter data, most notably in spring 2020. This may result in some preprints appearing with less tweets than they should.</i></p>
+              % end
               % if entity == "authors":
                   % include("components/author_ranks", results=results)
               % elif entity == "papers":
