@@ -1,7 +1,8 @@
 % import helpers
 <script>
-function getColor(cat, highlight) {
-  if(cat == highlight) return '#468847'
+function getColor(repo) {
+  if(repo=='biorxiv') return '#c52538';
+  if(repo == 'medrxiv') return '#034d8f'
   return 'rgba(186,186,186,0.5)'
 }
 
@@ -25,8 +26,8 @@ function drawGraph(highlight) {
         % for i, dset in enumerate(traffic):
           {
             label: "{{ helpers.formatCategory(dset['label']) }}",
-            backgroundColor: getColor("{{ dset['label'] }}", highlight),
-            borderColor: getColor("{{ dset['label'] }}", highlight),
+            backgroundColor: getColor("{{ dset['label'] }}"),
+            borderColor: getColor("{{ dset['label'] }}"),
             pointStyle: 'cross',
             data: [
               % for entry in dset['data']:
@@ -86,7 +87,3 @@ drawGraph("bioinformatics");
 
 
 </script>
-<strong>Highlight a category:</strong><br>
-% for i, dset in enumerate(traffic):
-  <button class='btn btn-outline-secondary btn-sm' onclick='drawGraph("{{ dset['label'] }}")'>{{ helpers.formatCategory(dset['label']) }}</button>
-% end

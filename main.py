@@ -288,24 +288,9 @@ def summary():
     error = f"Sorry&mdash;there was a problem retrieving the results: {e}"
     bottle.response.status = 500
 
-  # Figure out the top categories:
-  top_cats = []
-  for cat in results['submissions_categorical']:
-    top_cats.append({
-      'category': cat['label'],
-      'count': cat['data'][-1]['count']
-    })
-
-  def sorter(x):
-    # little helper function that sorts the categories
-    # based on the most recent month's submissions
-    return x['count']
-  top_cats = sorted(top_cats, key=sorter, reverse=True)
-
   stats = helpers.rxapi("/v1/data/stats")
 
   return bottle.template('summary', results=results,
-    top_cats=top_cats,
     error=error, stats=stats, google_tag=config.google_tag)
 
 # Getting email code:

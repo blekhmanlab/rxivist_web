@@ -31,19 +31,21 @@
             <h2>Monthly submissions, overall</h2>
 
             <canvas id="monthlySubmissions"></canvas>
-            % include("components/graph_line",
+            % include("components/graph_multiline",
             %   traffic = results['submissions'],
             %   canvasID = 'monthlySubmissions',
-            %   yaxis = 'Preprints posted')
+            %   yaxis = 'Preprints posted',
+            %   stacked=False)
 
             <p><em>See <a href="http://www.prepubmed.org/monthly_stats/" target="_blank">PrePubMed</a> for a similar chart that puts bioRxiv submissions in context alongside other preprint servers.</em></p>
 
             <h2>Monthly downloads</h2>
             <canvas id="monthlyDownloads"></canvas>
-            % include("components/graph_line",
+            % include("components/graph_multiline",
             %   traffic = results['downloads'],
             %   canvasID = 'monthlyDownloads',
-            %   yaxis = 'Downloads')
+            %   yaxis = 'Downloads',
+            %   stacked=False)
 
             <p><em>Note that, unlike the submission graphs, this graph does not include the current month. Since per-paper download metrics are updated in our database over time, a month's download count can change up to four weeks after it ends.</em></p>
 
