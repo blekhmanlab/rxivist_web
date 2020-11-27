@@ -84,7 +84,7 @@
     </script>
 % end
 
-<div id="searchform">
+<div id="searchform" style="padding: 1rem 1rem 0 1rem; border-style:solid; border-color:#468847; border-width: 5px; border-radius: 15px;">
   <form action="/" method="get">
   % if entity == "papers":
     <div class="input-group mb-3">
