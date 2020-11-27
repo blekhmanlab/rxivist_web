@@ -51,6 +51,7 @@
   % end
   <h2>News</h2>
   <ul>
+    <li><strong>27 Nov 2020:</strong> The website and API now include results pulled from <a href="https://medrxiv.org" target="_blank">medRxiv</a> as well as bioRxiv.
     <li><strong>18 Dec 2019:</strong> We're pleased to announce <span style='font-family: Georgia;'><strong>Pan<i><font color="red">L</font></i>ingua</strong></span>, a new tool that enables you to <a href="https://panlingua.rxivist.org">search for machine-translated bioRxiv preprints</a> using more than 100 different languages.
     <li><strong>21 May 2019:</strong> <em>PLOS Biology</em> has published <a href="https://doi.org/10.1371/journal.pbio.3000269">a community page</a> about Rxivist.org and its design.
     <li><strong>10 May 2019:</strong> The paper analyzing the Rxivist dataset has been <a href="https://elifesciences.org/articles/45133">published at <em>eLife</em></a>.

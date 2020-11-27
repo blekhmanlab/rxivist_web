@@ -1,8 +1,8 @@
-#     Rxivist, a system for crawling papers published on bioRxiv
+#     Rxivist, a system for indexing biology preprints
 #     and organizing them in ways that make it easier to find new
 #     or interesting research. Includes a web application for
 #     the display of data.
-#     Copyright (C) 2018 Regents of the University of Minnesota
+#     Copyright (C) 2020 Regents of the University of Minnesota
 
 #     This program is free software: you can redistribute it and/or modify
 #     it under the terms of the GNU Affero General Public License as
@@ -17,7 +17,7 @@
 #     along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #     Any inquiries about this software or its use can be directed to
-#     Professor Ran Blekhman at the University of Minnesota:
+#     Dr Ran Blekhman at the University of Minnesota:
 #     email: blekhman@umn.edu
 #     mail: MCB 6-126, 420 Washington Avenue SE, Minneapolis, MN 55455
 #     http://blekhmanlab.org/
@@ -64,7 +64,7 @@ def index():
         category_filter = [category_filter[0]]
       results = helpers.rxapi(f"/v1/authors?category={category}")
     elif entity == "papers":
-      results, respheaders = helpers.rxapi(f"/v1/papers?{bottle.request.query_string}", headers=True)
+      results, respheaders = helpers.rxapi(f"/v2/papers?{bottle.request.query_string}", headers=True)
   except Exception as e:
     print(e)
     error = f"There was a problem with the submitted query: {e}"
@@ -94,6 +94,8 @@ def index():
       page_size = results["query"]["page_size"]
       totalcount = results["query"]["total_results"]
       query = results["query"]["text_search"]
+      repo = results["query"]["repository"]
+
     except Exception as e:
       if "error" in results.keys():
         error = results["error"]
@@ -111,9 +113,12 @@ def index():
     elif metric == "downloads":
       title += "downloaded"
     if query != "":
-      title += f" papers related to \"{query},\" "
+      title += f" preprints related to \"{query},\" "
     else:
-      title += " bioRxiv papers, "
+      if repo == 'all':
+        title += " biology preprints, "
+      else:
+        title += f" {helpers.formatRepo(repo)} preprints, "
     printable_times = {
       "alltime": "all time",
       "ytd": "year to date",
@@ -139,7 +144,7 @@ def index():
     error=error, stats=stats, category_list=category_list, view=view,
     timeframe=timeframe, metric=metric, entity=entity, google_tag=config.google_tag,
     page=page, page_size=page_size, totalcount=totalcount, pagelink=pagelink,
-    querystring=bottle.request.query_string)
+    querystring=bottle.request.query_string, repo=repo)
 
 
 #     Author details page

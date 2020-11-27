@@ -14,7 +14,7 @@ def build_docs():
   )
 
 def papers(category_list):
-  papers = docmodels.Chapter("Preprints", "Search all bioRxiv papers and retrieve details.")
+  papers = docmodels.Chapter("Preprints", "Search all indexed preprints and retrieve details.")
   query = papers.add_endpoint("Search", "/papers", "Retrieve a list of papers matching the given criteria.")
   query.add_argument("get", "q", "A search string to filter results based on their titles, abstracts and authors.", "")
 
@@ -30,6 +30,8 @@ def papers(category_list):
 
   query.add_argument("get", "page_size", "How many results to return at one time.", 20)
 
+  repo = query.add_argument("get", "repo", "Which preprint repositories should be included in the request.", "biorxiv")
+  metric.add_values(["biorxiv", "medrxiv", "all"])
   query.add_example(
     "Top 3 downloaded papers, all time",
     "Using the \"downloads\" metric, get 3 papers ordered by their overall download count.",
@@ -43,7 +45,8 @@ def papers(category_list):
     "page_size": 3,
     "current_page": 0,
     "final_page": 11138,
-    "total_results": 33416
+    "total_results": 33416,
+    "repository": "biorxiv"
   },
   "results": [
     {
@@ -56,6 +59,7 @@ def papers(category_list):
       "category": "cancer-biology",
       "first_posted": "19-09-18",
       "abstract": "This is where the abstract would go.",
+      "repo": "biorxiv",
       "authors": [
         {
           "id": 1,
@@ -83,6 +87,7 @@ def papers(category_list):
   "id": 25770,
   "doi": "10.1101/096727",
   "biorxiv_url": "https://www.biorxiv.org/content/early/2016/12/29/096727",
+  "repo": "biorxiv",
   "url": "https://api.rxivist.org/v1/papers/25770",
   "title": "Parallel adaptation to higher temperatures in divergent clades of the nematode Pristionchus pacificus",
   "category": "evolutionary-biology",

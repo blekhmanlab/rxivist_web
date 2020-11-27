@@ -16,7 +16,7 @@
           % include("components/header")
 
           <h1>About</h1>
-          <p>Rxivist indexes and sorts metadata from <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a>, a <a href="http://www.sciencemag.org/news/2017/09/are-preprints-future-biology-survival-guide-scientists" target="_blank">preprint</a> server<sup>1</sup> operated by Cold Spring Harbor Laboratory. There is no official association between bioRxiv and this project.
+          <p>Rxivist indexes and sorts metadata from <a href="https://www.biorxiv.org/" target="_blank">bioRxiv</a> and <a href="https://www.medrxiv.org/" target="_blank">medRxiv</a>, <a href="http://www.sciencemag.org/news/2017/09/are-preprints-future-biology-survival-guide-scientists" target="_blank">preprint</a> servers<sup>1</sup> operated by Cold Spring Harbor Laboratory. There is no official association between CSHL and this project.
 
           <p><strong>Papers about the Rxivist project:</strong>
           <ul>
@@ -57,7 +57,7 @@
             <div class="col-12">
               <ul>
                 <li>"All-time" Twitter metrics (from <a href="https://crossref.org">Crossref</a>) currently <strong>date back to February 2017</strong>. This is pulled from a different source than Altmetric, so their totals will likely be different.
-                <li>BioRxiv download metrics are <strong>updated for each paper about once every two weeks</strong>, which means there may be a discrepency between the totals reported on bioRxiv and the totals reported here.
+                <li>Download metrics are <strong>updated for each paper about once every two weeks</strong>, which means there may be a discrepency between the totals reported by the preprint servers and the totals reported here.
               </ul>
             </div>
           </div>

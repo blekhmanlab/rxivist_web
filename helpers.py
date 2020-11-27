@@ -68,6 +68,14 @@ def formatNumber(val):
     return "None"
   return format(val, ",d")
 
+def formatRepo(val):
+  printables = {
+    'biorxiv': 'bioRxiv',
+    'medrxiv': 'medRxiv',
+    'all': 'all'
+  }
+  return printables[val]
+
 def findCategory(needle, haystack):
   for x in haystack:
     if x["category"] == needle:

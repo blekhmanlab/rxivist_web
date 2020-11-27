@@ -3,6 +3,16 @@
   font-weight: bold;
 }
 
+.biorxiv {
+  background-color: #c52538;
+  color: #f7f7f7;
+}
+
+.medrxiv {
+  background-color: #034d8f;
+  color: #f7f7f7;
+}
+
 .bioinformatics {
   background-color: #CD6155;
 }

@@ -94,7 +94,7 @@
       </a>
     </div>
     <div class="input-group mb-3">
-      <select class="form-control col-md-3" id="metric" name="metric" onchange="fixForm('metric');">
+      <select class="form-control col-md-4" id="metric" name="metric" onchange="fixForm('metric');">
         <option value="downloads"
         %if metric == "downloads":
           selected
@@ -110,7 +110,7 @@
       <!-- for fixing responsiveness of input group -->
       <div class="d-md-none w-100"></div>
 
-      <select class="form-control col-md-3" id="category" name="category">
+      <select class="form-control col-md-4" id="category" name="category">
         <option value="">all categories</option>
         % for cat in category_list:
           <option value="{{cat}}"
@@ -123,12 +123,12 @@
 
       <div class="d-md-none w-100"></div>
 
-      <select class="form-control col-md-3" id="timeframe" name="timeframe" onchange="fixForm('timeframe');">
+      <select class="form-control col-md-4" id="timeframe" name="timeframe" onchange="fixForm('timeframe');">
       </select>
+    </div>
 
-      <div class="d-md-none w-100"></div>
-
-      <select class="form-control col-md-3" id="page_size" name="page_size">
+    <div class="input-group mb-3">
+      <select class="form-control col-md-4" id="page_size" name="page_size">
         <option value="20"
           %if page_size == 20:
             selected
@@ -149,6 +149,25 @@
             selected
           %end
         >100 results per page</option>
+      </select>
+
+      <div class="d-md-none w-100"></div>
+      <select class="form-control col-md-4" id="repo" name="repo">
+        <option value="all"
+            %if repo == 'all':
+              selected
+            %end
+          >all repos</option>
+        <option value="biorxiv"
+          %if repo == 'biorxiv':
+            selected
+          %end
+        >bioRxiv only</option>
+        <option value="medrxiv"
+          %if repo == 'medrxiv':
+            selected
+          %end
+        >medRxiv only</option>
       </select>
 
       <div class="d-md-none w-100"></div>

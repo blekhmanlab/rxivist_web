@@ -1,7 +1,7 @@
 % import helpers
 
 % if "ranks" not in paper.keys() or helpers.formatNumber(paper["ranks"]["alltime"]["downloads"]) == "None":
-<p><em>No bioRxiv download data for this paper yet.</em></p>
+<p><em>No download data for this paper yet.</em></p>
 % else:
 <ul>
   <li><em>Downloaded {{ helpers.formatNumber(paper["ranks"]["alltime"]["downloads"]) }} times</em>
