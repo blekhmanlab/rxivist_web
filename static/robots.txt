@@ -1,5 +1,4 @@
 User-agent: *
-Disallow: /db/
 Crawl-Delay: 5
 Request-rate: 1/5s
 
@@ -9,8 +8,20 @@ Crawl-Delay: 1
 User-agent: Bingbot
 Crawl-Delay: 1
 
+# Yandex won't honor crawl-delay directives
+User-agent: YandexBot
+Disallow: /
+
+# SEO companies
+
 User-agent: MJ12bot
 Disallow: /
 
 User-agent: AhrefsBot
+Disallow: /
+
+User-agent: SemrushBot
+Disallow: /
+
+User-agent: DotBot
 Disallow: /
