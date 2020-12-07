@@ -315,13 +315,13 @@ def privacy():
 
 @bottle.route('/about')
 @bottle.view('about')
-def privacy():
+def about():
   #stats = helpers.rxapi("/v1/data/stats")
   return bottle.template("about", google_tag=config.google_tag)
 
 @bottle.route('/newsletter')
 @bottle.view('newsletter')
-def privacy():
+def newsletter():
   #stats = helpers.rxapi("/v1/data/stats")
   return bottle.template("newsletter", google_tag=config.google_tag)
 
@@ -334,7 +334,7 @@ def api_docs():
 
 @bottle.route('/healthcheck')
 @bottle.view('healthcheck')
-def privacy():
+def healthcheck():
   return bottle.template("healthcheck")
 
 # Search engine stuff
