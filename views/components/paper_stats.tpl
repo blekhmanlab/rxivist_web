@@ -7,20 +7,20 @@
   <li><em>Downloaded {{ helpers.formatNumber(paper["ranks"]["alltime"]["downloads"]) }} times</em>
   <li><strong>Download rankings, all-time:</strong>
     <ul>
-      <li>Site-wide: <strong>{{ helpers.formatNumber(paper["ranks"]["alltime"]["rank"]) }}</strong> out of {{ helpers.formatNumber(paper["ranks"]["alltime"]["out_of"]) }}</li>
+      <li>Site-wide: <strong>{{ helpers.formatNumber(paper["ranks"]["alltime"]["rank"]) }}</strong></li>
       % if paper["category"] != "unknown":
-        <li>In {{ helpers.formatCategory(paper["category"]) }}: <strong>{{ helpers.formatNumber(paper["ranks"]["category"]["rank"]) }}</strong> out of {{ helpers.formatNumber(paper["ranks"]["category"]["out_of"]) }}</li>
+        <li>In {{ helpers.formatCategory(paper["category"]) }}: <strong>{{ helpers.formatNumber(paper["ranks"]["category"]["rank"]) }}</strong></li>
       % end
     </ul>
   </li>
   <li><strong>Year to date</strong>:
     <ul>
-      <li>Site-wide: <strong>{{ helpers.formatNumber(paper["ranks"]["ytd"]["rank"]) }}</strong> out of {{ helpers.formatNumber(paper["ranks"]["ytd"]["out_of"]) }}</li>
+      <li>Site-wide: <strong>{{ helpers.formatNumber(paper["ranks"]["ytd"]["rank"]) }}</strong></li>
     </ul>
   </li>
   <li><strong>Since beginning of last month</strong>:
     <ul>
-      <li>Site-wide: <strong>{{ helpers.formatNumber(paper["ranks"]["lastmonth"]["rank"]) }}</strong> out of {{ helpers.formatNumber(paper["ranks"]["lastmonth"]["out_of"]) }}</li>
+      <li>Site-wide: <strong>{{ helpers.formatNumber(paper["ranks"]["lastmonth"]["rank"]) }}</strong></li>
     </ul>
   </li>
 </ul>

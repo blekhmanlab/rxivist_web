@@ -51,7 +51,7 @@
                   %if alltime["tie"]:
                     (tie)
                   %end
-                  out of {{ helpers.formatNumber(alltime["out_of"]) }})
+                  )
                 % end
 
                 % if len(author["ranks"]) > 1:
@@ -64,7 +64,7 @@
                     %if entry["tie"]:
                       (tie)
                     %end
-                    out of {{ helpers.formatNumber(entry["out_of"]) }})
+                    )
                   % end
                   </ul>
                 % end

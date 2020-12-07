@@ -312,21 +312,18 @@ def authors(category_list):
     {
       "downloads": 134075,
       "rank": 1,
-      "out_of": 104795,
       "tie": false,
       "category": "alltime"
     },
     {
       "downloads": 3126,
       "rank": 1120,
-      "out_of": 14752,
       "tie": true,
       "category": "bioinformatics"
     },
     {
       "downloads": 130949,
       "rank": 1,
-      "out_of": 21996,
       "tie": false,
       "category": "neuroscience"
     }

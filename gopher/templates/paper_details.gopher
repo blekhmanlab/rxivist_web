@@ -21,8 +21,8 @@ On bioRxiv: {{ results["biorxiv_url"] }}
 ---
 RANKS:
 {{ results["ranks"]["alltime"]["downloads"] }} downloads all time
-  - Overall rank: {{ results["ranks"]["alltime"]["rank"] }} out of {{ results["ranks"]["alltime"]["out_of"] }}
-  - Rank in {{ results["category"] }}: {{ results["ranks"]["category"]["rank"] }} out of {{ results["ranks"]["category"]["out_of"] }}
+  - Overall rank: {{ results["ranks"]["alltime"]["rank"] }}
+  - Rank in {{ results["category"] }}: {{ results["ranks"]["category"]["rank"] }}
 {% endif %}
 
 {% include 'footer.gopher' %}
