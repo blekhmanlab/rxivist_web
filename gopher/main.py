@@ -90,4 +90,4 @@ def about():
   return flask.render_template('about.gopher')
 
 if __name__ == '__main__':
-  app.run('0.0.0.0', 70, request_handler=GopherRequestHandler, debug=True)
+  app.run('0.0.0.0', 70, request_handler=GopherRequestHandler, debug=False)
