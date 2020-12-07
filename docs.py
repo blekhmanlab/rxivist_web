@@ -273,9 +273,6 @@ def authors(category_list):
   "name": "Merve Kayhan",
   "institution": "Bilkent University;",
   "orcid": null,
-  "emails": [
-    "merve.kayhan@bilkent.edu.tr"
-  ],
   "articles": [
     {
       "id": 25770,
