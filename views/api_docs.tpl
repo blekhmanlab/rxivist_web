@@ -35,9 +35,11 @@
             <ul>
               <li>Cache data so you don't request the same information over and over again.
               <li>Minimize the number of parallel requests being made. If you start noticing increased response times or start getting timeout errors, consider adding pauses between requests.
-              <li>Specify a User-Agent header that properly identifies your script or tool and that provides a means of contacting you via email using "mailto:". For example: <code>GroovyBib/1.1 (https://example.org/GroovyBib/; mailto:GroovyBib@example.org) BasedOnFunkyLib/1.4</code>. This way we can contact you if we see a problem.
+              <li><strong>Specify a User-Agent header</strong> that properly identifies your script or tool and that provides a means of contacting you via email using "mailto:". For example: <code>GroovyBib/1.1 (https://example.org/GroovyBib/; mailto:GroovyBib@example.org) BasedOnFunkyLib/1.4</code>. This way we can contact you if we see a problem.
               <li>Report problems and/or ask questions on <a href="{{ config.repo }}/issues">our issue tracker</a>.
             </ul>
+
+            <p>New, December 2020: <strong>Requests to the Rxivist website and API that do not specify a User-Agent may be rejected.</strong>
 
             <p>Alas, not all people are polite. And for this reason we reserve the right to impose rate limits and/or to block clients that are disrupting the public service.
 
