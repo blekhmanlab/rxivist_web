@@ -2,7 +2,7 @@
 
 <p class="text-right"><em><strong>{{ "{:,}".format(totalcount) }} results found.</strong> For more information, click each entry to expand.</em></p>
 <p class="text-left" style="margin-top: -2.7em;">
-  <a href="{{pagelink}}{{page}}&view=print" class="btn btn-sm btn-altcolor" alt="Printer-friendly front page">
+  <a href="{{pagelink}}{{page}}&view=print" rel="nofollow" class="btn btn-sm btn-altcolor" alt="Printer-friendly front page">
     <i class="fas fa-print"></i>
   </a>
 </p>
