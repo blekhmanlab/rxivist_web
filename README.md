@@ -1,3 +1,13 @@
+**Note, March 2023: The Rxivist project has been discontinued.** This code will remain available indefinitely, but we can't make any assurances about its functionality going forward as dependencies and external data sources change.
+
+.
+
+.
+
+.
+
+.
+
 # rxivist
 
 This repository holds code for the website currently deployed at rxivist.org; it's one half of the Rxivist platform, which also includes an API in [a separate repository](https://github.com/blekhmanlab/rxivist).
